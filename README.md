@@ -1,8 +1,8 @@
 # 2023-2 Capstone
 
-- ### Project : *Tail Guardians*
-- ### Duration : 2023.09.01 ~
-- ### Genre : RTS
+- #### Project : *Tail Guardians*
+- #### Duration : *2023.09.01* ~
+- #### Genre : *RTS*
 
 
 </br>
