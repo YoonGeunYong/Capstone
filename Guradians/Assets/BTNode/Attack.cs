@@ -6,13 +6,20 @@ public class Attack : Action
 {
 
 	EnemyAI enemyAI;
+
+
 	public override void OnStart()
 	{
 		enemyAI = GetComponent<EnemyAI>();
+		enemyAI.RequestDecision();
 	}
 
 	public override TaskStatus OnUpdate()
 	{
-		return TaskStatus.Success;
+		if(enemyAI.IsActionCompleted)
+			return TaskStatus.Success;
+
+		return TaskStatus.Running;
+		
 	}
 }
