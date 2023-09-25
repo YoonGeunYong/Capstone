@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class Unit
+public class UnitStats
 {
     public float atk; // 공격력 Attack
     public float def; // 방어력 defend
@@ -17,12 +17,19 @@ public class Unit
     public int coast; // 코스트
 }
 
+
 public class UnitManager : MonoBehaviour
 {
+    [SerializeField] private UnitStatsSO _preStats;
+    private UnitStats _stats;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (_preStats is not null)
+        {
+            _stats = _preStats._stats;
+        }
     }
 
     // Update is called once per frame
