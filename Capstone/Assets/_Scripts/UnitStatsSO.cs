@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "UnitStats", menuName = "Scriptable Object Asset/UnitStats")]
+[CreateAssetMenu(fileName = "Entitiy(name)", menuName = "Scriptable Object Asset/Entitiy(name)")]
 public class UnitStatsSO : ScriptableObject
 {
     public UnitStats _stats;
-    public Sprite[] _images;
-    public AudioClip _sound;
+    public Animator _animator;
+    public Sprite _image;
+    public Vector3 _defaultPosition;
+    public Vector3 _defaultScale;
 }

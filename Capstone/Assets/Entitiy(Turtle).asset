@@ -10,15 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86d52331cd83d0f428c7e75fdf8316ed, type: 3}
-  m_Name: Entitiy(NAME)
+  m_Name: Entitiy(Turtle)
   m_EditorClassIdentifier: 
   _stats:
-    atk: 0
-    def: 0
-    hp: 0
-    asd: 0
-    msd: 0
-    delay: 0
+    attack: 20
+    defend: 5
+    healthPoint: 300
+    attackSpeed: 1
+    moveSpeed: 0.7
+    delay: 1
     atacktype: 0
-    length: 0
-    coast: 0
+    length: 1
+    coast: 15
+  _animator: {fileID: 0}
+  _image: {fileID: 21300000, guid: 2b2b4dad7f4236e4db0984ffe8c6ecd9, type: 3}
+  _defaultPosition: {x: -5, y: 0, z: 0}
+  _defaultScale: {x: 1.5, y: 1.5, z: 1}
