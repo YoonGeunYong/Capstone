@@ -85,7 +85,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void DeselectCurrent()
+    public void DeselectCurrent()
     {
         if (selectedUnit != null)
         {
