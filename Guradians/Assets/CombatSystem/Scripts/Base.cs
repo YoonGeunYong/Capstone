@@ -5,23 +5,28 @@ using UnityEngine;
 public class Base : MonoBehaviour
 {
     // Position on the board.
-    private Vector2Int position;
+    private Vector2Int basePosition;
 
 
     public void Init(Vector2Int position)
     {
-        this.position = position;
+        basePosition = position;
         Debug.Log("Base initialized at " + position);
     }
 
     // This method creates a new unit at the base's position.
     public Unit SpawnUnit(GameObject unitPrefab)
     {
-        GameObject newUnitObject = Instantiate(unitPrefab, new Vector3(position.x, 0, position.y), Quaternion.identity);
+        GameObject newUnitObject = Instantiate(unitPrefab, new Vector3(basePosition.x, 0, basePosition.y), Quaternion.identity);
         Unit newUnit = newUnitObject.GetComponent<Unit>();
 
         // Set the initial properties of the unit...
 
         return newUnit;
+    }
+
+    public Vector2Int GetPosition()
+    {
+        return basePosition;
     }
 }

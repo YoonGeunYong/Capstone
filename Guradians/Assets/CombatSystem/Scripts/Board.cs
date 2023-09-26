@@ -52,7 +52,7 @@ public class Board : MonoBehaviour
                 tileComponent.board = this;
             }
 
-        //playerBase.Init(bottomLeftPosition);
+      
 
         return bottomLeftPosition;
     }
@@ -112,10 +112,7 @@ public class Board : MonoBehaviour
         // Highlight possible moves...
     }
 
-    public void OnMouseDown()
-    {
-        SelectUnit(selectedUnit);
-    }
+
 
     // Add methods for moving units around the board here...
 }

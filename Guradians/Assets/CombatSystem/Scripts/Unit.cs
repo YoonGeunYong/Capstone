@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    private int minimapWidth;
-    private int minimapHeight;
-
     public Vector2Int gridPosition;
     public RectTransform minimapRect;  // Assign this in the inspector.
     public GameObject unitUIPrefab;     // Assign this in the inspector.
+    public GameObject borderGlow;
+    public Unit unit;
+
 
     private GameObject unitUIInstance;
 
@@ -17,11 +17,7 @@ public class Unit : MonoBehaviour
     {
         gridPosition = new Vector2Int(-20, -20);
         minimapRect = MinimapManager.instance.minimapRect;
-
-        // Assuming minimapRect is already assigned in the inspector
-        minimapWidth = (int)minimapRect.rect.width;
-        minimapHeight = (int)minimapRect.rect.height;
-
+        
         // Instantiate the unit UI image.
         unitUIInstance = Instantiate(unitUIPrefab, minimapRect);
         UpdateMinimapPosition();
@@ -67,6 +63,50 @@ public class Unit : MonoBehaviour
 
         // The y-coordinate remains same because we are not changing it in gameboard
         return new Vector3(adjustedX, adjustedY, 0);
+    }
+
+    private void OnMouseDown()
+    {
+        if (borderGlow.activeSelf)
+        {
+            // If the border is already glowing, clicking on another tile will move the unit.
+            Vector2Int clickPosition = GetClickPosition();
+
+            if (GameController.instance.board.IsValidMove(clickPosition))
+            {
+                GameController.instance.board.MoveUnit(unit, clickPosition);
+                Deselect();
+            }
+        }
+        else
+        {
+            Select();
+        }
+    }
+
+    private void Select()
+    {
+        borderGlow.SetActive(true);
+        GameController.instance.board.SelectUnit(this);
+    }
+
+    private void Deselect()
+    {
+        borderGlow.SetActive(false);
+        GameController.instance.board.DeselectCurrent();
+    }
+
+    private Vector2Int GetClickPosition()
+    {
+        Vector3 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2Int gridPosition = new Vector2Int(Mathf.RoundToInt(clickPosition.x), Mathf.RoundToInt(clickPosition.y));
+        return gridPosition;
+    }
+
+    public void DestroyUnit()
+    {
+        Destroy(unitUIInstance);
+        Destroy(this.gameObject);
     }
 
 
