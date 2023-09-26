@@ -11,6 +11,7 @@ public class Base : MonoBehaviour
     public void Init(Vector2Int position)
     {
         this.position = position;
+        Debug.Log("Base initialized at " + position);
     }
 
     // This method creates a new unit at the base's position.
