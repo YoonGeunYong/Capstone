@@ -24,6 +24,7 @@ public class Tile : MonoBehaviour
     // Call this method to change the color of the tile.
     public void Highlight(bool highlight)
     {
+        Debug.Log("highlight");
         if (highlight)
             spriteRenderer.color = Color.green;
         else
