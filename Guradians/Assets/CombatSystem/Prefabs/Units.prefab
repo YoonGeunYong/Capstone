@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPosition: {x: 0, y: 0}
   minimapRect: {fileID: 0}
-  unitUIPrefab: {fileID: 6016947557535431192, guid: 285a7359fe55aea4181834c07a2e1dd7, type: 3}
+  unitUIPrefab: {fileID: 9166443645223390271, guid: 285a7359fe55aea4181834c07a2e1dd7, type: 3}
 --- !u!54 &2053374505549040433
 Rigidbody:
   m_ObjectHideFlags: 0

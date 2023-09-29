@@ -5,19 +5,19 @@ using BehaviorDesigner.Runtime.Tasks;
 public class Attack : Action
 {
 
-	EnemyAI enemyAI;
+	//EnemyAI enemyAI;
 
 
 	public override void OnStart()
 	{
-		enemyAI = GetComponent<EnemyAI>();
-		enemyAI.RequestDecision();
+		//enemyAI = GetComponent<EnemyAI>();
+		//enemyAI.RequestDecision();
 	}
 
 	public override TaskStatus OnUpdate()
 	{
-		if(enemyAI.IsActionCompleted)
-			return TaskStatus.Success;
+		//if(enemyAI.IsActionCompleted)
+		//	return TaskStatus.Success;
 
 		return TaskStatus.Running;
 		

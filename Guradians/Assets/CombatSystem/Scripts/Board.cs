@@ -6,7 +6,7 @@ using UnityEngine;
 public class Board : MonoBehaviour
 {
     
-    private Unit selectedUnit;
+    public Unit selectedUnit;
 
     // 2D array representing the board tiles.
     private Tile[,] tiles;
@@ -67,11 +67,7 @@ public class Board : MonoBehaviour
             return false;
         }
 
-        // Check if the tile at the given position is empty.
-        if (!tiles[position.x, position.y].IsEmpty())
-        {
-            return false;
-        }
+     
 
         return true;
     }
@@ -85,7 +81,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void DeselectCurrent()
+    public void DeselectCurrent()
     {
         if (selectedUnit != null)
         {
@@ -117,5 +113,16 @@ public class Board : MonoBehaviour
         SelectUnit(selectedUnit);
     }
 
+    public Tile GetTileAt(Vector2Int position)
+    {
+        if (position.x < 0 || position.x >= tiles.GetLength(0) ||
+            position.y < 0 || position.y >= tiles.GetLength(1))
+        {
+            // Out of bounds
+            return null;
+        }
+
+        return tiles[position.x, position.y];
+    }
     // Add methods for moving units around the board here...
 }
