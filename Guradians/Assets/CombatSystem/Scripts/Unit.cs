@@ -27,4 +27,31 @@ public class Unit : MonoBehaviour
 	
 	    unitUIInstance.UpdateMinimapPosition();
     }
+
+    public List<Vector2Int> GetPossibleMoves()
+    {
+        List<Vector2Int> possibleMoves = new List<Vector2Int>();
+
+        // Check the four possible directions: up, down, left, right.
+        Vector2Int[] directions = new Vector2Int[]
+        {
+        new Vector2Int(0, 1),  // Up
+        new Vector2Int(0, -1), // Down
+        new Vector2Int(-1, 0), // Left
+        new Vector2Int(1, 0)   // Right
+        };
+
+        Board board = GameController.instance.board;
+
+        foreach (Vector2Int direction in directions)
+        {
+            Vector2Int newPos = gridPosition + direction;
+
+            if (board.IsValidMove(newPos))
+                possibleMoves.Add(newPos);
+        }
+
+        return possibleMoves;
+    }
+
 }

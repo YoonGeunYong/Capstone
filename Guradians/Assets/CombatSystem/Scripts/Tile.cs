@@ -7,17 +7,13 @@ public class Tile : MonoBehaviour
     public Vector2Int gridPosition;
     public Unit unitOnTile;
     public Board board;
+    public bool isAccessible = true;  // Whether a unit can move to this tile.
 
-    public void OnMouseDown()
+    private SpriteRenderer spriteRenderer;  // Used for changing the tile's color.
+
+    private void Awake()
     {
-        if (unitOnTile != null)
-        {
-            board.SelectUnit(unitOnTile);
-        }
-        else
-        {
-            board.MoveSelectedUnitTo(gridPosition);
-        }
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public bool IsEmpty()
@@ -25,4 +21,12 @@ public class Tile : MonoBehaviour
         return unitOnTile == null;
     }
 
+    // Call this method to change the color of the tile.
+    public void Highlight(bool highlight)
+    {
+        if (highlight)
+            spriteRenderer.color = Color.green;
+        else
+            spriteRenderer.color = Color.white;
+    }
 }
