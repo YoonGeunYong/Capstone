@@ -18,6 +18,7 @@ public class UnitUi : MonoBehaviour, IPointerClickHandler
         // Assuming minimapRect is already assigned in the inspector
         minimapWidth = (int)minimapRect.rect.width;
         minimapHeight = (int)minimapRect.rect.height;
+        borderGlow.SetActive(false);
 
         //UpdateMinimapPosition();
     }
@@ -41,12 +42,14 @@ public class UnitUi : MonoBehaviour, IPointerClickHandler
     public void ShowPossibleMoves()
     {
         List<Vector2Int> moves = unit.GetPossibleMoves();
-
+        
         foreach (Vector2Int move in moves)
         {
+            
             Tile tile = GameController.instance.board.GetTileAt(move);
             tile.Highlight(true);   // Assume Highlight method changes the tile color to green.
         }
+        Debug.Log(moves.Count);
     }
 
     public void HidePossibleMoves()
@@ -73,16 +76,18 @@ public class UnitUi : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-
+        
         if(eventData.button == PointerEventData.InputButton.Left)
         {
             if (!borderGlow.activeSelf)
             {
+                Debug.Log("border");
                 Select();
                 ShowPossibleMoves();
             }
             else
             {
+                Debug.Log("borderNo");
                 Deselect();
                 HidePossibleMoves();
 

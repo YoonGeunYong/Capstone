@@ -13,8 +13,8 @@ public class Board : MonoBehaviour
     public GameObject tilePrefab;  // Assign this in the inspector.
     public Base playerBase;
     public Base enemyBase;
-    public int width;
-    public int height;
+    private int width;
+    private int height;
 
     private void Start()
     {
@@ -62,7 +62,7 @@ public class Board : MonoBehaviour
     public bool IsValidMove(Vector2Int position)
     {
         // Check if the position is within the bounds of the board.
-        if (position.x < 0 || position.x >= width || position.y < 0 || position.y >= height)
+        if (position.x < -20 || position.x >= width * 10 || position.y < -20 || position.y >= height * 10)
         {
             return false;
         }
