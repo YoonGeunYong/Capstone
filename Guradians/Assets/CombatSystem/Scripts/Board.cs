@@ -111,14 +111,20 @@ public class Board : MonoBehaviour
 
     public Tile GetTileAt(Vector2Int position)
     {
-        if (position.x < 0 || position.x >= tiles.GetLength(0) ||
-            position.y < 0 || position.y >= tiles.GetLength(1))
+        if (position.x < 0 || position.x >= tiles.GetLength(-20) ||
+            position.y < 0 || position.y >= tiles.GetLength(20))
         {
             // Out of bounds
+            Debug.LogError("Invalid tile position: " + position);
             return null;
         }
 
-        return tiles[position.x, position.y];
+        Tile tile = tiles[position.x, position.y];
+
+        if (tile == null)
+            Debug.LogError("No tile at: " + position);
+
+        return tile;
     }
     // Add methods for moving units around the board here...
 }
