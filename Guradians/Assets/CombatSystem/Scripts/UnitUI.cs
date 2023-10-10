@@ -47,6 +47,7 @@ public class UnitUi : MonoBehaviour, IPointerClickHandler
         {
             
             Tile tile = GameController.instance.board.GetTileAt(move);
+            Debug.Log("Tile: "+tile);
             tile.Highlight(true);   // Assume Highlight method changes the tile color to green.
         }
         Debug.Log(moves.Count);

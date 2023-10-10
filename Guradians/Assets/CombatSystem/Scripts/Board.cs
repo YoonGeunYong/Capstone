@@ -57,8 +57,6 @@ public class Board : MonoBehaviour
         return bottomLeftPosition;
     }
 
-
-
     public bool IsValidMove(Vector2Int position)
     {
         // Check if the position is within the bounds of the board.
@@ -66,8 +64,6 @@ public class Board : MonoBehaviour
         {
             return false;
         }
-
-     
 
         return true;
     }
