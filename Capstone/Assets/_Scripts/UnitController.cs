@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Reflection;
 
 public enum Unit
 {
@@ -33,13 +34,23 @@ public class UnitController : MonoBehaviour
 
     public Unit unit;
 
-    int index;
+    public int index;
 
     // Start is called before the first frame update
 
     void Start()
     {
+        if (_preStats is not null)
+        {
+            _stats = _preStats[index]._stats;
+        }
+        unit = (Unit)index;
 
+        GetComponent<SpriteRenderer>().sprite = _preStats[index]._image;
+        GetComponent<Transform>().position = _preStats[index]._defaultPosition;
+        GetComponent<Transform>().localScale = _preStats[index]._defaultScale;
+
+        Debug.Log(unit);
     }
 
     void Update()
@@ -49,19 +60,9 @@ public class UnitController : MonoBehaviour
     // Update is called once per frame
 
 
-    public void SpawnUnit(int index, GameObject unit)
+    public void SpawnUnit(int num)
     {
+        index = num;
         Instantiate(this);
-        
-        if (_preStats is not null)
-        {
-            _stats = _preStats[index]._stats;
-        }
-
-        GetComponent<SpriteRenderer>().sprite = _preStats[index]._image;
-        GetComponent<Transform>().position = _preStats[index]._defaultPosition;
-        GetComponent<Transform>().localScale = _preStats[index]._defaultScale;
-
-        Debug.Log(unit);
     }
 }
