@@ -168,9 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 2, y: 0}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
 --- !u!1 &77765484
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,9 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 2, y: 3}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
 --- !u!1 &132702169
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,9 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 1, y: 2}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
 --- !u!1 &308766356
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,84 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 1, y: 3}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
---- !u!1 &437233226
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 437233227}
-  - component: {fileID: 437233229}
-  - component: {fileID: 437233228}
-  m_Layer: 5
-  m_Name: Minimap
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &437233227
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 437233226}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 982948033}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 438.64, y: -89.9}
-  m_SizeDelta: {x: 200, y: 200}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &437233228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 437233226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &437233229
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 437233226}
-  m_CullTransparentMesh: 1
 --- !u!1 &580811145
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,9 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 0, y: 2}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
 --- !u!1 &629554489
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,9 +477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 2, y: 2}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,7 +759,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1135580127}
-  - {fileID: 437233227}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -899,9 +811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 3, y: 3}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
 --- !u!1 &1072419508
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,9 +857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 1, y: 1}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
 --- !u!1 &1087322808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,9 +950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 3, y: 0}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
 --- !u!1 &1124163868
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,9 +996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 0, y: 1}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
 --- !u!1 &1135580126
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,9 +1163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 2, y: 1}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
 --- !u!1 &1344152434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,9 +1209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 3, y: 2}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
 --- !u!1 &1439599480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,7 +1307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 176bc4d70b4c9bc41a8c21398d1d85f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimapRect: {fileID: 437233227}
+  minimapRect: {fileID: 0}
 --- !u!4 &1469460915
 Transform:
   m_ObjectHideFlags: 0
@@ -1436,13 +1336,14 @@ GameObject:
   - component: {fileID: 1562054550}
   - component: {fileID: 1562054549}
   - component: {fileID: 1562054553}
+  - component: {fileID: 1562054554}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1562054549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1456,8 +1357,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBase: {fileID: 0}
+  enemyBase: {fileID: 0}
   board: {fileID: 0}
-  unitPrefab: {fileID: 3587126052575971438, guid: cf13b7e6f8055df45937377676b88e0b, type: 3}
+  miniMap: {fileID: 0}
+  unitPrefab: {fileID: 1963601973752660182, guid: 419024ea85023064ebfcf056bb4903f4, type: 3}
   buttonPrefab: {fileID: 1135580128}
   width: 5
   height: 5
@@ -1473,7 +1376,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c124dc4ca57fc440a2e9e986601636b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedUnit: {fileID: 0}
   tilePrefab: {fileID: 7259511975166793047, guid: 3ffde03628e994c4bb309e23b5b0b3d2, type: 3}
   playerBase: {fileID: 0}
   enemyBase: {fileID: 0}
@@ -1517,9 +1419,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 0, y: 0}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
+--- !u!114 &1562054554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562054548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed2d65e53d151b4885329382867f5fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniMapTilePrefab: {fileID: 1216155531955983874, guid: a02c1479d9225b94b96e2acd971767db, type: 3}
 --- !u!1 &1665758254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,9 +1478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 0, y: 3}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
 --- !u!1 &1793638139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1613,9 +1524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 1, y: 0}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
 --- !u!1 &1823543521
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,132 +1570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 0, y: 0}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
---- !u!1 &1905012167
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1905012174}
-  - component: {fileID: 1905012173}
-  - component: {fileID: 1905012172}
-  - component: {fileID: 1905012171}
-  - component: {fileID: 1905012170}
-  - component: {fileID: 1905012169}
-  - component: {fileID: 1905012168}
-  m_Layer: 0
-  m_Name: Controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1905012168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905012167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c0a0c7fb0590a144b7acb4cbadd3be7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitName: 
-  position: {x: 0, y: 0}
---- !u!114 &1905012169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905012167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0673fd245a9fc77419f88ed8b9125e64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  position: {x: 0, y: 0}
-  unit: {fileID: 0}
---- !u!114 &1905012170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905012167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a87445456a16e0443a235e73f2c534e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boardPosition: {x: 0, y: 0}
---- !u!114 &1905012171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905012167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fed2d65e53d151b4885329382867f5fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minimapTilePrefab: {fileID: 0}
---- !u!114 &1905012172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905012167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3461b716856bcc14d89913398e3ef595, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameBoard: {fileID: 0}
-  minimap: {fileID: 0}
-  width: 0
-  height: 0
---- !u!114 &1905012173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905012167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf443df948ac7944db30508400cc5fd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  width: 0
-  height: 0
-  tilePrefab: {fileID: 0}
-  selectedUnit: {fileID: 0}
---- !u!4 &1905012174
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905012167}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.0774212, y: 20.951303, z: -17.500092}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2068993633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1832,9 +1616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridPosition: {x: 3, y: 1}
-  unitOnTile: {fileID: 0}
   board: {fileID: 0}
-  isAccessible: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1846,4 +1628,3 @@ SceneRoots:
   - {fileID: 1439599483}
   - {fileID: 1087322809}
   - {fileID: 1469460915}
-  - {fileID: 1905012174}
