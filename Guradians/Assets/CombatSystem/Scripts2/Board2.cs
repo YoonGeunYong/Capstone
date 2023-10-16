@@ -10,7 +10,7 @@ public class Board2 : MonoBehaviour
     public GameObject tilePrefab;
 
     // Currently selected unit.
-    public Unit selectedUnit;
+    public Unit2 selectedUnit;
 
     // Initialize the game board with a given size.
     public Vector2Int Init(int width, int height)

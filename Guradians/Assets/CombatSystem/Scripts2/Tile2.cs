@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tile2 : MonoBehaviour
 {
     public Vector2Int position;
-    public Unit unit;
+    public Unit2 unit;
 
     // Initialize the tile with a given position.
     public void Init(Vector2Int position)
@@ -16,7 +16,7 @@ public class Tile2 : MonoBehaviour
     private void OnMouseDown()
     {
         // When this tile is clicked, select the unit on it (if any).
-        Board board = GameController.instance.board;
+        Board2 board = GameController2.instance.gameBoard;
 
         if (unit != null)
             board.selectedUnit = unit;

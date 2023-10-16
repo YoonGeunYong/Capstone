@@ -5,22 +5,21 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public Base playerBase;
-    public Board board;
     public static GameController instance;
-    public GameObject unitPrefab;
-    public Button buttonPrefab;
-    public int width;
-    public int height;
+
+    public Base         playerBase;
+    public Base         enemyBase;
+    public Board        board;
+    public GameObject   unitPrefab;
+    public Button       buttonPrefab;
+
+    public int          width;
+    public int          height;
+
 
     private void Awake()
     {
-        board = GetComponent<Board>();
-        playerBase = GetComponent<Base>();
-
-        // Assuming buttonPrefab is already assigned in the inspector
-        buttonPrefab.onClick.AddListener(OnSpawnButtonClicked);
-
+        // Singleton pattern
         if (instance == null)
         {
             instance = this;
@@ -30,16 +29,27 @@ public class GameController : MonoBehaviour
             Destroy(gameObject);
         }
 
+
+        board      =    GetComponent<Board>();
+        playerBase =    GetComponent<Base>();
+        enemyBase  =    GetComponent<Base>();
+
+
+        // Assuming buttonPrefab is already assigned in the inspector
+        buttonPrefab.onClick.AddListener(OnSpawnButtonClicked);
+
         
-        playerBase.Init(board.InitBoard(width, height));
+        // Initialize the game board and the player base...
+        board.      InitBoard(width, height);
+        playerBase. Init(new Vector2Int(0, 0));
+        enemyBase.  Init(new Vector2Int(width - 1, height - 1));
     }
+
 
     // This method is called by a UI button using Unity's event system.
     public void OnSpawnButtonClicked()
     {
         Unit spawnedUnit = playerBase.SpawnUnit(unitPrefab);
-
-        // Add the spawned unit to the game board...
 
         Debug.Log("Spawned a new unit: " + spawnedUnit.name);
     } 
