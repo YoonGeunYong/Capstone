@@ -6,8 +6,7 @@ using System.Reflection;
 
 public enum Unit
 {
-    RABBIT,
-    TURTLE
+    Rabbit, Turtle, Fox, Deer, WoodCutter, Fairy, Heungbu, Nolbu, Swallow 
 }
 
 [Serializable]
@@ -33,8 +32,8 @@ public class UnitController : MonoBehaviour
     [SerializeField] private UnitStats _stats;
 
     public Unit unit;
-
     public int index;
+    
 
     // Start is called before the first frame update
 
@@ -49,6 +48,7 @@ public class UnitController : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = _preStats[index]._image;
         GetComponent<Transform>().position = _preStats[index]._defaultPosition;
         GetComponent<Transform>().localScale = _preStats[index]._defaultScale;
+        GetComponent<Animator>().runtimeAnimatorController = _preStats[index]._anicontroller;
 
         Debug.Log(unit);
     }

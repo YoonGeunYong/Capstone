@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86d52331cd83d0f428c7e75fdf8316ed, type: 3}
-  m_Name: Entitiy(Heungbu)
+  m_Name: Heungbu
   m_EditorClassIdentifier: 
   _stats:
     attack: 0
@@ -23,6 +23,6 @@ MonoBehaviour:
     length: 0
     coast: 0
   _animator: {fileID: 0}
-  _image: {fileID: 0}
-  _defaultPosition: {x: 0, y: 0, z: 0}
-  _defaultScale: {x: 0, y: 0, z: 0}
+  _image: {fileID: 21300000, guid: 564bf86309fbb4642807ed4f2aca9530, type: 3}
+  _defaultPosition: {x: 8, y: 0, z: 0}
+  _defaultScale: {x: 3, y: 3, z: 3}
