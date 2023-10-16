@@ -5,24 +5,27 @@ using UnityEngine;
 public class Base : MonoBehaviour
 {
     // Position on the board.
-    private Vector2Int      position;
+    private Vector2Int      playerPosition;
+    private Vector2Int      enemyPosition;
 
 
-    public void Init(Vector2Int basePosition)
+    public void InitPlayerPosition(Vector2Int basePosition)
     {
-        position = basePosition;
+        playerPosition = basePosition;
 
-        Debug.Log("Base initialized at " + position);
+        Debug.Log("Base initialized at " + playerPosition);
+    }
+
+    public void InitEnemyPosition(Vector2Int basePosition)
+    {
+        enemyPosition = basePosition;
+
+        Debug.Log("Base initialized at " + enemyPosition);
     }
 
     // This method creates a new unit at the base's position.
-    public Unit SpawnUnit(GameObject unitPrefab)
+    public void SpawnUnit(GameObject unitPrefab)
     {
-        GameObject newUnitObject =      Instantiate(unitPrefab, new Vector3(position.x, 0, position.y), Quaternion.identity);
-
-        Unit newUnit =                  newUnitObject.GetComponent<Unit>();
-
-
-        return newUnit;
+        Instantiate(unitPrefab, new Vector3(playerPosition.x, 0, playerPosition.y), Quaternion.identity);
     }
 }

@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public Base         playerBase;
     public Base         enemyBase;
     public Board        board;
+    public MiniMap      miniMap;
     public GameObject   unitPrefab;
     public Button       buttonPrefab;
 
@@ -33,6 +34,7 @@ public class GameController : MonoBehaviour
         board      =    GetComponent<Board>();
         playerBase =    GetComponent<Base>();
         enemyBase  =    GetComponent<Base>();
+        miniMap    =    GetComponent<MiniMap>();
 
 
         // Assuming buttonPrefab is already assigned in the inspector
@@ -41,16 +43,15 @@ public class GameController : MonoBehaviour
         
         // Initialize the game board and the player base...
         board.      InitBoard(width, height);
-        playerBase. Init(new Vector2Int(0, 0));
-        enemyBase.  Init(new Vector2Int(width - 1, height - 1));
+        miniMap.    InitMiniMap(width, height);
+        playerBase. InitPlayerPosition(new Vector2Int(0, 0));
+        enemyBase.  InitEnemyPosition(new Vector2Int((width * 10) - 10, (height * 10) - 10));
     }
 
 
     // This method is called by a UI button using Unity's event system.
     public void OnSpawnButtonClicked()
     {
-        Unit spawnedUnit = playerBase.SpawnUnit(unitPrefab);
-
-        Debug.Log("Spawned a new unit: " + spawnedUnit.name);
+        playerBase.SpawnUnit(unitPrefab);
     } 
 }
