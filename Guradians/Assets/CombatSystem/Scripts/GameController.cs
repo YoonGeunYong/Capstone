@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     public MiniMap      miniMap;
     public GameObject   unitPrefab;
     public Button       buttonPrefab;
+    public Unit unit;
 
     public int          width;
     public int          height;
@@ -52,6 +53,8 @@ public class GameController : MonoBehaviour
     // This method is called by a UI button using Unity's event system.
     public void OnSpawnButtonClicked()
     {
-        playerBase.SpawnUnit(unitPrefab);
+        playerBase.SpawnUnit(unit.unitPrefab);
+
+        miniMap.AddUnitToMinimap(unit, playerBase.GetPlayerPosition());
     } 
 }

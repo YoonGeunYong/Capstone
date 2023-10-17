@@ -28,4 +28,9 @@ public class Base : MonoBehaviour
     {
         Instantiate(unitPrefab, new Vector3(playerPosition.x, 0, playerPosition.y), Quaternion.identity);
     }
+
+    public Vector2Int GetPlayerPosition()
+    {
+        return playerPosition;
+    }
 }
