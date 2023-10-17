@@ -15,7 +15,7 @@ public class Base : MonoBehaviour
 
         Debug.Log("Base initialized at " + playerPosition);
     }
-
+    
     public void InitEnemyPosition(Vector2Int basePosition)
     {
         enemyPosition = basePosition;
@@ -24,9 +24,9 @@ public class Base : MonoBehaviour
     }
 
     // This method creates a new unit at the base's position.
-    public void SpawnUnit(GameObject unitPrefab)
+    public void SpawnUnit(Unit unit)
     {
-        Instantiate(unitPrefab, new Vector3(playerPosition.x, 0, playerPosition.y), Quaternion.identity);
+        Instantiate(unit.gameObject, new Vector3(playerPosition.x, 0, playerPosition.y), Quaternion.identity);
     }
 
     public Vector2Int GetPlayerPosition()

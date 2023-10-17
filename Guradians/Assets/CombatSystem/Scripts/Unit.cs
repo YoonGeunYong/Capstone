@@ -1,11 +1,14 @@
 using UnityEngine;
+using System.Collections.Generic;
+
 
 public class Unit : MonoBehaviour
 {
-    private Vector2Int boardPosition;
+    public Vector2Int boardPosition;
+    public GameObject unitUI;
 
-    public GameObject unitUIPrefab;
-    public GameObject unitPrefab;
+  
+ 
 
     public void MoveTo(Vector2Int newBoardPosition)
     {
