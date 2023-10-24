@@ -24,6 +24,6 @@ MonoBehaviour:
     coast: 0
   animatorController: {fileID: 0}
   image: {fileID: 21300000, guid: aefc1fae3c4fea540a18587603f0a4ef, type: 3}
-  defaultPosition: {x: 0, y: 0, z: 0}
+  defaultPosition: {x: -15, y: 2, z: 0}
   defaultScale: {x: 3, y: 3, z: 3}
   defaultRotation: {x: 70, y: 0, z: 0}

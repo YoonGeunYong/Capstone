@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: Rabbit
   m_EditorClassIdentifier: 
   stats:
-    attack: 0
-    defend: 0
-    healthPoint: 0
-    attackSpeed: 0
-    moveSpeed: 0
-    delay: 0
+    attack: 20
+    defend: 1
+    healthPoint: 150
+    attackSpeed: 1.5
+    moveSpeed: 1.5
+    delay: 1
     attackType: 0
-    length: 0
-    coast: 0
-  animatorController: {fileID: 0}
+    length: 1
+    coast: 15
+  animatorController: {fileID: 9100000, guid: a0c8e56c5ae6c5d469a74f924c127f3a, type: 2}
   image: {fileID: 21300000, guid: 1dfa74a3e17732343910334d832d3fb7, type: 3}
-  defaultPosition: {x: -20, y: 5, z: 0}
+  defaultPosition: {x: -20, y: 2, z: 0}
   defaultScale: {x: 3, y: 3, z: 3}
   defaultRotation: {x: 70, y: 0, z: 0}
