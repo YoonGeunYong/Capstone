@@ -72,7 +72,7 @@ public class MiniMap : MonoBehaviour
 
         minimapIcon.transform.position  = GetMinimapPos(tiles, 0, 0);
 
-        unitToUIMap[unitUI]  = minimapIcon;
+        unitToUIMap[unitUI]             = minimapIcon;
 
     }
 
@@ -112,8 +112,8 @@ public class MiniMap : MonoBehaviour
 
     public void HighlightMovableTiles(UnitUI unitUI)
     {
-        int x = unitUI.boardPosition.x;
-        int y = unitUI.boardPosition.y;
+        int x   = unitUI.boardPosition.x;
+        int y   = unitUI.boardPosition.y;
 
         HighlightTile(x - 1, y);
         HighlightTile(x + 1, y);
@@ -123,33 +123,67 @@ public class MiniMap : MonoBehaviour
         selectedUnitUI = unitUI;
     }
 
+
     private void HighlightTile(int x, int y)
     {
+
         if (x >= 0 && x < miniMapTiles.GetLength(0) &&
             y >= 0 && y < miniMapTiles.GetLength(1))
         {
-            miniMapTiles[x, y].GetComponent<Renderer>().material.color = Color.green;
-            miniMapTiles[x, y].IsMovable = true;
+
+            miniMapTiles[x, y].GetComponent<Renderer>().
+                material.color                              = Color.green;
+            miniMapTiles[x, y].IsMovable                    = true;
+
         }
+
     }
-
-
 
 
     public void MoveUnitTo(MiniMapTile miniMapTile)
     {
+
         if (selectedUnitUI == null) return;
 
-        Vector2Int newUnitUIPos           = new Vector2Int(miniMapTile.gridPosition.x - 100, miniMapTile.gridPosition.y - 100);
-        Vector2Int newBoardPosition = new Vector2Int(miniMapTile.gridPosition.x - 100, miniMapTile.gridPosition.y - 100);
+        Vector2Int newBoardPosition     = CalculateNewBoardPosition(miniMapTile);
 
-        
-        // Move the Unit UI in minimap. 
-        selectedUnitUI.transform.position = miniMapTile.transform.position;
-        selectedUnitUI.unit.gameObject.transform.position = new Vector3(newBoardPosition.x, 0, newBoardPosition.y);
-        selectedUnitUI.boardPosition      = newUnitUIPos / 10;  // Update board position of Unit UI.
+        MoveUnitUI(miniMapTile);
+
+        MoveActualUnit(newBoardPosition);
 
         InitMovable();
+
+    }
+
+
+    private Vector2Int CalculateNewBoardPosition(MiniMapTile miniMapTile)
+    {
+        int adjustmentFactor    = 100;
+        int scaleDownFactor     = 10;
+
+        Vector2Int newRawPos    = new Vector2Int(miniMapTile.gridPosition.x - adjustmentFactor,
+                                              miniMapTile.gridPosition.y - adjustmentFactor);
+
+        // Scale down the position to match with the board.
+        return newRawPos / scaleDownFactor;
+
+    }
+
+
+    private void MoveUnitUI(MiniMapTile miniMapTile)
+    {
+
+        selectedUnitUI.transform.position   = miniMapTile.transform.position;
+        selectedUnitUI.boardPosition        = CalculateNewBoardPosition(miniMapTile);
+
+    }
+
+
+    private void MoveActualUnit(Vector2Int newBoardPos)
+    {
+
+        selectedUnitUI.unit.gameObject.transform.position = new Vector3(newBoardPos.x * 10, 0, newBoardPos.y * 10);
+
     }
 
 
@@ -157,20 +191,16 @@ public class MiniMap : MonoBehaviour
     {
         foreach (var tile in miniMapTiles)
         {
+
             if (tile.IsMovable)
             {
+
                 tile.GetComponent<Renderer>().material.color = Color.white;
                 tile.IsMovable = false;
+
             }
+
         }
     }
-    /*
-    public Unit GetSelectedUnit()
-    {
-        if (selectedUnitUI != null)
-            return selectedUnitUI.unit;
-        else
-            return null;
-    }
-    */
+  
 }

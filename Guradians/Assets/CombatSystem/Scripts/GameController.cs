@@ -54,7 +54,8 @@ public class GameController : MonoBehaviour
     // This method is called by a UI button using Unity's event system.
     public void OnSpawnButtonClicked()
     {
-        playerBase.SpawnUnit(unitUIs[0]);
+        UnitUI unitUI = unitUIs[0].GetComponent<UnitUI>();
+        playerBase.SpawnUnit(unitUI);
 
         miniMap.AddUnitToMinimap(unitUIs[0], miniMap.miniMapTiles);
     } 
