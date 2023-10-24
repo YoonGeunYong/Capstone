@@ -12,7 +12,8 @@ public class MiniMap : MonoBehaviour
 
     public        UnitUI                                selectedUnitUI;
     public        MiniMapTile[,]                        miniMapTiles;
-    public        GameObject                            miniMapTilePrefab;  
+    public        GameObject                            miniMapTilePrefab;
+    public        bool                                  isUnitSelected = false;
 
 
 
@@ -53,7 +54,7 @@ public class MiniMap : MonoBehaviour
                 int adjustedX                = (x * 10) + 100;
                 int adjustedY                = (y * 10) + 100;
 
-                GameObject tileObject        = Instantiate(miniMapTilePrefab, new Vector3(adjustedX, 0, adjustedY), Quaternion.identity);
+                GameObject  tileObject       = Instantiate(miniMapTilePrefab, new Vector3(adjustedX, 0, adjustedY), Quaternion.identity);
                 MiniMapTile tileComponent    = tileObject.GetComponent<MiniMapTile>();
 
                 tileComponent.gridPosition   = new Vector2Int(adjustedX, adjustedY);
@@ -85,33 +86,10 @@ public class MiniMap : MonoBehaviour
     }
 
 
-    private Vector2Int ConvertBoardPosToMinimapPos(Vector2Int boardPos)
-    {
-
-        // Implement this function based on how your board and minimap are related.
-        throw new NotImplementedException();
-
-    }
-
-
-    public void UpdateUnitOnMinimap(GameObject unitObject, Vector2Int newPositionOnBoard)
-    {
-
-        if (unitToUIMap.TryGetValue(unitObject, out GameObject minimapIcon))
-        {
-            var minimapPos                  = ConvertBoardPosToMinimapPos(newPositionOnBoard);
-            minimapIcon.transform.position  = new Vector3(minimapPos.x, 0, minimapPos.y);
-        }
-        else
-        {
-            Debug.LogError("No UI found for this unit on the minimap.");
-        }
-
-    }
-
-
     public void HighlightMovableTiles(UnitUI unitUI)
     {
+        if (isUnitSelected) return;
+
         int x   = unitUI.boardPosition.x;
         int y   = unitUI.boardPosition.y;
 
@@ -121,6 +99,8 @@ public class MiniMap : MonoBehaviour
         HighlightTile(x, y + 1);
 
         selectedUnitUI = unitUI;
+
+        isUnitSelected = true;
     }
 
 
@@ -153,6 +133,7 @@ public class MiniMap : MonoBehaviour
 
         InitMovable();
 
+        isUnitSelected = false;
     }
 
 

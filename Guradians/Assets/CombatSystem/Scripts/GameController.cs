@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class GameController : MonoBehaviour
     public Button       buttonPrefab;
     public List<GameObject>   unitUIs;
     public UnitUI       unitUI;
+    public Camera       miniMapCamera;
 
     public int          width;
     public int          height;
@@ -58,5 +60,30 @@ public class GameController : MonoBehaviour
         playerBase.SpawnUnit(unitUI);
 
         miniMap.AddUnitToMinimap(unitUIs[0], miniMap.miniMapTiles);
-    } 
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = miniMapCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit[] hits = Physics.RaycastAll(ray);
+
+            // Sort the hits by distance so that the closest one is first.
+            Array.Sort(hits, (x, y) => x.distance.CompareTo(y.distance));
+
+            foreach (RaycastHit hit in hits)
+            {
+                MiniMapTile tile = hit.transform.GetComponent<MiniMapTile>();
+                if (tile != null && tile.IsMovable)
+                {
+                    Debug.Log("Tile clicked!");
+                    // Found a movable tile! Now do something with it...
+                    MiniMap.instance.MoveUnitTo(tile);
+                    break;
+                }
+            }
+        }
+    }
+
 }

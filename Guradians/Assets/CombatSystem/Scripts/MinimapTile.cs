@@ -8,6 +8,7 @@ public class MiniMapTile : MonoBehaviour
     public Vector2Int boardPosition;
     public bool IsMovable { get; set; }  // Whether this tile is currently movable.
 
+    /*
     private void OnMouseDown()
     {
 
@@ -27,9 +28,7 @@ public class MiniMapTile : MonoBehaviour
                 
 
             Debug.Log("Tile clicked!");
-        }
-        
-
-        
+        } 
     }
+    */
 }
