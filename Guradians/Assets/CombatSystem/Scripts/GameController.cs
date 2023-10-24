@@ -13,7 +13,8 @@ public class GameController : MonoBehaviour
     public Board        board;
     public MiniMap      miniMap;
     public Button       buttonPrefab;
-    public List<Unit>   units;
+    public List<GameObject>   unitUIs;
+    public UnitUI       unitUI;
 
     public int          width;
     public int          height;
@@ -34,8 +35,9 @@ public class GameController : MonoBehaviour
         board      =    GetComponent<Board>();
         playerBase =    GetComponent<Base>();
         enemyBase  =    GetComponent<Base>();
-        miniMap    =    GetComponent<MiniMap>();
-     
+        miniMap = GetComponent<MiniMap>();
+        unitUI = GetComponent<UnitUI>();
+
 
         // Assuming buttonPrefab is already assigned in the inspector
         buttonPrefab.onClick.AddListener(OnSpawnButtonClicked);
@@ -52,8 +54,8 @@ public class GameController : MonoBehaviour
     // This method is called by a UI button using Unity's event system.
     public void OnSpawnButtonClicked()
     {
-        playerBase.SpawnUnit(units[0]);
+        playerBase.SpawnUnit(unitUIs[0]);
 
-        miniMap.AddUnitToMinimap(units[0], miniMap.miniMapTiles);
+        miniMap.AddUnitToMinimap(unitUIs[0], miniMap.miniMapTiles);
     } 
 }

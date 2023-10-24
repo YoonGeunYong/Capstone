@@ -800,8 +800,9 @@ MonoBehaviour:
   board: {fileID: 0}
   miniMap: {fileID: 0}
   buttonPrefab: {fileID: 1135580128}
-  units:
-  - {fileID: -4451854456082166452, guid: 419024ea85023064ebfcf056bb4903f4, type: 3}
+  unitUIs:
+  - {fileID: 7371431077836823016, guid: 285a7359fe55aea4181834c07a2e1dd7, type: 3}
+  unitUI: {fileID: 0}
   width: 5
   height: 5
 --- !u!114 &1562054550

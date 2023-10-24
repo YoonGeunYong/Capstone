@@ -8,6 +8,7 @@ public class UnitUI : MonoBehaviour
 
     public Vector2Int boardPosition;
 
+
     private void OnMouseDown()
     {
 
@@ -16,10 +17,7 @@ public class UnitUI : MonoBehaviour
             MiniMap.instance.HighlightMovableTiles(this);
             Debug.Log("UnitUI clicked!");
 
-        }
-            
-
-        
+        } 
     }
 }
 

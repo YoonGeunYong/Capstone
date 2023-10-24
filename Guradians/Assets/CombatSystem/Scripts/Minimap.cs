@@ -8,23 +8,28 @@ public class MiniMap : MonoBehaviour
 {
     public static MiniMap instance;
 
-    public UnitUI selectedUnitUI;
-    private Dictionary<GameObject, GameObject>      unitToUIMap;
+    private       Dictionary<GameObject, GameObject>    unitToUIMap;
 
-    public  MiniMapTile[,]                          miniMapTiles;
-    public  GameObject                              miniMapTilePrefab;  // Assign this in the inspector.
+    public        UnitUI                                selectedUnitUI;
+    public        MiniMapTile[,]                        miniMapTiles;
+    public        GameObject                            miniMapTilePrefab;  
+
+
 
     private void Awake()
     {
+
         if (instance == null)
         {
             instance = this;
         }
+
         else
         {
             Debug.LogError("More than one instance of MiniMap found!");
             Destroy(this.gameObject);
         }
+
     }
 
     private void Start()
@@ -60,14 +65,14 @@ public class MiniMap : MonoBehaviour
     }
 
 
-    public void AddUnitToMinimap(Unit unit, MiniMapTile[,] tiles)
+    public void AddUnitToMinimap(GameObject unitUI, MiniMapTile[,] tiles)
     {
 
-        var minimapIcon                 = Instantiate(unit.unitUI);
+        var minimapIcon                 = Instantiate(unitUI);
 
         minimapIcon.transform.position  = GetMinimapPos(tiles, 0, 0);
 
-        unitToUIMap[unit.unitUI]    = minimapIcon;
+        unitToUIMap[unitUI]  = minimapIcon;
 
     }
 
@@ -94,8 +99,8 @@ public class MiniMap : MonoBehaviour
 
         if (unitToUIMap.TryGetValue(unitObject, out GameObject minimapIcon))
         {
-            var minimapPos = ConvertBoardPosToMinimapPos(newPositionOnBoard);
-            minimapIcon.transform.position = new Vector3(minimapPos.x, 0, minimapPos.y);
+            var minimapPos                  = ConvertBoardPosToMinimapPos(newPositionOnBoard);
+            minimapIcon.transform.position  = new Vector3(minimapPos.x, 0, minimapPos.y);
         }
         else
         {
@@ -135,12 +140,14 @@ public class MiniMap : MonoBehaviour
     {
         if (selectedUnitUI == null) return;
 
-        Vector2Int newUnitUIPos = new Vector2Int(miniMapTile.gridPosition.x - 100, miniMapTile.gridPosition.y - 100);
+        Vector2Int newUnitUIPos           = new Vector2Int(miniMapTile.gridPosition.x - 100, miniMapTile.gridPosition.y - 100);
+        Vector2Int newBoardPosition = new Vector2Int(miniMapTile.gridPosition.x - 100, miniMapTile.gridPosition.y - 100);
 
+        
         // Move the Unit UI in minimap. 
         selectedUnitUI.transform.position = miniMapTile.transform.position;
-
-        selectedUnitUI.boardPosition = newUnitUIPos / 10;  // Update board position of Unit UI.
+        selectedUnitUI.unit.gameObject.transform.position = new Vector3(newBoardPosition.x, 0, newBoardPosition.y);
+        selectedUnitUI.boardPosition      = newUnitUIPos / 10;  // Update board position of Unit UI.
 
         InitMovable();
     }
@@ -157,4 +164,13 @@ public class MiniMap : MonoBehaviour
             }
         }
     }
+    /*
+    public Unit GetSelectedUnit()
+    {
+        if (selectedUnitUI != null)
+            return selectedUnitUI.unit;
+        else
+            return null;
+    }
+    */
 }
