@@ -7,29 +7,30 @@ public class MiniMapTile : MonoBehaviour
     public Vector2Int gridPosition;
     public Vector2Int boardPosition;
     public bool IsMovable { get; set; }  // Whether this tile is currently movable.
+    public List<UnitUI> unitsOnTile = new List<UnitUI>();
 
-    private void OnMouseDown()
+
+    public void AddUnit(UnitUI unitUI)
     {
+        unitsOnTile.Add(unitUI);
+        unitUI.CurrentTile = this;  // 유닛이 현재 속한 타일을 설정합니다.
+        UpdateUnitPositions();
+    }
 
-        //MainCameraController mainCamera = FindObjectOfType<MainCameraController>();
+    public void RemoveUnit(UnitUI unitUI)
+    {
+        unitsOnTile.Remove(unitUI);
+        unitUI.CurrentTile = null;  // 유닛이 더 이상 속하지 않는 타일을 null로 설정합니다.
+        UpdateUnitPositions();
+    }
 
-        //if (mainCamera != null)
-        //    mainCamera.MoveTo(transform.position);
-        if(IsMovable)
+    private void UpdateUnitPositions()
+    {
+        // 겹치지 않도록 유닛 위치를 조정하는 코드를 여기에 작성...
+        for (int i = 0; i < unitsOnTile.Count; i++)
         {
-            //GameController.instance.MoveUnitTo(boardPosition);
-
-            if (MiniMap.instance != null)
-            {
-                MiniMap.instance.MoveUnitTo(this);
-                IsMovable = false;
-            }
-                
-
-            Debug.Log("Tile clicked!");
+            Vector3 offset = new Vector3(i * 1f, 0, 0);
+            unitsOnTile[i].transform.position = unitsOnTile[i].CurrentTile.transform.position + offset;
         }
-        
-
-        
     }
 }

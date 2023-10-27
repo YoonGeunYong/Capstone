@@ -24,14 +24,13 @@ public class Base : MonoBehaviour
     }
 
     // This method creates a new unit at the base's position.
-    public void SpawnUnit(UnitUI unitUI)
+    public void SpawnUnit(GameObject unitUIObject)
     {
-        
+        UnitUI unitUI = unitUIObject.GetComponent<UnitUI>();
 
         GameObject unit = Instantiate(unitUI.unit, new Vector3(playerPosition.x, 0, playerPosition.y), Quaternion.identity);
 
         unitUI.unit = unit;
-
     }
 
     public Vector2Int GetPlayerPosition()

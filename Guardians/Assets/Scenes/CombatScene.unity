@@ -803,6 +803,7 @@ MonoBehaviour:
   unitUIs:
   - {fileID: 7371431077836823016, guid: 285a7359fe55aea4181834c07a2e1dd7, type: 3}
   unitUI: {fileID: 0}
+  miniMapCamera: {fileID: 1279324070}
   width: 5
   height: 5
 --- !u!114 &1562054550
@@ -875,6 +876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedUnitUI: {fileID: 0}
   miniMapTilePrefab: {fileID: 1216155531955983874, guid: a02c1479d9225b94b96e2acd971767db, type: 3}
+  isUnitSelected: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
