@@ -13,10 +13,11 @@ public class GameController : MonoBehaviour
     public Base enemyBase;
     public Board board;
     public MiniMap miniMap;
-    public Button buttonPrefab;
+    public Button RabitButton;
     public List<GameObject> unitUIs;
     public MinimapCameraController minimapCameraController;
-    public Camera miniMapCamera;
+    public MainCameraController mainCameraController;
+    
 
     public int width;
     public int height;
@@ -39,11 +40,12 @@ public class GameController : MonoBehaviour
         enemyBase = GetComponent<Base>();
         miniMap = GetComponent<MiniMap>();
         minimapCameraController = GetComponent<MinimapCameraController>();
+        mainCameraController = GetComponent<MainCameraController>();
 
 
 
         // Assuming buttonPrefab is already assigned in the inspector
-        buttonPrefab.onClick.AddListener(OnSpawnButtonClicked);
+        RabitButton.onClick.AddListener(OnSpawnRabit);
 
 
         // Initialize the game board and the player base...
@@ -52,14 +54,14 @@ public class GameController : MonoBehaviour
         playerBase.InitPlayerPosition(new Vector2Int(0, 0));
         enemyBase.InitEnemyPosition(new Vector2Int((width * 10) - 10, (height * 10) - 10));
         minimapCameraController.UpdateCameraSize(miniMap);
+        mainCameraController.MoveMainCamera(new Vector3(0, mainCameraController.mainCamera.transform.position.y, 0));
     }
 
 
     // This method is called by a UI button using Unity's event system.
-    public void OnSpawnButtonClicked()
+    public void OnSpawnRabit()
     {
         playerBase.SpawnUnit(unitUIs[0]);
-        
     }
 
 }

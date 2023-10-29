@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RAT BattleScene.unity
     guid: 941ba450b6b65c3458b4aefee1eba9a9
+  - enabled: 1
+    path: Assets/Scenes/CombatScene.unity
+    guid: d4e8686a9d1e404468d54a1e97ed9950
   m_configObjects: {}
