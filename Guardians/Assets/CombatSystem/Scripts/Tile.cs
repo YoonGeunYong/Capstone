@@ -4,26 +4,30 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public Vector2Int gridPosition;
-    public Board board;
-    public float noiseScale = 100f; // The scale of the Perlin noise.
+    public Vector2Int   gridPosition;
+    public Board        board;
+    public float        noiseScale = 100f; // The scale of the Perlin noise.
 
-    public Material grass1;
-    public Material grass2;
-    public Material grass3;
+    public Material     grass1;
+    public Material     grass2;
+    public Material     grass3;
+
 
     public void ApplyNatureTexture()
     {
+
         float noiseValue = GeneratePerlinNoise(gridPosition.x, gridPosition.y, noiseScale);
 
         if (noiseValue < 0.3f)
         {
             GetComponent<Renderer>().material = grass1;
         }
+
         else if (noiseValue < 0.6f)
         {
             GetComponent<Renderer>().material = grass2;
         }
+
         else
         {
             GetComponent<Renderer>().material = grass3; 
@@ -33,9 +37,11 @@ public class Tile : MonoBehaviour
 
     private float GeneratePerlinNoise(int x, int y, float scale)
     {
-        float xCoord = (float)x / 256 * scale;
-        float yCoord = (float)y / 256 * scale;
+
+        float xCoord    = (float)x / 256 * scale;
+        float yCoord    = (float)y / 256 * scale;
 
         return Mathf.PerlinNoise(xCoord, yCoord);
+
     }
 }

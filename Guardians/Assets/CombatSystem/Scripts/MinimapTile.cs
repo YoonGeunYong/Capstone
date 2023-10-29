@@ -6,27 +6,32 @@ using UnityEngine.UIElements;
 
 public class MiniMapTile : MonoBehaviour
 {
-    public Vector2Int gridPosition;
-    public Vector2Int boardPosition;
-    public Vector2Int originalPosition;
-    public bool IsMovable { get; set; }  // Whether this tile is currently movable.
-    public List<UnitUI> unitsOnTile = new List<UnitUI>();
+    public Vector2Int       gridPosition;
+    public Vector2Int       boardPosition;
+    public Vector2Int       originalPosition;
+    public bool             IsMovable { get; set; }  
+    public List<UnitUI>     unitsOnTile = new List<UnitUI>();
     
-
-
 
     public void AddUnit(UnitUI unitUI)
     {
-        unitsOnTile.Add(unitUI);
-        unitUI.CurrentTile = this;  
+
+        unitsOnTile.    Add(unitUI);
+        unitUI.         CurrentTile = this;  
+
         UpdateUnitPositions();
+
     }
+
 
     public void RemoveUnit(UnitUI unitUI)
     {
-        unitsOnTile.Remove(unitUI);
-        unitUI.CurrentTile = null;  
+
+        unitsOnTile.    Remove(unitUI);
+        unitUI.         CurrentTile = null;  
+
         UpdateUnitPositions();
+
     }
 
     private void UpdateUnitPositions()
@@ -34,13 +39,19 @@ public class MiniMapTile : MonoBehaviour
         
         for (int i = 0; i < unitsOnTile.Count; i++)
         {
-            Vector3 offset = new Vector3(i * 1f, 0, 0);
-            unitsOnTile[i].transform.position = unitsOnTile[i].CurrentTile.transform.position + offset;
+
+            Vector3 offset                      = new Vector3(i * 1f, 0, 0);
+
+            unitsOnTile[i].transform.position   = unitsOnTile[i].CurrentTile.transform.position + offset;
+
         }
+
     }
+
 
     void OnMouseDown()
     {
+
         if (MiniMap.instance.isTileSelected)
         {
             
@@ -49,6 +60,7 @@ public class MiniMapTile : MonoBehaviour
                 MiniMap.instance.MoveUnitTo(this);
             }
         }
+
         else
         {
             
@@ -58,5 +70,6 @@ public class MiniMapTile : MonoBehaviour
                 MiniMap.instance.HighlightMovableTiles();
             }
         }
+
     }
 }
