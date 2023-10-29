@@ -26,12 +26,18 @@ public class Base : MonoBehaviour
     // This method creates a new unit at the base's position.
     public void SpawnUnit(GameObject unitUIObject)
     {
-        UnitUI unitUI = unitUIObject.GetComponent<UnitUI>();
+        // Instantiate a new UnitUI object
+        GameObject newUnitUIObject = Instantiate(unitUIObject);
+        UnitUI newUnitUI = newUnitUIObject.GetComponent<UnitUI>();
 
-        GameObject unit = Instantiate(unitUI.unit, new Vector3(playerPosition.x, 0, playerPosition.y), Quaternion.identity);
+        // Spawn a new unit at the base's current position with a small random offset
+        Vector3 offset = new Vector3(Random.Range(-2.0f, 2.0f), 0, Random.Range(-2.0f, 2.0f));
+        GameObject newUnit = Instantiate(newUnitUI.unit, new Vector3(playerPosition.x, 0, playerPosition.y) + offset, Quaternion.identity);
 
-        unitUI.unit = unit;
+        // Add the unitUI to the minimap
+        MiniMap.instance.AddUnitToMinimap(newUnitUI, newUnit, MiniMap.instance.miniMapTiles[playerPosition.x, playerPosition.y]);
     }
+
 
     public Vector2Int GetPlayerPosition()
     {

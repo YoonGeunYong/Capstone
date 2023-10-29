@@ -56,35 +56,8 @@ public class GameController : MonoBehaviour
     // This method is called by a UI button using Unity's event system.
     public void OnSpawnButtonClicked()
     {
-        //UnitUI unitUI = unitUIs[0].GetComponent<UnitUI>();
         playerBase.SpawnUnit(unitUIs[0]);
-
-        miniMap.AddUnitToMinimap(unitUIs[0], 0, 0);
-    }
-
-
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = miniMapCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit[] hits = Physics.RaycastAll(ray);
-
-            // Sort the hits by distance so that the closest one is first.
-            Array.Sort(hits, (x, y) => x.distance.CompareTo(y.distance));
-
-            foreach (RaycastHit hit in hits)
-            {
-                MiniMapTile tile = hit.transform.GetComponent<MiniMapTile>();
-                if (tile != null && tile.IsMovable)
-                {
-                    Debug.Log("Tile clicked!");
-                    // Found a movable tile! Now do something with it...
-                    MiniMap.instance.MoveUnitTo(tile);
-                    break;
-                }
-            }
-        }
+        
     }
 
 }

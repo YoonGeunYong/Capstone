@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
+
 public class MiniMap : MonoBehaviour
 {
     public static MiniMap instance;
 
 
 
-    public UnitUI selectedUnitUI;
+    public MiniMapTile selectedMiniMapTile;
     public MiniMapTile[,] miniMapTiles;
     public GameObject miniMapTilePrefab;
-    public bool isUnitSelected = false;
+    public bool isTileSelected = false;
 
 
 
@@ -33,24 +34,14 @@ public class MiniMap : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-
-        
-
-    }
-
 
     public void InitMiniMap(int width, int height)
     {
-
         miniMapTiles = new MiniMapTile[width, height];
-
 
         for (int x = 0; x < width; x++)
             for (int y = 0; y < height; y++)
             {
-
                 int adjustedX = (x * 10) + 100;
                 int adjustedY = (y * 10) + 100;
 
@@ -58,24 +49,26 @@ public class MiniMap : MonoBehaviour
                 MiniMapTile tileComponent = tileObject.GetComponent<MiniMapTile>();
 
                 tileComponent.gridPosition = new Vector2Int(adjustedX, adjustedY);
+                tileComponent.originalPosition = new Vector2Int(x, y); // add this
 
                 miniMapTiles[x, y] = tileComponent;
-
             }
-
     }
 
-
-    public void AddUnitToMinimap(GameObject unitUIObject, int x, int y)
+    private Vector3 RandomPos()
     {
-        UnitUI unitUI = unitUIObject.GetComponent<UnitUI>();
+        return new Vector3(UnityEngine.Random.Range(-2.0f, 2.0f), 0, UnityEngine.Random.Range(-2.0f, 2.0f));
+    }
 
-        var minimapIcon = Instantiate(unitUI);
+    public void AddUnitToMinimap(UnitUI unitUI, GameObject actualUnitObject, MiniMapTile tile)
+    {
+        // Add a small random offset to the position
+        Vector3 offset = RandomPos();
+        unitUI.transform.position = GetMinimapPos(miniMapTiles, tile.originalPosition.x, tile.originalPosition.y) + offset;
+        unitUI.unit = actualUnitObject;
+        unitUI.CurrentTile = tile;
 
-        //minimapIcon.transform.position = GetMinimapPos(tiles, 0, 0);
-
-        MiniMapTile tile = miniMapTiles[x, y];
-        tile.AddUnit(minimapIcon);
+        tile.AddUnit(unitUI);
     }
 
 
@@ -87,22 +80,21 @@ public class MiniMap : MonoBehaviour
     }
 
 
-    public void HighlightMovableTiles(UnitUI unitUI)
+    public void HighlightMovableTiles()
     {
-        if (isUnitSelected) return;
+        if (isTileSelected) return;
 
-        int x = unitUI.boardPosition.x;
-        int y = unitUI.boardPosition.y;
+        int x = selectedMiniMapTile.originalPosition.x;
+        int y = selectedMiniMapTile.originalPosition.y;
 
         HighlightTile(x - 1, y);
         HighlightTile(x + 1, y);
         HighlightTile(x, y - 1);
         HighlightTile(x, y + 1);
 
-        selectedUnitUI = unitUI;
-
-        isUnitSelected = true;
+        isTileSelected = true;
     }
+
 
 
     private void HighlightTile(int x, int y)
@@ -123,24 +115,31 @@ public class MiniMap : MonoBehaviour
 
     public void MoveUnitTo(MiniMapTile miniMapTile)
     {
-
-        if (selectedUnitUI == null) return;
+        // 선택된 타일이 없거나 선택된 타일에 유닛이 없는 경우, 이동을 중단합니다.
+        if (selectedMiniMapTile == null || selectedMiniMapTile.unitsOnTile.Count == 0) return;
 
         Vector2Int newBoardPosition = CalculateNewBoardPosition(miniMapTile);
 
-        // 이전 타일에서 유닛을 제거합니다.
-        selectedUnitUI.CurrentTile.RemoveUnit(selectedUnitUI);
+        // 이동을 시작하는 타일에 있는 모든 유닛을 이동하는 타일로 옮깁니다.
+        List<UnitUI> unitsToMove = new List<UnitUI>(selectedMiniMapTile.unitsOnTile);
+        foreach (UnitUI unitUI in unitsToMove)
+        {
+            // 이전 타일에서 유닛을 제거합니다.
+            unitUI.CurrentTile.RemoveUnit(unitUI);
 
-        // 새로운 타일에 유닛을 추가합니다.
-        AddUnitToMinimap(selectedUnitUI.gameObject, newBoardPosition.x, newBoardPosition.y);
+            // 새로운 타일에 유닛을 추가합니다.
+            miniMapTile.AddUnit(unitUI);
 
-        MoveUnitUI(miniMapTile);
-        MoveActualUnit(newBoardPosition);
+            MoveUnitUI(unitUI, miniMapTile);
+
+            StartCoroutine(MoveActualUnit(unitUI, newBoardPosition));
+        }
 
         InitMovable();
 
-        isUnitSelected = false;
+        isTileSelected = false;
     }
+
 
 
     private Vector2Int CalculateNewBoardPosition(MiniMapTile miniMapTile)
@@ -157,21 +156,30 @@ public class MiniMap : MonoBehaviour
     }
 
 
-    private void MoveUnitUI(MiniMapTile miniMapTile)
+    private void MoveUnitUI(UnitUI unitUI, MiniMapTile miniMapTile)
     {
-
-        selectedUnitUI.transform.position = miniMapTile.transform.position;
-        selectedUnitUI.boardPosition = CalculateNewBoardPosition(miniMapTile);
-
+        Vector3 offset = RandomPos();
+        unitUI.transform.position = miniMapTile.transform.position + offset;
+        unitUI.boardPosition = CalculateNewBoardPosition(miniMapTile);
+        Debug.Log("UnitUI moved to " + unitUI.boardPosition);
     }
 
 
-    private void MoveActualUnit(Vector2Int newBoardPos)
+    IEnumerator MoveActualUnit(UnitUI unitUI, Vector2Int newBoardPos)
     {
-
-        selectedUnitUI.unit.gameObject.transform.position = new Vector3(newBoardPos.x * 10, 0, newBoardPos.y * 10);
-
+        float speed = 10f;  // Adjust this value to change the speed
+        Vector3 offset = RandomPos();
+        Vector3 targetPosition = new Vector3(newBoardPos.x * 10, 0, newBoardPos.y * 10) + offset;
+        while (Vector3.Distance(unitUI.unit.transform.position, targetPosition) > 0.1f)
+        {
+            unitUI.unit.transform.position = Vector3.MoveTowards(unitUI.unit.transform.position, targetPosition, speed * Time.deltaTime);
+            yield return null;  // Wait until next frame
+        }
+        Debug.Log("Unit moved to " + newBoardPos);
     }
+
+
+
 
 
     private void InitMovable()
