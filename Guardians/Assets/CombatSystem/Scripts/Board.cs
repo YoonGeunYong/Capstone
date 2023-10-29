@@ -14,6 +14,8 @@ public class Board : MonoBehaviour
     public Base         enemyBase;
 
 
+
+
     private void Awake()
     {
 
@@ -33,22 +35,21 @@ public class Board : MonoBehaviour
     {
         tiles = new Tile[width, height];
 
-
         for (int x = 0; x < width; x++)
             for (int y = 0; y < height; y++)
             {
                 // Adjust the position to make the bottom left of the board at (0, 0).
-                int       adjustedX          =     x * 10;
-                int       adjustedY          =     y * 10;
+                int adjustedX = x * 10;
+                int adjustedY = y * 10;
 
-                
-                Tile      tileComponent      =     tilePrefab.GetComponent<Tile>();
-                tileComponent.gridPosition   =     new Vector2Int(adjustedX, adjustedY);
-                tiles[x, y]                  =     tileComponent;
+                GameObject tileObject = Instantiate(tilePrefab, new Vector3(adjustedX, 0, adjustedY), Quaternion.identity);
+                Tile tileComponent = tileObject.GetComponent<Tile>();
+                tileComponent.gridPosition = new Vector2Int(adjustedX, adjustedY);
+                tileComponent.board = this;
+                tileComponent.ApplyNatureTexture(); // Apply Perlin noise texture to the tile.
 
-                Instantiate(tilePrefab, new Vector3(adjustedX, 0, adjustedY), Quaternion.identity);
-
-                tileComponent.board          =     this;
+                tiles[x, y] = tileComponent;
             }
-    } 
+    }
+
 }

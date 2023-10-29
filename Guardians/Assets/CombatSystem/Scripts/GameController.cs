@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
     public MiniMap miniMap;
     public Button buttonPrefab;
     public List<GameObject> unitUIs;
-
+    public MinimapCameraController minimapCameraController;
     public Camera miniMapCamera;
 
     public int width;
@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
         playerBase = GetComponent<Base>();
         enemyBase = GetComponent<Base>();
         miniMap = GetComponent<MiniMap>();
+        minimapCameraController = GetComponent<MinimapCameraController>();
 
 
 
@@ -50,6 +51,7 @@ public class GameController : MonoBehaviour
         miniMap.InitMiniMap(width, height);
         playerBase.InitPlayerPosition(new Vector2Int(0, 0));
         enemyBase.InitEnemyPosition(new Vector2Int((width * 10) - 10, (height * 10) - 10));
+        minimapCameraController.UpdateCameraSize(miniMap);
     }
 
 

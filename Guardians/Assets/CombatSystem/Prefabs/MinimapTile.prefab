@@ -119,3 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87445456a16e0443a235e73f2c534e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridPosition: {x: 0, y: 0}
+  boardPosition: {x: 0, y: 0}
+  originalPosition: {x: 0, y: 0}
+  unitsOnTile: []
+  noiseScale: 1
+  resourceThreshold: 0.2
+  resourceMaterial: {fileID: 2100000, guid: dad075a30da87c44c8ead24810fad49f, type: 2}

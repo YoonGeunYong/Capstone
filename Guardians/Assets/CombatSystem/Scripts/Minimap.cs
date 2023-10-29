@@ -15,7 +15,10 @@ public class MiniMap : MonoBehaviour
     public MiniMapTile[,] miniMapTiles;
     public GameObject miniMapTilePrefab;
     public bool isTileSelected = false;
-
+    public int width;
+    public int height;
+    public float noiseScale = 1.0f; // The scale of the Perlin noise.
+    public float resourceThreshold = 0.5f; // The minimum Perlin noise value required for a resource to spawn.
 
 
     private void Awake()
@@ -37,7 +40,11 @@ public class MiniMap : MonoBehaviour
 
     public void InitMiniMap(int width, int height)
     {
+        this.width = width;
+        this.height = height;
+
         miniMapTiles = new MiniMapTile[width, height];
+
 
         for (int x = 0; x < width; x++)
             for (int y = 0; y < height; y++)
@@ -55,15 +62,15 @@ public class MiniMap : MonoBehaviour
             }
     }
 
-    private Vector3 RandomPos()
+    private Vector3 RandomPos(float offsetRange)
     {
-        return new Vector3(UnityEngine.Random.Range(-2.0f, 2.0f), 0, UnityEngine.Random.Range(-2.0f, 2.0f));
+        return new Vector3(UnityEngine.Random.Range(-offsetRange, offsetRange), 0, UnityEngine.Random.Range(-offsetRange, offsetRange));
     }
 
     public void AddUnitToMinimap(UnitUI unitUI, GameObject actualUnitObject, MiniMapTile tile)
     {
         // Add a small random offset to the position
-        Vector3 offset = RandomPos();
+        Vector3 offset = RandomPos(2);
         unitUI.transform.position = GetMinimapPos(miniMapTiles, tile.originalPosition.x, tile.originalPosition.y) + offset;
         unitUI.unit = actualUnitObject;
         unitUI.CurrentTile = tile;
@@ -115,19 +122,19 @@ public class MiniMap : MonoBehaviour
 
     public void MoveUnitTo(MiniMapTile miniMapTile)
     {
-        // 선택된 타일이 없거나 선택된 타일에 유닛이 없는 경우, 이동을 중단합니다.
+        // 선택된 타일이 없거나 선택된 타일에 유닛이 없는 경우, 이동을 중단.
         if (selectedMiniMapTile == null || selectedMiniMapTile.unitsOnTile.Count == 0) return;
 
         Vector2Int newBoardPosition = CalculateNewBoardPosition(miniMapTile);
 
-        // 이동을 시작하는 타일에 있는 모든 유닛을 이동하는 타일로 옮깁니다.
+        // 이동을 시작하는 타일에 있는 모든 유닛을 이동하는 타일로 옮김.
         List<UnitUI> unitsToMove = new List<UnitUI>(selectedMiniMapTile.unitsOnTile);
         foreach (UnitUI unitUI in unitsToMove)
         {
-            // 이전 타일에서 유닛을 제거합니다.
+            // 이전 타일에서 유닛을 제거.
             unitUI.CurrentTile.RemoveUnit(unitUI);
 
-            // 새로운 타일에 유닛을 추가합니다.
+            // 새로운 타일에 유닛을 추가.
             miniMapTile.AddUnit(unitUI);
 
             MoveUnitUI(unitUI, miniMapTile);
@@ -158,7 +165,7 @@ public class MiniMap : MonoBehaviour
 
     private void MoveUnitUI(UnitUI unitUI, MiniMapTile miniMapTile)
     {
-        Vector3 offset = RandomPos();
+        Vector3 offset = RandomPos(2);
         unitUI.transform.position = miniMapTile.transform.position + offset;
         unitUI.boardPosition = CalculateNewBoardPosition(miniMapTile);
         Debug.Log("UnitUI moved to " + unitUI.boardPosition);
@@ -167,19 +174,18 @@ public class MiniMap : MonoBehaviour
 
     IEnumerator MoveActualUnit(UnitUI unitUI, Vector2Int newBoardPos)
     {
-        float speed = 10f;  // Adjust this value to change the speed
-        Vector3 offset = RandomPos();
-        Vector3 targetPosition = new Vector3(newBoardPos.x * 10, 0, newBoardPos.y * 10) + offset;
-        while (Vector3.Distance(unitUI.unit.transform.position, targetPosition) > 0.1f)
+        float speed = 20f;  // Adjust this value to change the speed
+        Vector3 offset = RandomPos(1);
+        Vector3 targetPosition = new Vector3(newBoardPos.x * 10, unitUI.unit.transform.position.y, newBoardPos.y * 10) + offset;
+
+        while (Vector3.Distance(unitUI.unit.transform.position, targetPosition) > 0.01f) // 거리 비교값을 조정
         {
             unitUI.unit.transform.position = Vector3.MoveTowards(unitUI.unit.transform.position, targetPosition, speed * Time.deltaTime);
             yield return null;  // Wait until next frame
         }
+        unitUI.unit.transform.position = targetPosition; // 목표 위치에 정확히 도달하도록 추가
         Debug.Log("Unit moved to " + newBoardPos);
     }
-
-
-
 
 
     private void InitMovable()
@@ -197,5 +203,7 @@ public class MiniMap : MonoBehaviour
 
         }
     }
+
+    
 
 }

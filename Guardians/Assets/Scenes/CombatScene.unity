@@ -655,7 +655,7 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.7
+    x: 0.67
     y: -0.5
     width: 1
     height: 1
@@ -688,7 +688,7 @@ Transform:
   m_GameObject: {fileID: 1279324068}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 119.4, y: 56.3, z: 120.4}
+  m_LocalPosition: {x: 135, y: 56.3, z: 135}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -776,6 +776,7 @@ GameObject:
   - component: {fileID: 1562054549}
   - component: {fileID: 1562054553}
   - component: {fileID: 1562054554}
+  - component: {fileID: 1562054555}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -802,9 +803,10 @@ MonoBehaviour:
   buttonPrefab: {fileID: 1135580128}
   unitUIs:
   - {fileID: 7371431077836823016, guid: 285a7359fe55aea4181834c07a2e1dd7, type: 3}
+  minimapCameraController: {fileID: 0}
   miniMapCamera: {fileID: 1279324070}
-  width: 5
-  height: 5
+  width: 10
+  height: 10
 --- !u!114 &1562054550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -861,6 +863,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPosition: {x: 0, y: 0}
   board: {fileID: 0}
+  noiseScale: 1
+  grass1: {fileID: 0}
+  grass2: {fileID: 0}
+  grass3: {fileID: 0}
 --- !u!114 &1562054554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,6 +882,23 @@ MonoBehaviour:
   selectedMiniMapTile: {fileID: 0}
   miniMapTilePrefab: {fileID: 1216155531955983874, guid: a02c1479d9225b94b96e2acd971767db, type: 3}
   isTileSelected: 0
+  width: 0
+  height: 0
+  noiseScale: 1
+  resourceThreshold: 0.5
+--- !u!114 &1562054555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562054548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ade3ab105cca04cbe81ab8dc381ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniMapCamera: {fileID: 1279324070}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
