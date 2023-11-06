@@ -1421,7 +1421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c124dc4ca57fc440a2e9e986601636b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 7259511975166793047, guid: 3ffde03628e994c4bb309e23b5b0b3d2, type: 3}
+  tilePrefab: {fileID: 6767498925649682421, guid: aba0ee45d807e43469059c62499df78a, type: 3}
   playerBase: {fileID: 0}
   enemyBase: {fileID: 0}
 --- !u!114 &1562054551

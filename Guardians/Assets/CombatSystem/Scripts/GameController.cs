@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour
 
 
         // Assuming buttonPrefab is already assigned in the inspector
-        RabitButton.onClick.AddListener(OnSpawnRabit);
+        RabitButton.onClick.AddListener(OnSpawnRabbit);
 
 
         // Initialize the game board and the player base...
@@ -57,7 +57,7 @@ public class GameController : MonoBehaviour
 
 
     // This method is called by a UI button using Unity's event system.
-    public void OnSpawnRabit()
+    public void OnSpawnRabbit()
     {
         playerBase.SpawnUnit(unitUIs[0]);
     }

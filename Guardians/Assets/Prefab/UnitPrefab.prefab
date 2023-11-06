@@ -99,16 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0d61401a8934048b47237c3b449371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _preStats:
-  - {fileID: 11400000, guid: 96c7bb5c722bee441ba24da516642a95, type: 2}
-  - {fileID: 11400000, guid: 42a9ef3df1d7d77418515b8c8b396696, type: 2}
-  - {fileID: 11400000, guid: 7329ed11075db7946b377557f80ab3f4, type: 2}
-  - {fileID: 11400000, guid: 9fa6ceb68b0be954db954653597c623d, type: 2}
-  - {fileID: 11400000, guid: faf27ed44542c7d44b07f953d96a6737, type: 2}
-  - {fileID: 11400000, guid: 217e608a76fa1cb47b82c04d55769f25, type: 2}
-  - {fileID: 11400000, guid: 58862611fd5468f4d82b0d795526a3e4, type: 2}
-  - {fileID: 11400000, guid: 3782d8a0c5b83074da0dc734731e3e32, type: 2}
-  - {fileID: 11400000, guid: 148de898d2f5e694cbaa602fa5ded061, type: 2}
+  preStats:
+  - {fileID: 0}
+  - {fileID: 0}
   _stats:
     attack: 20
     defend: 5
@@ -119,8 +112,9 @@ MonoBehaviour:
     attackType: 0
     length: 1
     coast: 15
+  boardPosition: {x: 0, y: 0}
   unit: 0
-  index: 2
+  index: 5
 --- !u!70 &6476446700517419471
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -995,8 +995,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed2d65e53d151b4885329382867f5fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedUnitUI: {fileID: 0}
+  selectedMiniMapTile: {fileID: 0}
   miniMapTilePrefab: {fileID: 1216155531955983874, guid: a02c1479d9225b94b96e2acd971767db, type: 3}
+  isTileSelected: 0
+  width: 0
+  height: 0
+  noiseScale: 1
+  resourceThreshold: 0.5
 --- !u!114 &733216672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,6 +1016,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPosition: {x: 0, y: 0}
   board: {fileID: 0}
+  noiseScale: 100
+  grass1: {fileID: 0}
+  grass2: {fileID: 0}
+  grass3: {fileID: 0}
 --- !u!114 &733216673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1027,10 +1036,11 @@ MonoBehaviour:
   enemyBase: {fileID: 0}
   board: {fileID: 0}
   miniMap: {fileID: 0}
-  buttonPrefab: {fileID: 409137721}
+  RabitButton: {fileID: 0}
   unitUIs:
   - {fileID: 7371431077836823016, guid: 285a7359fe55aea4181834c07a2e1dd7, type: 3}
-  unitUI: {fileID: 0}
+  minimapCameraController: {fileID: 0}
+  mainCameraController: {fileID: 0}
   width: 5
   height: 5
 --- !u!114 &733216674
