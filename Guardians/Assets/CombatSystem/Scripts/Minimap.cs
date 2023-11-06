@@ -191,24 +191,9 @@ public class MiniMap : MonoBehaviour
 
     IEnumerator MoveActualUnit(UnitUI unitUI, Vector2Int newBoardPos)
     {
-        float       speed           = 20f;  // Adjust this value to change the speed
-        Vector3     offset          = RandomPos(1);
-        Vector3     targetPosition  = new Vector3(newBoardPos.x * 10, unitUI.unit.transform.position.y, newBoardPos.y * 10) + offset;
-
-
-        while (Vector3.Distance(unitUI.unit.transform.position, targetPosition) > 0.01f) // 거리 비교값을 조정
-        {
-
-            unitUI.unit.transform.position = Vector3.MoveTowards(unitUI.unit.transform.position, 
-                targetPosition, speed * Time.deltaTime);
-
-            yield return null;  
-
-        }
-
-
-        unitUI.unit.transform.position = targetPosition; // 목표 위치에 정확히 도달하도록 추가
+        yield return unitUI.unit.GetComponent<Unit>().MoveTo(newBoardPos);
     }
+
 
 
     private void InitMovable()
