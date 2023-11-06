@@ -32,8 +32,8 @@ public class Base : MonoBehaviour
 
         
         Vector3     offset              = new Vector3(Random.Range(-2.0f, 2.0f), 0, Random.Range(-2.0f, 2.0f));
-        GameObject  newUnit             = Instantiate(newUnitUI.unit, new Vector3(playerPosition.x, 0, playerPosition.y) 
-                                          + offset, Quaternion.identity);
+        GameObject  newUnit             = Instantiate(newUnitUI.unit, new Vector3(playerPosition.x, 0.5f, playerPosition.y) 
+                                          + offset, newUnitUI.unit.transform.rotation);
 
 
         MiniMap.instance.AddUnitToMinimap(newUnitUI, newUnit, MiniMap.instance.miniMapTiles[playerPosition.x, playerPosition.y]);
