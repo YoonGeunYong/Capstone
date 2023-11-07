@@ -80,7 +80,7 @@ public class MiniMap : MonoBehaviour
 
         Vector3 offset                  = RandomPos(2);
         unitUI.transform.position       = GetMinimapPos(miniMapTiles, tile.originalPosition.x, tile.originalPosition.y) + offset;
-        unitUI.unit                     = actualUnitObject;
+        //unitUI.unit                     = actualUnitObject;
         unitUI.CurrentTile              = tile;
 
         tile.AddUnit(unitUI);
