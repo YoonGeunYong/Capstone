@@ -132,7 +132,6 @@ public class MiniMap : MonoBehaviour
 
     public void MoveUnitTo(MiniMapTile miniMapTile)
     {
-
         // 선택된 타일이 없거나 선택된 타일에 유닛이 없는 경우, 이동을 중단.
         if (selectedMiniMapTile == null || selectedMiniMapTile.unitsOnTile.Count == 0) return;
 
@@ -144,20 +143,32 @@ public class MiniMap : MonoBehaviour
         foreach (UnitUI unitUI in unitsToMove)
         {
             // 이전 타일에서 유닛을 제거.
-            unitUI.         CurrentTile.RemoveUnit(unitUI);
+            unitUI.CurrentTile.RemoveUnit(unitUI);
 
             // 새로운 타일에 유닛을 추가.
-            miniMapTile.    AddUnit(unitUI);
+            miniMapTile.AddUnit(unitUI);
 
             MoveUnitUI(unitUI, miniMapTile);
 
-            StartCoroutine(MoveActualUnit(unitUI, newBoardPosition));
+            // Check if there are enemies in the target tile
+            Unit enemy = miniMapTile.GetEnemy();
+            if (enemy != null)
+            {
+
+
+                // If there are enemies, start attacking
+                StartCoroutine(unitUI.unit.GetComponent<Unit>().Attack(enemy));
+            }
+            else
+            {
+                // If there are no enemies, start moving
+                StartCoroutine(unitUI.unit.GetComponent<Unit>().MoveTo(newBoardPosition));
+            }
         }
 
         InitMovable();
 
         isTileSelected = false;
-
     }
 
 
@@ -189,10 +200,6 @@ public class MiniMap : MonoBehaviour
     }
 
 
-    IEnumerator MoveActualUnit(UnitUI unitUI, Vector2Int newBoardPos)
-    {
-        yield return unitUI.unit.GetComponent<Unit>().MoveTo(newBoardPos);
-    }
 
 
 
@@ -212,6 +219,18 @@ public class MiniMap : MonoBehaviour
         }
     }
 
-    
+    public MiniMapTile GetTileAt(Vector2Int position)
+    {
+        // Check if the position is within the bounds of the map
+        if (position.x >= 0 && position.x < miniMapTiles.GetLength(0) &&
+            position.y >= 0 && position.y < miniMapTiles.GetLength(1))
+        {
+            // Return the tile at the given position
+            return miniMapTiles[position.x, position.y];
+        }
+
+        // If the position is out of bounds, return null
+        return null;
+    }
 
 }

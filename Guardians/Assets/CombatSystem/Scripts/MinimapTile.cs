@@ -48,6 +48,21 @@ public class MiniMapTile : MonoBehaviour
 
     }
 
+    public Unit GetEnemy()
+    {
+        // Find the first enemy unit on the tile
+        foreach (UnitUI unitUI in unitsOnTile)
+        {
+            if (unitUI.IsEnemy)
+            {
+                // Return the enemy unit
+                return unitUI.unit;
+            }
+        }
+
+        // If no enemy unit is found, return null
+        return null;
+    }
 
     void OnMouseDown()
     {
