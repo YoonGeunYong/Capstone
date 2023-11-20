@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor.Animations;
+#endif
 using System;
 
 [CreateAssetMenu(fileName = "Entitiy(name)", menuName = "Scriptable Object Asset/Entity (name)")]
 public class UnitStatsSO : ScriptableObject
 {
     public UnitStats _stats;
-    public AnimatorController _anicontroller;
+    public RuntimeAnimatorController _anicontroller;
     public Sprite _image;
     public Vector3 _defaultPosition;
     public Vector3 _defaultScale;
