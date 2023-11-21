@@ -151,25 +151,30 @@ public class MiniMap : MonoBehaviour
             MoveUnitUI(unitUI, miniMapTile);
 
             // Check if there are enemies in the target tile
-            Unit enemy = miniMapTile.GetEnemy();
-            if (enemy != null)
+            List<Unit> enemies = miniMapTile.GetEnemies(unitUI.unit.team);
+            if (enemies.Count != 0)
             {
-
-
+                Debug.Log("enemies detected");
                 // If there are enemies, start attacking
-                StartCoroutine(unitUI.unit.GetComponent<Unit>().Attack(enemy));
+                unitUI.unit.Attack(enemies);
             }
             else
             {
+                Debug.Log("no enemies detected");
                 // If there are no enemies, start moving
-                StartCoroutine(unitUI.unit.GetComponent<Unit>().MoveTo(newBoardPosition));
+                unitUI.unit.MoveTo(newBoardPosition);
             }
+            
         }
 
         InitMovable();
 
         isTileSelected = false;
+        GameController.instance.isPlayerTurn = false;
+        Debug.Log("Player turn ended");
     }
+
+
 
 
 

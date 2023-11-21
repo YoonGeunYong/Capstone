@@ -17,10 +17,11 @@ public class GameController : MonoBehaviour
     public List<GameObject>         unitUIs;
     public MinimapCameraController  minimapCameraController;
     public MainCameraController     mainCameraController;
-
+    public bool                     isPlayerTurn;
     public int                      width;
     public int                      height;
 
+    
 
     private void Awake()
     {
@@ -33,6 +34,8 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        isPlayerTurn = true;
 
         board                   = GetComponent<Board>();
         playerBase              = GetComponent<Base>();
@@ -59,7 +62,33 @@ public class GameController : MonoBehaviour
     // This method is called by a UI button using Unity's event system.
     public void OnSpawnRabbit()
     {
-        playerBase.SpawnUnit(unitUIs[0]);
+        playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player);
     }
 
+
+    // 플레이어의 턴 종료 메소드
+    public void EndPlayerTurn()
+    {
+        isPlayerTurn = false;
+        StartAITurn(); // 인공지능 턴으로 전환
+    }
+
+
+    // 인공지능의 턴 시작 메소드
+    private void StartAITurn()
+    {
+        // 인공지능의 턴 동작을 구현
+        // 유닛 생산 또는 이동 등의 로직을 작성
+
+        // 턴 종료 후 다시 플레이어 턴으로 전환
+        EndAITurn();
+    }
+
+
+    // 인공지능의 턴 종료 메소드
+    private void EndAITurn()
+    {
+        isPlayerTurn = true;
+        // 플레이어 턴으로 전환
+    }
 }

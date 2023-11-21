@@ -8,6 +8,7 @@ public class Rabbit : Unit
     private void Start()
     {
         unitTypes = UnitTypes.Rabbit;
+        team = Team.Player;
         stats = new UnitStats();
         stats.attack = 10;
         stats.defend = 0;
@@ -20,57 +21,72 @@ public class Rabbit : Unit
         stats.coast = 1;
     }
 
-    public override IEnumerator MoveTo(Vector2Int newBoardPos)
+    public override void MoveTo(Vector2Int newBoardPos)
     {
         Vector3 targetPosition = new Vector3(newBoardPos.x * 10, transform.position.y, newBoardPos.y * 10);
 
         MiniMapTile targetTile = MiniMap.instance.GetTileAt(newBoardPos);
-        Unit enemy = targetTile.GetEnemy();
-
-        // If there are enemies in the target tile, start attacking
-        if (enemy != null)
-        {
-            yield return Attack(enemy);
-            yield break;
-        }
 
         // If no enemies, start moving
         while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, stats.moveSpeed * Time.deltaTime);
-            yield return null;
+            Debug.Log(targetPosition);
+            break;
         }
 
         transform.position = targetPosition; // Ensure the unit reaches the exact target position
         boardPosition = newBoardPos; // Update the board position
     }
 
-
-    public override IEnumerator Attack(Unit enemy)
+    public override void Attack(List<Unit> enemies)
     {
         Debug.Log("Rabbit Attack");
-        // Attack logic
-        while (enemy != null && enemy.stats.healthPoint > 0)
+
+        // Attack all enemies on the tile
+        for (int i = 0; i < enemies.Count; i++)
         {
-            // Attack delay
-            yield return new WaitForSeconds(stats.attackSpeed);
+            Unit enemy = enemies[i];
 
             // Attack the enemy
-            enemy.stats.healthPoint -= stats.attack;
+            //enemy.stats.healthPoint -= stats.attack;
 
             // Check if the enemy is still alive
             if (enemy.stats.healthPoint <= 0)
             {
-                // Remove the enemy
-                enemy = null;
+                // Remove the enemy from the list
+                enemies.RemoveAt(i);
+                i--;
+                DestroyUnit(enemy); // Destroy the enemy unit
             }
         }
 
         // If no more enemies, continue moving
-        if (enemy == null)
+        if (enemies.Count == 0)
         {
-            yield return MoveTo(boardPosition);
+            MoveTo(boardPosition);
         }
     }
+
+    public override void DestroyUnit(Unit unit)
+    {
+        // Remove the unit from the game
+        Destroy(unit.gameObject);
+
+        // Check if the unit has a UnitUI component attached
+        UnitUI unitUI = unit.GetComponent<UnitUI>();
+        if (unitUI != null)
+        {
+            // Remove the associated UnitUI from the game
+            Destroy(unitUI.gameObject);
+        }
+
+        // Perform any necessary cleanup or additional logic here
+        // ...
+    }
+
+
+
+
 }
 
