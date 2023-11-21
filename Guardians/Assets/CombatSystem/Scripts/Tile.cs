@@ -26,6 +26,7 @@ public class Tile : MonoBehaviour
         else if (noiseValue < 0.6f)
         {
             GetComponent<Renderer>().material = grass2;
+            this.gameObject.tag = "CostTile";
         }
 
         else

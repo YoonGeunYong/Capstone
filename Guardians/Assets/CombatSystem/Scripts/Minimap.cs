@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class MiniMap : MonoBehaviour
 {
@@ -11,12 +11,16 @@ public class MiniMap : MonoBehaviour
     public        MiniMapTile       selectedMiniMapTile;
     public        MiniMapTile[,]    miniMapTiles;
     public        GameObject        miniMapTilePrefab;
+    public        Text              costText;
 
     public        bool              isTileSelected = false;
     public        int               width;
     public        int               height;
     public        float             noiseScale = 1.0f; // 펄린 노이즈
-    public        float             resourceThreshold = 0.5f; 
+    public        float             resourceThreshold = 0.5f;
+    public        int               cost = 50;
+    public        int               checkCostTile;
+    public        bool              turnCheck;
 
 
     private void Awake()
@@ -156,6 +160,13 @@ public class MiniMap : MonoBehaviour
         InitMovable();
 
         isTileSelected = false;
+        if (costText is null) return;
+        if (cost < 500)
+        {
+            cost += 50 + (30 * checkCostTile);
+            costText.text = "자원/" + cost;
+        }
+        else if (cost > 500) { cost = 500; }
 
     }
 
