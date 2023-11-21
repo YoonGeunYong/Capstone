@@ -1379,6 +1379,7 @@ GameObject:
   - component: {fileID: 1562054554}
   - component: {fileID: 1562054555}
   - component: {fileID: 1562054556}
+  - component: {fileID: 1562054557}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1398,6 +1399,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  behaviorTree: {fileID: 0}
+  playerBaseTower: {fileID: 2089216515744752015, guid: 5f1fd3f889242e14c890fac475f59e05, type: 3}
+  enemyBaseTower: {fileID: 2089216515744752015, guid: 5f1fd3f889242e14c890fac475f59e05, type: 3}
   playerBase: {fileID: 0}
   enemyBase: {fileID: 0}
   board: {fileID: 0}
@@ -1407,6 +1411,8 @@ MonoBehaviour:
   - {fileID: 7371431077836823016, guid: 285a7359fe55aea4181834c07a2e1dd7, type: 3}
   minimapCameraController: {fileID: 0}
   mainCameraController: {fileID: 0}
+  isPlayerTurn: 0
+  isEnemyTurn: 1
   width: 7
   height: 7
 --- !u!114 &1562054550
@@ -1436,6 +1442,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b244dd9552e197e498b969d518a097e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPosition: {x: 0, y: 0}
+  enemyPosition: {x: 0, y: 0}
+  resources: 0
+  resourcePerTurn: 10
 --- !u!4 &1562054552
 Transform:
   m_ObjectHideFlags: 0
@@ -1515,6 +1525,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 963194227}
   minimapCamera: {fileID: 1279324070}
+--- !u!114 &1562054557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562054548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWhenEnabled: 0
+  asynchronousLoad: 0
+  pauseWhenDisabled: 0
+  restartWhenComplete: 0
+  logTaskChanges: 0
+  group: 0
+  resetValuesOnRestart: 0
+  externalBehavior: {fileID: 11400000, guid: 56480dbc9e10e2446b11b77e2ea8f000, type: 2}
+  mBehaviorSource:
+    behaviorName: Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: 
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
 --- !u!1 &1941756141
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,30 +43,47 @@ public class Rabbit : Unit
     {
         Debug.Log("Rabbit Attack");
 
-        // Attack all enemies on the tile
-        for (int i = 0; i < enemies.Count; i++)
+        foreach (Unit enemy in enemies)
         {
-            Unit enemy = enemies[i];
-
-            // Attack the enemy
-            //enemy.stats.healthPoint -= stats.attack;
-
-            // Check if the enemy is still alive
-            if (enemy.stats.healthPoint <= 0)
+            // 공격 사거리 체크
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distance <= stats.length)
             {
-                // Remove the enemy from the list
-                enemies.RemoveAt(i);
-                i--;
-                DestroyUnit(enemy); // Destroy the enemy unit
+                // 공격 딜레이 체크
+                if (Time.time >= stats.delay)
+                {
+                    Debug.Log("Rabbit dealing damage to enemy");
+
+                    // 적의 방어력을 고려한 실제 피해량 계산
+                    int damage = (int)Mathf.Max(0, stats.attack - enemy.stats.defend);
+
+                    // 적에게 피해 입히기
+                    enemy.stats.healthPoint -= damage;
+
+                    // 공격 후 딜레이 갱신
+                    stats.delay = Time.time + 1.0f / stats.attackSpeed;
+
+                    // 체력이 0 이하인 경우 적 유닛 제거
+                    if (enemy.stats.healthPoint <= 0)
+                    {
+                        DestroyUnit(enemy);
+                    }
+                }
+                else
+                {
+                    Debug.Log("Rabbit attack on cooldown");
+                }
+            }
+            else
+            {
+                Debug.Log("Rabbit out of attack range");
             }
         }
 
-        // If no more enemies, continue moving
-        if (enemies.Count == 0)
-        {
-            MoveTo(boardPosition);
-        }
+        // 공격 후 이동
+        MoveTo(boardPosition);
     }
+
 
     public override void DestroyUnit(Unit unit)
     {
