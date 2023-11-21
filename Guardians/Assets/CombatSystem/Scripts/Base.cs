@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class Base : MonoBehaviour
 {
-    private Vector2Int      playerPosition;
-    private Vector2Int      enemyPosition;
+    public Vector2Int      playerPosition;
+    public Vector2Int      enemyPosition;
+
+    public int resources; // 플레이어 또는 인공지능의 자원
+    public int resourcePerTurn = 10; // 턴 종료 시 얻는 자원량
+
 
 
     public void InitPlayerPosition(Vector2Int basePosition)
@@ -41,13 +45,38 @@ public class Base : MonoBehaviour
 
         MiniMap.instance.AddUnitToMinimap(newUnitUI.GetComponent<UnitUI>(), newUnit, MiniMap.instance.miniMapTiles[playerPosition.x, playerPosition.y]);
 
-        GameController.instance.isPlayerTurn = false;
-        Debug.Log("Player turn ended");
+        SpendResource(unit.stats.coast);
+
+        GameController.instance.EndPlayerTurn();
+
     }
 
 
     public Vector2Int GetPlayerPosition()
     {
         return playerPosition;
+    }
+
+    public void EndTurnAndGetResource()
+    {
+        resources += resourcePerTurn;
+    }
+
+    public bool SpendResource(int amount)
+    {
+        if (resources >= amount)
+        {
+            resources -= amount;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public int GetResource()
+    {
+        return resources;
     }
 }

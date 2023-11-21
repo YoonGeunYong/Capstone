@@ -170,8 +170,7 @@ public class MiniMap : MonoBehaviour
         InitMovable();
 
         isTileSelected = false;
-        GameController.instance.isPlayerTurn = false;
-        Debug.Log("Player turn ended");
+        GameController.instance.EndPlayerTurn();
     }
 
 
