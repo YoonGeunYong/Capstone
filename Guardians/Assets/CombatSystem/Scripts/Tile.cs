@@ -45,4 +45,9 @@ public class Tile : MonoBehaviour
         return Mathf.PerlinNoise(xCoord, yCoord);
 
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("collise");
+    }
 }

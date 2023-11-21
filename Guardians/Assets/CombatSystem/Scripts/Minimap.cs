@@ -20,7 +20,7 @@ public class MiniMap : MonoBehaviour
     public        float             resourceThreshold = 0.5f;
     public        int               cost = 50;
     public        int               checkCostTile;
-    public        bool              turnCheck;
+    public        bool[]            turnCheck = new bool[3];
 
 
     private void Awake()
@@ -167,7 +167,6 @@ public class MiniMap : MonoBehaviour
             costText.text = "ÀÚ¿ø/" + cost;
         }
         else if (cost > 500) { cost = 500; }
-
     }
 
 
