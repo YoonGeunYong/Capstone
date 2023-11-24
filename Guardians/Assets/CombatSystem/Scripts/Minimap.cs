@@ -19,7 +19,6 @@ public class MiniMap : MonoBehaviour
     public        float             noiseScale = 1.0f; // 펄린 노이즈
     public        float             resourceThreshold = 0.5f;
     public        int               cost = 50;
-    public        int               checkCostTile;
     public        bool[]            turnCheck = new bool[3];
 
 
@@ -39,6 +38,11 @@ public class MiniMap : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        costText.text = "자원/" + cost;
+    }
+
 
     public void InitMiniMap(int width, int height)
     {
@@ -55,7 +59,7 @@ public class MiniMap : MonoBehaviour
                 int         adjustedX               = (x * 10) + 100;
                 int         adjustedY               = (y * 10) + 100;
 
-                GameObject  tileObject              = Instantiate(miniMapTilePrefab, new Vector3(adjustedX, 0, adjustedY), 
+                GameObject  tileObject              = Instantiate(miniMapTilePrefab, new Vector3(adjustedX, adjustedY, 0f), 
                                                       Quaternion.identity);
 
                 MiniMapTile tileComponent           = tileObject.GetComponent<MiniMapTile>();
@@ -72,8 +76,8 @@ public class MiniMap : MonoBehaviour
     private Vector3 RandomPos(float offsetRange)
     {
 
-        return new Vector3(UnityEngine.Random.Range(-offsetRange, offsetRange), 0, 
-            UnityEngine.Random.Range(-offsetRange, offsetRange));
+        return new Vector3(UnityEngine.Random.Range(-offsetRange, offsetRange), 
+            UnityEngine.Random.Range(-offsetRange, offsetRange), 0f);
 
     }
 
@@ -94,7 +98,7 @@ public class MiniMap : MonoBehaviour
     private static Vector3 GetMinimapPos(MiniMapTile[,] tiles, int x, int y)
     {
 
-        return new Vector3(tiles[x, y].gridPosition.x, 0, tiles[x, y].gridPosition.y);
+        return new Vector3(tiles[x, y].gridPosition.x, tiles[x, y].gridPosition.y, 0f);
 
     }
 
@@ -174,13 +178,21 @@ public class MiniMap : MonoBehaviour
 
         isTileSelected = false;
         if (costText is null) return;
-        if (cost < 500)
+        if (cost < 3000)
         {
-            cost += 50 + (30 * checkCostTile);
+            cost += 50 + (30 * (GameController.instance.tile[0].isCostTile + 
+                                GameController.instance.tile[1].isCostTile + 
+                                GameController.instance.tile[2].isCostTile));
+            if (cost > 3000)
+                cost = 3000;
             costText.text = "자원/" + cost;
         }
-        else if (cost > 500) { cost = 500; }
-        GameController.instance.isPlayerTurn = false;
+        else if (cost >= 3000)
+        {
+            cost = 3000;
+            costText.text = "자원/" + cost;
+        }
+        //GameController.instance.isPlayerTurn = false;
         Debug.Log("Player turn ended");
     }
 

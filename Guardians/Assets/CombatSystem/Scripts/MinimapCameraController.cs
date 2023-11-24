@@ -11,10 +11,10 @@ public class MinimapCameraController : MonoBehaviour
 
         // Adjust the camera's position to the center of the minimap.
         float centerX                    = (miniMap.width * 9) / 2f + 100;
-        float centerZ                    = (miniMap.height * 9) / 2f + 100;
+        float centerY                    = (miniMap.height * 9) / 2f + 100;
 
 
-        miniMapCamera.transform.position = new Vector3(centerX, miniMapCamera.transform.position.y, centerZ);
+        miniMapCamera.transform.position = new Vector3(centerX, centerY, miniMapCamera.transform.position.z);
 
         // Adjust the camera's orthographicSize to cover the whole minimap.
         int mapSize = Mathf.Max(miniMap.width, miniMap.height) * 10;

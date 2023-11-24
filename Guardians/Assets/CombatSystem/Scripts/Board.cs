@@ -45,7 +45,7 @@ public class Board : MonoBehaviour
                 int             adjustedY       = y * 10;
 
 
-                GameObject      tileObject      = Instantiate(tilePrefab, new Vector3(adjustedX, 0, adjustedY), tilePrefab.transform.rotation);
+                GameObject      tileObject      = Instantiate(tilePrefab, new Vector3(adjustedX, adjustedY, 0f), tilePrefab.transform.rotation);
                 Tile            tileComponent   = tileObject.GetComponent<Tile>();
 
 

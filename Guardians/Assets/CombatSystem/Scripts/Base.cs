@@ -29,19 +29,19 @@ public class Base : MonoBehaviour
     {
         GameObject newUnitUI = Instantiate(UnitUI);
 
-        Vector3 offset = new Vector3(Random.Range(-2.0f, 2.0f), 0, Random.Range(-2.0f, 2.0f));
+        Vector3 offset = new Vector3(Random.Range(-2.0f, 2.0f), Random.Range(-2.0f, 2.0f), 0f);
         Unit unit = newUnitUI.GetComponent<UnitUI>().unit;
         unit.team = team;
       
 
-        GameObject newUnit = Instantiate(unit.gameObject, new Vector3(playerPosition.x, 0.5f, playerPosition.y)
+        GameObject newUnit = Instantiate(unit.gameObject, new Vector3(playerPosition.x, playerPosition.y, 0f)
             + offset, unit.transform.rotation);
 
         newUnitUI.GetComponent<UnitUI>().unit = newUnit.GetComponent<Unit>();
 
         MiniMap.instance.AddUnitToMinimap(newUnitUI.GetComponent<UnitUI>(), newUnit, MiniMap.instance.miniMapTiles[playerPosition.x, playerPosition.y]);
 
-        GameController.instance.isPlayerTurn = false;
+        //GameController.instance.isPlayerTurn = false;
         Debug.Log("Player turn ended");
     }
 
