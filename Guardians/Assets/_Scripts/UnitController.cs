@@ -27,7 +27,6 @@ public class UnitController : MonoBehaviour
         unit = (UnitTypes)index;
 
         GetComponent<SpriteRenderer>().sprite = preStats[index]._image;
-        GetComponent<Transform>().position = preStats[index]._defaultPosition;
         GetComponent<Transform>().localScale = preStats[index]._defaultScale;
         GetComponent<Animator>().runtimeAnimatorController = preStats[index]._anicontroller;
 

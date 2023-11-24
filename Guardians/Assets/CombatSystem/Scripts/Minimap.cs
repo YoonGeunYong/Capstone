@@ -1,9 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class MiniMap : MonoBehaviour
 {
@@ -12,12 +11,15 @@ public class MiniMap : MonoBehaviour
     public        MiniMapTile       selectedMiniMapTile;
     public        MiniMapTile[,]    miniMapTiles;
     public        GameObject        miniMapTilePrefab;
+    public        Text              costText;
 
     public        bool              isTileSelected = false;
     public        int               width;
     public        int               height;
-    public        float             noiseScale = 1.0f; // ÆŞ¸° ³ëÀÌÁî
-    public        float             resourceThreshold = 0.5f; 
+    public        float             noiseScale = 1.0f; // í„ë¦° ë…¸ì´ì¦ˆ
+    public        float             resourceThreshold = 0.5f;
+    public        int               cost = 50;
+    public        bool[]            turnCheck = new bool[3];
 
 
     private void Awake()
@@ -36,6 +38,11 @@ public class MiniMap : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        costText.text = "ìì›/" + cost;
+    }
+
 
     public void InitMiniMap(int width, int height)
     {
@@ -52,7 +59,7 @@ public class MiniMap : MonoBehaviour
                 int         adjustedX               = (x * 10) + 100;
                 int         adjustedY               = (y * 10) + 100;
 
-                GameObject  tileObject              = Instantiate(miniMapTilePrefab, new Vector3(adjustedX, 0, adjustedY), 
+                GameObject  tileObject              = Instantiate(miniMapTilePrefab, new Vector3(adjustedX, adjustedY, 0f), 
                                                       Quaternion.identity);
 
                 MiniMapTile tileComponent           = tileObject.GetComponent<MiniMapTile>();
@@ -69,8 +76,8 @@ public class MiniMap : MonoBehaviour
     private Vector3 RandomPos(float offsetRange)
     {
 
-        return new Vector3(UnityEngine.Random.Range(-offsetRange, offsetRange), 0, 
-            UnityEngine.Random.Range(-offsetRange, offsetRange));
+        return new Vector3(UnityEngine.Random.Range(-offsetRange, offsetRange), 
+            UnityEngine.Random.Range(-offsetRange, offsetRange), 0f);
 
     }
 
@@ -91,7 +98,7 @@ public class MiniMap : MonoBehaviour
     private static Vector3 GetMinimapPos(MiniMapTile[,] tiles, int x, int y)
     {
 
-        return new Vector3(tiles[x, y].gridPosition.x, 0, tiles[x, y].gridPosition.y);
+        return new Vector3(tiles[x, y].gridPosition.x, tiles[x, y].gridPosition.y, 0f);
 
     }
 
@@ -132,20 +139,20 @@ public class MiniMap : MonoBehaviour
 
     public void MoveUnitTo(MiniMapTile miniMapTile)
     {
-        // ¼±ÅÃµÈ Å¸ÀÏÀÌ ¾ø°Å³ª ¼±ÅÃµÈ Å¸ÀÏ¿¡ À¯´ÖÀÌ ¾ø´Â °æ¿ì, ÀÌµ¿À» Áß´Ü.
+        // ì„ íƒëœ íƒ€ì¼ì´ ì—†ê±°ë‚˜ ì„ íƒëœ íƒ€ì¼ì— ìœ ë‹›ì´ ì—†ëŠ” ê²½ìš°, ì´ë™ì„ ì¤‘ë‹¨.
         if (selectedMiniMapTile == null || selectedMiniMapTile.unitsOnTile.Count == 0) return;
 
         Vector2Int newBoardPosition = CalculateNewBoardPosition(miniMapTile);
 
-        // ÀÌµ¿À» ½ÃÀÛÇÏ´Â Å¸ÀÏ¿¡ ÀÖ´Â ¸ğµç À¯´ÖÀ» ÀÌµ¿ÇÏ´Â Å¸ÀÏ·Î ¿Å±è.
+        // ì´ë™ì„ ì‹œì‘í•˜ëŠ” íƒ€ì¼ì— ìˆëŠ” ëª¨ë“  ìœ ë‹›ì„ ì´ë™í•˜ëŠ” íƒ€ì¼ë¡œ ì˜®ê¹€.
         List<UnitUI> unitsToMove = new List<UnitUI>(selectedMiniMapTile.unitsOnTile);
 
         foreach (UnitUI unitUI in unitsToMove)
         {
-            // ÀÌÀü Å¸ÀÏ¿¡¼­ À¯´ÖÀ» Á¦°Å.
+            // ì´ì „ íƒ€ì¼ì—ì„œ ìœ ë‹›ì„ ì œê±°.
             unitUI.CurrentTile.RemoveUnit(unitUI);
 
-            // »õ·Î¿î Å¸ÀÏ¿¡ À¯´ÖÀ» Ãß°¡.
+            // ìƒˆë¡œìš´ íƒ€ì¼ì— ìœ ë‹›ì„ ì¶”ê°€.
             miniMapTile.AddUnit(unitUI);
 
             MoveUnitUI(unitUI, miniMapTile);
@@ -170,7 +177,22 @@ public class MiniMap : MonoBehaviour
         InitMovable();
 
         isTileSelected = false;
-        GameController.instance.isPlayerTurn = false;
+        if (costText is null) return;
+        if (cost < 3000)
+        {
+            cost += 50 + (30 * (GameController.instance.tile[0].isCostTile + 
+                                GameController.instance.tile[1].isCostTile + 
+                                GameController.instance.tile[2].isCostTile));
+            if (cost > 3000)
+                cost = 3000;
+            costText.text = "ìì›/" + cost;
+        }
+        else if (cost >= 3000)
+        {
+            cost = 3000;
+            costText.text = "ìì›/" + cost;
+        }
+        //GameController.instance.isPlayerTurn = false;
         Debug.Log("Player turn ended");
     }
 

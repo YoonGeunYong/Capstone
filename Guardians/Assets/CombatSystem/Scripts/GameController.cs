@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     public List<GameObject>         unitUIs;
     public MinimapCameraController  minimapCameraController;
     public MainCameraController     mainCameraController;
+    public Tile[]                   tile = new Tile[3];   
     public bool                     isPlayerTurn;
     public int                      width;
     public int                      height;
@@ -55,7 +56,7 @@ public class GameController : MonoBehaviour
         playerBase.               InitPlayerPosition(new Vector2Int(0, 0));
         enemyBase.                InitEnemyPosition(new Vector2Int((width * 10) - 10, (height * 10) - 10));
         minimapCameraController.  UpdateCameraSize(miniMap);
-        mainCameraController.     MoveMainCamera(new Vector3(0, mainCameraController.mainCamera.transform.position.y, 0));
+        mainCameraController.     MoveMainCamera(new Vector3(0, 0f, mainCameraController.mainCamera.transform.position.z));
     }
 
 
@@ -66,29 +67,29 @@ public class GameController : MonoBehaviour
     }
 
 
-    // ÇÃ·¹ÀÌ¾îÀÇ ÅÏ Á¾·á ¸Þ¼Òµå
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
     public void EndPlayerTurn()
     {
         isPlayerTurn = false;
-        StartAITurn(); // ÀÎ°øÁö´É ÅÏÀ¸·Î ÀüÈ¯
+        StartAITurn(); // ï¿½Î°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
     }
 
 
-    // ÀÎ°øÁö´ÉÀÇ ÅÏ ½ÃÀÛ ¸Þ¼Òµå
+    // ï¿½Î°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
     private void StartAITurn()
     {
-        // ÀÎ°øÁö´ÉÀÇ ÅÏ µ¿ÀÛÀ» ±¸Çö
-        // À¯´Ö »ý»ê ¶Ç´Â ÀÌµ¿ µîÀÇ ·ÎÁ÷À» ÀÛ¼º
+        // ï¿½Î°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½
 
-        // ÅÏ Á¾·á ÈÄ ´Ù½Ã ÇÃ·¹ÀÌ¾î ÅÏÀ¸·Î ÀüÈ¯
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
         EndAITurn();
     }
 
 
-    // ÀÎ°øÁö´ÉÀÇ ÅÏ Á¾·á ¸Þ¼Òµå
+    // ï¿½Î°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
     private void EndAITurn()
     {
         isPlayerTurn = true;
-        // ÇÃ·¹ÀÌ¾î ÅÏÀ¸·Î ÀüÈ¯
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
     }
 }
