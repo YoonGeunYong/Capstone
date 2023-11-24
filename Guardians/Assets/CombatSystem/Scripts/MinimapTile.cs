@@ -47,28 +47,44 @@ public class MiniMapTile : MonoBehaviour
 
     }
 
+    public List<Unit> GetEnemies(Unit.Team myTeam)
+    {
+        List<Unit> enemies = new List<Unit>();
+
+        foreach (UnitUI unitUI in unitsOnTile)
+        {
+            if (unitUI.unit.team != myTeam) // 자신의 팀과 다른 팀을 적으로 인식
+            {
+                Debug.Log("Enemy detected");
+                enemies.Add(unitUI.unit);
+            }
+        }
+
+        return enemies;
+    }
+
 
     void OnMouseDown()
     {
-
-        if (MiniMap.instance.isTileSelected)
+        // 플레이어 턴인지 확인
+        if (GameController.instance.isPlayerTurn)
         {
-            
-            if (IsMovable)
+            if (MiniMap.instance.isTileSelected)
             {
-                MiniMap.instance.MoveUnitTo(this);
+                if (IsMovable)
+                {
+                    MiniMap.instance.MoveUnitTo(this);
+                }
+            }
+            else
+            {
+                if (unitsOnTile.Count > 0)
+                {
+                    MiniMap.instance.selectedMiniMapTile = this;
+                    MiniMap.instance.HighlightMovableTiles();
+                }
             }
         }
-
-        else
-        {
-            
-            if (unitsOnTile.Count > 0)
-            {
-                MiniMap.instance.selectedMiniMapTile = this;
-                MiniMap.instance.HighlightMovableTiles();
-            }
-        }
-
     }
+
 }

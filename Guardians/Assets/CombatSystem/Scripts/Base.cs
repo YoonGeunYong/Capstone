@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Base : MonoBehaviour
@@ -24,19 +25,24 @@ public class Base : MonoBehaviour
     }
 
 
-    // This method creates a new unit at the base's position.
-    public void SpawnUnit(GameObject unitUIObject)
+    public void SpawnUnit(GameObject UnitUI, Unit.Team team)
     {
-        GameObject  newUnitUIObject     = Instantiate(unitUIObject);
-        UnitUI      newUnitUI           = newUnitUIObject.GetComponent<UnitUI>();
+        GameObject newUnitUI = Instantiate(UnitUI);
 
-        
-        Vector3     offset              = new Vector3(Random.Range(-2.0f, 2.0f), 0, Random.Range(-2.0f, 2.0f));
-        GameObject  newUnit             = Instantiate(newUnitUI.unit, new Vector3(playerPosition.x, 0.5f, playerPosition.y) 
-                                          + offset, newUnitUI.unit.transform.rotation);
+        Vector3 offset = new Vector3(Random.Range(-2.0f, 2.0f), 0, Random.Range(-2.0f, 2.0f));
+        Unit unit = newUnitUI.GetComponent<UnitUI>().unit;
+        unit.team = team;
+      
 
+        GameObject newUnit = Instantiate(unit.gameObject, new Vector3(playerPosition.x, 0.5f, playerPosition.y)
+            + offset, unit.transform.rotation);
 
-        MiniMap.instance.AddUnitToMinimap(newUnitUI, newUnit, MiniMap.instance.miniMapTiles[playerPosition.x, playerPosition.y]);
+        newUnitUI.GetComponent<UnitUI>().unit = newUnit.GetComponent<Unit>();
+
+        MiniMap.instance.AddUnitToMinimap(newUnitUI.GetComponent<UnitUI>(), newUnit, MiniMap.instance.miniMapTiles[playerPosition.x, playerPosition.y]);
+
+        GameController.instance.isPlayerTurn = false;
+        Debug.Log("Player turn ended");
     }
 
 

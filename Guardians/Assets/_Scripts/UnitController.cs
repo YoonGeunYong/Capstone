@@ -4,10 +4,6 @@ using UnityEngine;
 using System;
 using System.Reflection;
 
-public enum UnitTypes
-{
-    Rabbit, Turtle, Fox, Deer, WoodCutter, Fairy, Heungbu, Nolbu, Swallow 
-}
 
 public class UnitController : MonoBehaviour
 {

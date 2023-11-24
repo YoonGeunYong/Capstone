@@ -16,7 +16,7 @@ public class MiniMap : MonoBehaviour
     public        bool              isTileSelected = false;
     public        int               width;
     public        int               height;
-    public        float             noiseScale = 1.0f; // ÆŞ¸° ³ëÀÌÁî
+    public        float             noiseScale = 1.0f; // í„ë¦° ë…¸ì´ì¦ˆ
     public        float             resourceThreshold = 0.5f;
     public        int               cost = 50;
     public        int               checkCostTile;
@@ -83,7 +83,7 @@ public class MiniMap : MonoBehaviour
 
         Vector3 offset                  = RandomPos(2);
         unitUI.transform.position       = GetMinimapPos(miniMapTiles, tile.originalPosition.x, tile.originalPosition.y) + offset;
-        unitUI.unit                     = actualUnitObject;
+        //unitUI.unit                     = actualUnitObject;
         unitUI.CurrentTile              = tile;
 
         tile.AddUnit(unitUI);
@@ -135,26 +135,39 @@ public class MiniMap : MonoBehaviour
 
     public void MoveUnitTo(MiniMapTile miniMapTile)
     {
-
-        // ¼±ÅÃµÈ Å¸ÀÏÀÌ ¾ø°Å³ª ¼±ÅÃµÈ Å¸ÀÏ¿¡ À¯´ÖÀÌ ¾ø´Â °æ¿ì, ÀÌµ¿À» Áß´Ü.
+        // ì„ íƒëœ íƒ€ì¼ì´ ì—†ê±°ë‚˜ ì„ íƒëœ íƒ€ì¼ì— ìœ ë‹›ì´ ì—†ëŠ” ê²½ìš°, ì´ë™ì„ ì¤‘ë‹¨.
         if (selectedMiniMapTile == null || selectedMiniMapTile.unitsOnTile.Count == 0) return;
 
         Vector2Int newBoardPosition = CalculateNewBoardPosition(miniMapTile);
 
-        // ÀÌµ¿À» ½ÃÀÛÇÏ´Â Å¸ÀÏ¿¡ ÀÖ´Â ¸ğµç À¯´ÖÀ» ÀÌµ¿ÇÏ´Â Å¸ÀÏ·Î ¿Å±è.
+        // ì´ë™ì„ ì‹œì‘í•˜ëŠ” íƒ€ì¼ì— ìˆëŠ” ëª¨ë“  ìœ ë‹›ì„ ì´ë™í•˜ëŠ” íƒ€ì¼ë¡œ ì˜®ê¹€.
         List<UnitUI> unitsToMove = new List<UnitUI>(selectedMiniMapTile.unitsOnTile);
 
         foreach (UnitUI unitUI in unitsToMove)
         {
-            // ÀÌÀü Å¸ÀÏ¿¡¼­ À¯´ÖÀ» Á¦°Å.
-            unitUI.         CurrentTile.RemoveUnit(unitUI);
+            // ì´ì „ íƒ€ì¼ì—ì„œ ìœ ë‹›ì„ ì œê±°.
+            unitUI.CurrentTile.RemoveUnit(unitUI);
 
-            // »õ·Î¿î Å¸ÀÏ¿¡ À¯´ÖÀ» Ãß°¡.
-            miniMapTile.    AddUnit(unitUI);
+            // ìƒˆë¡œìš´ íƒ€ì¼ì— ìœ ë‹›ì„ ì¶”ê°€.
+            miniMapTile.AddUnit(unitUI);
 
             MoveUnitUI(unitUI, miniMapTile);
 
-            StartCoroutine(MoveActualUnit(unitUI, newBoardPosition));
+            // Check if there are enemies in the target tile
+            List<Unit> enemies = miniMapTile.GetEnemies(unitUI.unit.team);
+            if (enemies.Count != 0)
+            {
+                Debug.Log("enemies detected");
+                // If there are enemies, start attacking
+                unitUI.unit.Attack(enemies);
+            }
+            else
+            {
+                Debug.Log("no enemies detected");
+                // If there are no enemies, start moving
+                unitUI.unit.MoveTo(newBoardPosition);
+            }
+            
         }
 
         InitMovable();
@@ -164,10 +177,14 @@ public class MiniMap : MonoBehaviour
         if (cost < 500)
         {
             cost += 50 + (30 * checkCostTile);
-            costText.text = "ÀÚ¿ø/" + cost;
+            costText.text = "ìì›/" + cost;
         }
         else if (cost > 500) { cost = 500; }
+        GameController.instance.isPlayerTurn = false;
+        Debug.Log("Player turn ended");
     }
+
+
 
 
 
@@ -198,10 +215,6 @@ public class MiniMap : MonoBehaviour
     }
 
 
-    IEnumerator MoveActualUnit(UnitUI unitUI, Vector2Int newBoardPos)
-    {
-        yield return unitUI.unit.GetComponent<Unit>().MoveTo(newBoardPos);
-    }
 
 
 
@@ -221,6 +234,18 @@ public class MiniMap : MonoBehaviour
         }
     }
 
-    
+    public MiniMapTile GetTileAt(Vector2Int position)
+    {
+        // Check if the position is within the bounds of the map
+        if (position.x >= 0 && position.x < miniMapTiles.GetLength(0) &&
+            position.y >= 0 && position.y < miniMapTiles.GetLength(1))
+        {
+            // Return the tile at the given position
+            return miniMapTiles[position.x, position.y];
+        }
+
+        // If the position is out of bounds, return null
+        return null;
+    }
 
 }
