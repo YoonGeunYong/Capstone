@@ -26,6 +26,7 @@ public class Tile : MonoBehaviour
         else if (noiseValue < 0.6f)
         {
             GetComponent<Renderer>().material = grass2;
+            this.gameObject.tag = "CostTile";
         }
 
         else
@@ -43,5 +44,10 @@ public class Tile : MonoBehaviour
 
         return Mathf.PerlinNoise(xCoord, yCoord);
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("collise");
     }
 }
