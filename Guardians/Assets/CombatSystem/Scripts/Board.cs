@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum TileValue
+{
+    grass1,
+    grass2,
+    grass3
+}
+
 public class Board : MonoBehaviour
 {
     public static Board     boardInstance;
 
-    public Tile[,]          tiles;
+    public Dictionary<Vector2, TileValue> tilemap;
 
     public GameObject       tilePrefab;  // Assign this in the inspector.
     public Base             playerBase;
@@ -34,8 +41,7 @@ public class Board : MonoBehaviour
 
     public void InitBoard(int width, int height)
     {
-
-        tiles = new Tile[width, height];
+        tilemap = new Dictionary<Vector2, TileValue>();
 
         for (int x = 0; x < width; x++)
             for (int y = 0; y < height; y++)
@@ -47,15 +53,20 @@ public class Board : MonoBehaviour
 
                 GameObject      tileObject      = Instantiate(tilePrefab, new Vector3(adjustedX, adjustedY, 0f), tilePrefab.transform.rotation);
                 Tile            tileComponent   = tileObject.GetComponent<Tile>();
-
-
-                tileComponent.gridPosition      = new Vector2Int(adjustedX, adjustedY);
+                
+                tileComponent.tilePosition      = new Vector2Int(x, y);
                 tileComponent.board = this;
-                tileComponent.ApplyNatureTexture(); // Apply Perlin noise texture to the tile.
+                int tileValue = tileComponent.ApplyNatureTexture(); // Apply Perlin noise texture to the tile.
 
-                tiles[x, y]                     = tileComponent;
+                
+                tilemap.Add(new Vector2(x, y), (TileValue)tileValue - 1);
             }
 
+    }
+    
+    public static Vector3 GetTilePosition(Vector2Int tilePosition)
+    {
+        return new Vector3(tilePosition.x * 10, tilePosition.y * 10, 0f);
     }
 
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -64,8 +65,9 @@ public class MiniMap : MonoBehaviour
 
                 MiniMapTile tileComponent           = tileObject.GetComponent<MiniMapTile>();
 
-                tileComponent.gridPosition          = new Vector2Int(adjustedX, adjustedY);
                 tileComponent.originalPosition      = new Vector2Int(x, y); // add this
+                
+                tileComponent.boardIndex            = new Vector2Int(x, y);
 
                 miniMapTiles[x, y]                  = tileComponent;
             }
@@ -98,7 +100,7 @@ public class MiniMap : MonoBehaviour
     private static Vector3 GetMinimapPos(MiniMapTile[,] tiles, int x, int y)
     {
 
-        return new Vector3(tiles[x, y].gridPosition.x, tiles[x, y].gridPosition.y, 0f);
+        return new Vector3(tiles[x, y].transform.position.x, tiles[x, y].transform.position.y, 0f);
 
     }
 
@@ -149,13 +151,14 @@ public class MiniMap : MonoBehaviour
 
         foreach (UnitUI unitUI in unitsToMove)
         {
-            // 이전 타일에서 유닛을 제거.
-            unitUI.CurrentTile.RemoveUnit(unitUI);
-
-            // 새로운 타일에 유닛을 추가.
-            miniMapTile.AddUnit(unitUI);
-
+            // // 이전 타일에서 유닛을 제거.
+            // unitUI.CurrentTile.RemoveUnit(unitUI);
+            //
+            // // 새로운 타일에 유닛을 추가.
+            // miniMapTile.AddUnit(unitUI);
+            
             MoveUnitUI(unitUI, miniMapTile);
+            
 
             // Check if there are enemies in the target tile
             List<Unit> enemies = miniMapTile.GetEnemies(unitUI.unit.team);
@@ -206,8 +209,8 @@ public class MiniMap : MonoBehaviour
         int         adjustmentFactor    = 100;
         int         scaleDownFactor     = 10;
 
-        Vector2Int  newRawPos           = new Vector2Int(miniMapTile.gridPosition.x - adjustmentFactor,
-                                              miniMapTile.gridPosition.y - adjustmentFactor);
+        Vector2Int  newRawPos           = new Vector2Int((int)miniMapTile.transform.position.x - adjustmentFactor,
+                                              (int)miniMapTile.transform.position.y - adjustmentFactor);
 
 
         return newRawPos / scaleDownFactor;
@@ -215,13 +218,25 @@ public class MiniMap : MonoBehaviour
     }
 
 
-    private void MoveUnitUI(UnitUI unitUI, MiniMapTile miniMapTile)
+    private void MoveUnitUI(UnitUI unitUI, MiniMapTile nextMiniMapTile)
     {
-
         Vector3 offset              = RandomPos(2);
-        unitUI.transform.position   = miniMapTile.transform.position + offset;
-        unitUI.boardPosition        = CalculateNewBoardPosition(miniMapTile);
+        unitUI.transform.position   = nextMiniMapTile.transform.position + offset;
+        unitUI.boardPosition        = CalculateNewBoardPosition(nextMiniMapTile);
 
+        MiniMapTile oldTile         = unitUI.CurrentTile;
+        
+        var unitDict = oldTile.unitDictionary;
+        var unitUIDict = oldTile.unitUIDictionary;
+        
+        nextMiniMapTile.AddUnit(unitUI);
+        
+        nextMiniMapTile.unitUIDictionary[unitUI.unit.unitTypes].Add(unitUI);
+        nextMiniMapTile.unitDictionary[unitUI.unit.unitTypes].Add(unitUI.unit);
+        
+        oldTile.unitUIDictionary[unitUI.unit.unitTypes].Remove(unitUI);
+        oldTile.unitDictionary[unitUI.unit.unitTypes].Remove(unitUI.unit);
+        
         Debug.Log("UnitUI moved to " + unitUI.boardPosition);
 
     }

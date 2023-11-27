@@ -21,24 +21,6 @@ public class Rabbit : Unit
         stats.coast = 1;
     }
 
-    public override void MoveTo(Vector2Int newBoardPos)
-    {
-        Vector3 targetPosition = new Vector3(newBoardPos.x * 10, newBoardPos.y * 10, transform.position.z);
-
-        MiniMapTile targetTile = MiniMap.instance.GetTileAt(newBoardPos);
-
-        // If no enemies, start moving
-        while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, stats.moveSpeed * Time.deltaTime);
-            Debug.Log(targetPosition);
-            break;
-        }
-
-        transform.position = targetPosition; // Ensure the unit reaches the exact target position
-        boardPosition = newBoardPos; // Update the board position
-    }
-
     public override void Attack(List<Unit> enemies)
     {
         Debug.Log("Rabbit Attack");

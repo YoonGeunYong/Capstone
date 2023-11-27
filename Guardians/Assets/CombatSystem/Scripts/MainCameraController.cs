@@ -26,7 +26,7 @@ public class MainCameraController : MonoBehaviour
                     if (miniMapTile != null)
                     {
 
-                        Vector3 mapPosition = new Vector3(miniMapTile.gridPosition.x - 100, miniMapTile.gridPosition.y - 100, mainCamera.transform.position.z);
+                        Vector3 mapPosition = new Vector3(miniMapTile.transform.position.x - 100, miniMapTile.transform.position.y - 100, mainCamera.transform.position.z);
                         MoveMainCamera(mapPosition);
 
                     }

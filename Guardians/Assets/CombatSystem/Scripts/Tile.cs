@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public Vector2Int   gridPosition;
+    public Vector2Int tilePosition;
     public Board        board;
     public float        noiseScale = 100f; // The scale of the Perlin noise.
     public int         isCostTile = 0;
@@ -15,34 +15,34 @@ public class Tile : MonoBehaviour
     public Material     grass3;
 
 
-    public void ApplyNatureTexture()
+    public int ApplyNatureTexture()
     {
+        float noiseValue = GeneratePerlinNoise(tilePosition.x * 10, tilePosition.y * 10, noiseScale);
 
-        float noiseValue = GeneratePerlinNoise(gridPosition.x, gridPosition.y, noiseScale);
-
-        if (noiseValue < 0.3f)
+        switch (noiseValue)
         {
-            GetComponent<Renderer>().material = grass1;
-            this.gameObject.tag = "CostTile";
-            for (int i = 0; i < 3; i++)
+            case < 0.3f:
             {
-                if (GameController.instance.tile[i] is not null) continue;
-                GameController.instance.tile[i] = this;
-                break;
+                GetComponent<Renderer>().material = grass1;
+                this.gameObject.tag = "CostTile";
+                for (int i = 0; i < 3; i++)
+                {
+                    if (GameController.instance.tile[i] is not null) continue;
+                    GameController.instance.tile[i] = this;
+                    break;
 
+                }
+
+                return 1;
             }
+            case < 0.6f:
+                GetComponent<Renderer>().material = grass2;
+                return 2;
+            
+            default:
+                GetComponent<Renderer>().material = grass3;
+                return 3;
         }
-
-        else if (noiseValue < 0.6f)
-        {
-            GetComponent<Renderer>().material = grass2;
-        }
-
-        else
-        {
-            GetComponent<Renderer>().material = grass3; 
-        }
-
     }
 
     private float GeneratePerlinNoise(int x, int y, float scale)

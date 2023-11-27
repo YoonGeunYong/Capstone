@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,28 @@ using UnityEngine.UIElements;
 
 public class MiniMapTile : MonoBehaviour
 {
+    public Dictionary<UnitTypes, List<Unit>> unitDictionary = new();
+    public Dictionary<UnitTypes, List<UnitUI>> unitUIDictionary = new();
+    
     public Vector2Int       gridPosition;
     public Vector2Int       boardPosition;
     public Vector2Int       originalPosition;
+    
+    public Vector2Int boardIndex;
+    public List<Unit> includedUnits = new();
+    
     public bool             IsMovable { get; set; }  
     public List<UnitUI>     unitsOnTile = new List<UnitUI>();
-    
+
+    private void Awake()
+    {
+        foreach (UnitTypes value in Enum.GetValues(typeof(UnitTypes)))
+        {
+            Debug.Log( value + " is added to unitDictionary");
+            unitDictionary.Add(value, new List<Unit>());
+            unitUIDictionary.Add(value, new List<UnitUI>());
+        }
+    }
 
     public void AddUnit(UnitUI unitUI)
     {
@@ -33,12 +50,11 @@ public class MiniMapTile : MonoBehaviour
 
     }
 
-    private void UpdateUnitPositions()
+    public void UpdateUnitPositions()
     {
         
         for (int i = 0; i < unitsOnTile.Count; i++)
         {
-
             Vector3 offset                      = new Vector3(i * 1f, 0, 0);
 
             unitsOnTile[i].transform.position   = unitsOnTile[i].CurrentTile.transform.position + offset;
