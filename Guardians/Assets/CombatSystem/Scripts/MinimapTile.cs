@@ -33,9 +33,9 @@ public class MiniMapTile : MonoBehaviour
     {
 
         unitsOnTile.    Add(unitUI);
-        unitUI.         CurrentTile = this;  
+        //unitUI.         CurrentTile = this;  
 
-        UpdateUnitPositions();
+        //UpdateUnitPositions();
 
     }
 
@@ -44,9 +44,9 @@ public class MiniMapTile : MonoBehaviour
     {
 
         unitsOnTile.    Remove(unitUI);
-        unitUI.         CurrentTile = null;  
+        //unitUI.         CurrentTile = null;  
 
-        UpdateUnitPositions();
+        //UpdateUnitPositions();
 
     }
 

@@ -148,14 +148,13 @@ public class MiniMap : MonoBehaviour
 
         // 이동을 시작하는 타일에 있는 모든 유닛을 이동하는 타일로 옮김.
         List<UnitUI> unitsToMove = new List<UnitUI>(selectedMiniMapTile.unitsOnTile);
-
         foreach (UnitUI unitUI in unitsToMove)
         {
-            // // 이전 타일에서 유닛을 제거.
-            // unitUI.CurrentTile.RemoveUnit(unitUI);
-            //
-            // // 새로운 타일에 유닛을 추가.
-            // miniMapTile.AddUnit(unitUI);
+            // 이전 타일에서 유닛을 제거.
+            unitUI.CurrentTile.RemoveUnit(unitUI);
+            
+            // 새로운 타일에 유닛을 추가.
+            //miniMapTile.AddUnit(unitUI);
             
             MoveUnitUI(unitUI, miniMapTile);
             
