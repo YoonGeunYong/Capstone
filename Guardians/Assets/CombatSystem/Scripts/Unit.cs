@@ -5,7 +5,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public enum UnitTypes
 {
-    Rabbit, Turtle, Fox, Deer, WoodCutter, Fairy, Heungbu, Nolbu, Swallow
+    Rabbit, Turtle, Fox, WoodCutter, Fairy, Deer, Heungbu, Nolbu, Swallow
 }
 
 
