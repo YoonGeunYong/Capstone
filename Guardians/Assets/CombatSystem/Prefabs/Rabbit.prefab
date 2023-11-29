@@ -58,7 +58,7 @@ MonoBehaviour:
     delay: 0
     attackType: 0
     length: 0
-    coast: 0
+    coast: 5
   boardPosition: {x: 0, y: 0}
 --- !u!212 &1691858935587318811
 SpriteRenderer:

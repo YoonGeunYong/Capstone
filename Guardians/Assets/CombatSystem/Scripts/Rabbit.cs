@@ -5,22 +5,6 @@ using UnityEngine;
 
 public class Rabbit : Unit
 {
-    private void Start()
-    {
-        unitTypes = UnitTypes.Rabbit;
-        team = Team.Player;
-        stats = new UnitStats();
-        stats.attack = 10;
-        stats.defend = 0;
-        stats.healthPoint = 100;
-        stats.attackSpeed = 1;
-        stats.moveSpeed = 20;
-        stats.delay = 0;
-        stats.attackType = 0;
-        stats.length = 1;
-        stats.coast = 1;
-    }
-
     public override void MoveTo(Vector2Int newBoardPos)
     {
         Vector3 targetPosition = new Vector3(newBoardPos.x * 10, newBoardPos.y * 10, transform.position.z);
@@ -70,11 +54,13 @@ public class Rabbit : Unit
 
     public override void DestroyUnit(Unit unit)
     {
+        // Check if the unit has a UnitUI component attached
+        UnitUI unitUI = unit.GetComponent<UnitUI>();
+
         // Remove the unit from the game
         Destroy(unit.gameObject);
 
-        // Check if the unit has a UnitUI component attached
-        UnitUI unitUI = unit.GetComponent<UnitUI>();
+        
         if (unitUI != null)
         {
             // Remove the associated UnitUI from the game
@@ -84,9 +70,6 @@ public class Rabbit : Unit
         // Perform any necessary cleanup or additional logic here
         // ...
     }
-
-
-
 
 }
 

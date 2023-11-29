@@ -1365,13 +1365,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1562054552}
-  - component: {fileID: 1562054551}
   - component: {fileID: 1562054550}
   - component: {fileID: 1562054549}
   - component: {fileID: 1562054553}
   - component: {fileID: 1562054554}
   - component: {fileID: 1562054555}
   - component: {fileID: 1562054556}
+  - component: {fileID: 1562054557}
+  - component: {fileID: 1562054558}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1391,20 +1392,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBase: {fileID: 0}
-  enemyBase: {fileID: 0}
+  behaviorTree: {fileID: 0}
+  playerBaseTower: {fileID: 3919977243423812542, guid: 5f1fd3f889242e14c890fac475f59e05, type: 3}
+  enemyBaseTower: {fileID: 3919977243423812542, guid: 5f1fd3f889242e14c890fac475f59e05, type: 3}
+  playerBaseObject: {fileID: 5977006683901559072, guid: 28d5d492dcef672488e258c843f14d18, type: 3}
+  enemyBaseObject: {fileID: 3669459100057259795, guid: a57650ac5ea9b454b853320c16d311a5, type: 3}
   board: {fileID: 0}
   miniMap: {fileID: 0}
-  RabitButton: {fileID: 1523200746}
+  rabbitButton: {fileID: 0}
   unitUIs:
   - {fileID: 7371431077836823016, guid: 285a7359fe55aea4181834c07a2e1dd7, type: 3}
   minimapCameraController: {fileID: 0}
   mainCameraController: {fileID: 0}
-  tile:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   isPlayerTurn: 0
+  isEnemyTurn: 0
   width: 7
   height: 7
 --- !u!114 &1562054550
@@ -1422,18 +1423,6 @@ MonoBehaviour:
   tilePrefab: {fileID: 6767498925649682421, guid: aba0ee45d807e43469059c62499df78a, type: 3}
   playerBase: {fileID: 0}
   enemyBase: {fileID: 0}
---- !u!114 &1562054551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562054548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b244dd9552e197e498b969d518a097e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1562054552
 Transform:
   m_ObjectHideFlags: 0
@@ -1464,7 +1453,6 @@ MonoBehaviour:
   gridPosition: {x: 0, y: 0}
   board: {fileID: 0}
   noiseScale: 1
-  isCostTile: 0
   grass1: {fileID: 2100000, guid: f24038a9631baa2429be0a7c2db8f8e7, type: 2}
   grass2: {fileID: 2100000, guid: 36f3995c53790374a952c70109473b82, type: 2}
   grass3: {fileID: 2100000, guid: 537ba92f45174f44cbeb84fe244222e8, type: 2}
@@ -1482,14 +1470,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedMiniMapTile: {fileID: 0}
   miniMapTilePrefab: {fileID: 540900388836178025, guid: af8023f8844f2d440bab5c9031858921, type: 3}
-  costText: {fileID: 1984476761}
   isTileSelected: 0
   width: 0
   height: 0
   noiseScale: 1
   resourceThreshold: 0.5
-  cost: 0
-  turnCheck: 000000
 --- !u!114 &1562054555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1517,6 +1502,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 963194227}
   minimapCamera: {fileID: 1279324070}
+--- !u!114 &1562054557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562054548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWhenEnabled: 1
+  asynchronousLoad: 0
+  pauseWhenDisabled: 0
+  restartWhenComplete: 0
+  logTaskChanges: 0
+  group: 0
+  resetValuesOnRestart: 0
+  externalBehavior: {fileID: 11400000, guid: e11373cb746bd704d83e3501c43e2f7e, type: 2}
+  mBehaviorSource:
+    behaviorName: Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: 
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
+--- !u!114 &1562054558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562054548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 695bece5640f03941bf20156ba406e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseObject: {fileID: 5977006683901559072, guid: 28d5d492dcef672488e258c843f14d18, type: 3}
+  resourceText: {fileID: 1984476761}
 --- !u!1 &1941756141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,7 +1831,6 @@ GameObject:
   - component: {fileID: 1984476760}
   - component: {fileID: 1984476762}
   - component: {fileID: 1984476761}
-  - component: {fileID: 1984476763}
   m_Layer: 5
   m_Name: CostText
   m_TagString: Untagged
@@ -1852,7 +1890,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC790\uC6D0/"
+  m_Text: 
 --- !u!222 &1984476762
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1861,19 +1899,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1984476759}
   m_CullTransparentMesh: 1
---- !u!114 &1984476763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1984476759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 695bece5640f03941bf20156ba406e76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costText: {fileID: 0}
 --- !u!1 &2039030157
 GameObject:
   m_ObjectHideFlags: 0

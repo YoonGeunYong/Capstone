@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class MainCameraController : MonoBehaviour
 {
-    public      Camera  mainCamera;
-    public      Camera  minimapCamera;
-    private     float   lastClickTime           = 0f;
-    private     float   doubleClickThreshold    = 0.25f;
+    public Camera mainCamera;
+    public Camera minimapCamera;
+    private float lastClickTime = 0f;
+    private float doubleClickThreshold = 0.25f;
 
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        { 
+        {
             if (Time.time - lastClickTime < doubleClickThreshold)
             {
 
                 RaycastHit2D hit;
-                Vector2        ray = minimapCamera.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 ray = minimapCamera.ScreenToWorldPoint(Input.mousePosition);
                 hit = Physics2D.Raycast(ray, Vector2.zero);
 
                 if (hit.collider != null)
@@ -43,4 +43,3 @@ public class MainCameraController : MonoBehaviour
         mainCamera.transform.position = targetPosition;
     }
 }
-

@@ -1,53 +1,164 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Base : MonoBehaviour
 {
-    private Vector2Int      playerPosition;
-    private Vector2Int      enemyPosition;
+    public Vector2Int position;
+
+    public int        resources;
+    public int        resourcePerTurn;
 
 
-    public void InitPlayerPosition(Vector2Int basePosition)
+    private void Start()
     {
-        playerPosition = basePosition;
 
-        Debug.Log("Base initialized at " + playerPosition);
-    }
-    
+        resources = 10;
 
-    public void InitEnemyPosition(Vector2Int basePosition)
-    {
-        enemyPosition = basePosition;
+        resourcePerTurn = 10;
 
-        Debug.Log("Base initialized at " + enemyPosition);
     }
 
 
-    public void SpawnUnit(GameObject UnitUI, Unit.Team team)
+    public void InitPosition(Vector2Int basePosition)
     {
-        GameObject newUnitUI = Instantiate(UnitUI);
 
-        Vector3 offset = new Vector3(Random.Range(-2.0f, 2.0f), Random.Range(-2.0f, 2.0f), 0f);
-        Unit unit = newUnitUI.GetComponent<UnitUI>().unit;
+        position = basePosition;
+
+    }
+
+
+    public void SpawnUnit(GameObject unitUIPrefab, Unit.Team team, Vector2Int position)
+    {
+
+        GameObject newUnitUI = Instantiate(unitUIPrefab);
+
+        if (newUnitUI == null)
+        {
+            Debug.LogError("Failed to instantiate UnitUI.");
+            return;
+        }
+
+        UnitUI unitUIComponent = newUnitUI.GetComponent<UnitUI>();
+
+        if (unitUIComponent == null)
+        {
+            Debug.LogError("UnitUI component not found on instantiated object.");
+            return;
+        }
+
+        Unit unit = unitUIComponent.unit;
+
         unit.team = team;
-      
 
-        GameObject newUnit = Instantiate(unit.gameObject, new Vector3(playerPosition.x, playerPosition.y, 0f)
-            + offset, unit.transform.rotation);
+        GameObject newUnit = Instantiate(unit.gameObject, new Vector3(position.x, position.y, 0f) + RandomOffset(), unit.transform.rotation);
 
-        newUnitUI.GetComponent<UnitUI>().unit = newUnit.GetComponent<Unit>();
+        Unit newUnitComponent = newUnit.GetComponent<Unit>();
 
-        MiniMap.instance.AddUnitToMinimap(newUnitUI.GetComponent<UnitUI>(), newUnit, MiniMap.instance.miniMapTiles[playerPosition.x, playerPosition.y]);
+        if (newUnitComponent == null)
+        {
+            Debug.LogError("Unit component not found on instantiated object.");
 
-        //GameController.instance.isPlayerTurn = false;
-        Debug.Log("Player turn ended");
+            Destroy(newUnitUI);
+
+            Destroy(newUnit);
+
+            return;
+        }
+
+        unitUIComponent.unit = newUnitComponent;
+
+        if(team == Unit.Team.Player)
+        {
+            MiniMap.instance.AddUnitToMinimap(unitUIComponent, newUnit, MiniMap.instance.miniMapTiles[0, 0]);
+        }
+            
+
+        else if(team == Unit.Team.Enemy)
+        {
+            MiniMap.instance.AddUnitToMinimap(unitUIComponent, newUnit, MiniMap.instance.
+                miniMapTiles[GameController.instance.width - 1, GameController.instance.height - 1]);
+
+        }
+
+
+        if (TrySpendResources(unit.stats.coast))
+        {
+            GameController.instance.EndPlayerTurn();
+        }
+
+
+        else
+        {
+            Debug.LogWarning("Failed to spawn unit. Insufficient resources.");
+
+            Destroy(newUnitUI);
+
+            Destroy(newUnit);
+        }
     }
 
 
-    public Vector2Int GetPlayerPosition()
+    private bool TrySpendResources(int amount)
     {
-        return playerPosition;
+
+        if (resources >= amount)
+        {
+            resources -= amount;
+
+            return true;
+        }
+
+        return false;
+
+    }
+
+
+    private Vector3 RandomOffset()
+    {
+
+        return new Vector3(Random.Range(-2.0f, 2.0f), Random.Range(-2.0f, 2.0f), 0f);
+
+    }
+
+
+    public Vector2Int GetPosition()
+    {
+
+        return position;
+
+    }
+
+
+    public void EndTurnAndGetResource()
+    {
+
+        resources += resourcePerTurn;
+
+    }
+
+
+    public bool SpendResource(int amount)
+    {
+
+        if (resources >= amount)
+        {
+            resources -= amount;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+
+    public int GetResource()
+    {
+
+        return resources;
+
     }
 }
