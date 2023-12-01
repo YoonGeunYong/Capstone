@@ -1399,7 +1399,7 @@ MonoBehaviour:
   enemyBaseObject: {fileID: 3669459100057259795, guid: a57650ac5ea9b454b853320c16d311a5, type: 3}
   board: {fileID: 0}
   miniMap: {fileID: 0}
-  rabbitButton: {fileID: 0}
+  rabbitButton: {fileID: 1523200746}
   unitUIs:
   - {fileID: 7371431077836823016, guid: 285a7359fe55aea4181834c07a2e1dd7, type: 3}
   minimapCameraController: {fileID: 0}
@@ -1540,8 +1540,8 @@ MonoBehaviour:
         byteData: 
         byteDataArray: 
       Version: 
-  gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1
+  gizmoViewMode: 0
+  showBehaviorDesignerGizmo: 0
 --- !u!114 &1562054558
 MonoBehaviour:
   m_ObjectHideFlags: 0
