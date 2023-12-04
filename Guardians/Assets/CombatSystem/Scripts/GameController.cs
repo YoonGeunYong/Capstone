@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour
         miniMap.                        InitMiniMap(width, height);
         playerBase.                     InitPosition(miniMap.miniMapTiles[0,0].gridPosition);
         enemyBase.                      InitPosition(miniMap.miniMapTiles[width -1, height -1].gridPosition);
-        minimapCameraController.        UpdateCameraSize(miniMap);
+        //minimapCameraController.        UpdateCameraSize(miniMap);
         mainCameraController.           MoveMainCamera(new Vector3(0, 0f, mainCameraController.mainCamera.transform.position.z));
 
     }

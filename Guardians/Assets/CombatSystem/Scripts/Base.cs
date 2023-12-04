@@ -52,7 +52,9 @@ public class Base : MonoBehaviour
 
         unit.team = team;
 
-        GameObject newUnit = Instantiate(unit.gameObject, new Vector3(position.x, position.y, 0f) + RandomOffset(), unit.transform.rotation);
+        GameObject newUnit = Instantiate(unit.gameObject, 
+            (team == Unit.Team.Player) ? new Vector3(position.x -100, position.y -100, 0f) :
+                new Vector3(position.x -60, position.y -60, 0f) + RandomOffset(), unit.transform.rotation);
 
         Unit newUnitComponent = newUnit.GetComponent<Unit>();
 

@@ -7,7 +7,7 @@ public class Rabbit : Unit
 {
     public override void MoveTo(Vector2Int newBoardPos)
     {
-        Vector3 targetPosition = new Vector3(newBoardPos.x * 10, newBoardPos.y * 10, transform.position.z);
+        Vector3 targetPosition = new Vector3(newBoardPos.x * 20, newBoardPos.y * 20, transform.position.z);
 
         MiniMapTile targetTile = MiniMap.instance.GetTileAt(newBoardPos);
 

@@ -542,7 +542,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -993,7 +993,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 35
+  orthographic size: 25
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1018,7 +1018,7 @@ Transform:
   m_GameObject: {fileID: 1279324068}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 130, y: 130, z: -1}
+  m_LocalPosition: {x: 120, y: 120, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1406,8 +1406,8 @@ MonoBehaviour:
   mainCameraController: {fileID: 0}
   isPlayerTurn: 0
   isEnemyTurn: 0
-  width: 7
-  height: 7
+  width: 5
+  height: 5
 --- !u!114 &1562054550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1423,6 +1423,32 @@ MonoBehaviour:
   tilePrefab: {fileID: 6767498925649682421, guid: aba0ee45d807e43469059c62499df78a, type: 3}
   playerBase: {fileID: 0}
   enemyBase: {fileID: 0}
+  tileSprite:
+  - {fileID: 1763047260, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -792528153, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 533308380, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 1441368614, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -1011871615, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 1620737587, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 1771056910, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -1277383715, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 479363825, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 1661484461, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 1615926592, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 2129669346, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -1023042249, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -2045318449, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 1541386337, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -642219243, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -445808450, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 1600363243, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -3651679, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -399360296, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -1143429117, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 552243857, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -1183566553, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 557445162, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -1250738095, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
 --- !u!4 &1562054552
 Transform:
   m_ObjectHideFlags: 0
@@ -1487,7 +1513,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ade3ab105cca04cbe81ab8dc381ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  miniMapCamera: {fileID: 1279324070}
 --- !u!114 &1562054556
 MonoBehaviour:
   m_ObjectHideFlags: 0
