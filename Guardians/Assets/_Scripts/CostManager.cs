@@ -5,18 +5,25 @@ using UnityEngine.UI;
 
 public class CostManager : MonoBehaviour
 {
-    public static CostManager CM;
+    public GameObject baseObject;
+    public Text resourceText;
 
-    public Text costText;
-    
-    void Start()
+    private Base baseScript;
+
+    private void Start()
     {
-        CM = GetComponent<CostManager>();
+        if (baseObject != null)
+        {
+            baseScript = baseObject.GetComponent<Base>();
+        }
     }
 
-    
-    void Update()
+    private void Update()
     {
-       
+        if (baseScript != null && resourceText != null)
+        {
+            // Base 스크립트에서 자원 값을 가져와 UI에 표시
+            resourceText.text = "Resources: " + baseScript.GetResource().ToString();
+        }
     }
 }

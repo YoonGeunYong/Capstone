@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3770fefc904e17f44845ad871834e9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
+  team: 1
   unitTypes: 0
   stats:
     attack: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
     delay: 0
     attackType: 0
     length: 0
-    coast: 0
+    coast: 5
   boardPosition: {x: 0, y: 0}
 --- !u!212 &1691858935587318811
 SpriteRenderer:
@@ -100,7 +100,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 30b64b18b8e664040a5d980ac6c2374b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

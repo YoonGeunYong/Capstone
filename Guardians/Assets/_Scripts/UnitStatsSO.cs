@@ -18,7 +18,7 @@ public class UnitStatsSO : ScriptableObject
 }
 
 [Serializable]
-public class UnitStats
+public  class UnitStats
 {
     public float attack;      // 공격력
     public float defend;      // 방어력
@@ -29,4 +29,6 @@ public class UnitStats
     public int attackType;    // 공격유형
     public float length;      // 사거리
     public int coast;         // 코스트
+
+    public void InitStats() { }
 }
