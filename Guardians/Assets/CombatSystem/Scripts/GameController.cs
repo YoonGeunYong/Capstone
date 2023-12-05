@@ -92,14 +92,24 @@ public class GameController : MonoBehaviour
 
     }
 
+    private IEnumerator DelayedBehaviorExecution(float delayTime)
+    {
 
+        yield return new WaitForSeconds(delayTime);
+
+        
+        yield return null;
+
+
+
+    }
 
     public void StartPlayerTurn()
     {
 
-        playerBase.EndTurnAndGetResource();
-
         isPlayerTurn = true;
+
+        playerBase.EndTurnAndGetResource();
 
     }
 
@@ -116,24 +126,23 @@ public class GameController : MonoBehaviour
 
     private void StartAITurn()
     {
-
+        
         isEnemyTurn = true;
 
-        enemyBase.EndTurnAndGetResource(); 
-
-        Debug.Log("Enemy Resource: " + enemyBase.resources);
+        enemyBase.EndTurnAndGetResource();
 
         behaviorTree.EnableBehavior();
 
-        EndAITurn(); 
+        Debug.Log("Enemy Resource: " + enemyBase.resources);
 
     }
 
 
-    private void EndAITurn()
+    public void EndAITurn()
     {
+        behaviorTree.OnBehaviorEnded();
 
-        behaviorTree.OnBehaviorEnded(); 
+        isEnemyTurn = false;
 
         StartPlayerTurn();
 

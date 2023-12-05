@@ -6,9 +6,10 @@ public class SpawnUnitNode : Action
 {
     public SharedGameObject baseGameObject;
     public GameObject unitUIPrefab;
-
+    
     public override TaskStatus OnUpdate()
     {
+        
         if (baseGameObject == null || baseGameObject.Value == null)
         {
             return TaskStatus.Failure;
@@ -27,6 +28,9 @@ public class SpawnUnitNode : Action
             // 자원이 충분하면 유닛 소환
             Debug.Log(baseScript.position / 10);
             baseScript.SpawnUnit(unitUIPrefab, Unit.Team.Enemy, baseScript.position);
+
+            GameController.instance.EndAITurn();
+
             return TaskStatus.Success;
         }
         else
@@ -34,5 +38,6 @@ public class SpawnUnitNode : Action
             // 자원이 부족하면 실패
             return TaskStatus.Failure;
         }
+       
     }
 }
