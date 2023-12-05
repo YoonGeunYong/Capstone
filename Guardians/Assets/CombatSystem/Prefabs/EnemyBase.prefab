@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b244dd9552e197e498b969d518a097e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 60, y: 60}
-  resources: 1
+  position: {x: 140, y: 140}
+  resources: 10
   resourcePerTurn: 10

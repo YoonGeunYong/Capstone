@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d52331cd83d0f428c7e75fdf8316ed, type: 3}
   m_Name: Deer
   m_EditorClassIdentifier: 
+  unitType: 0
   _stats:
     attack: 0
     defend: 0
@@ -22,7 +23,7 @@ MonoBehaviour:
     attackType: 0
     length: 0
     coast: 0
-  _animator: {fileID: 0}
-  _image: {fileID: 21300000, guid: f410d95c6e7ccc14bb034feda082286d, type: 3}
+  _anicontroller: {fileID: 0}
+  _image: {fileID: 21300000, guid: 75318e1b859b81b45a96fb8d500b475b, type: 3}
   _defaultPosition: {x: -4, y: 0, z: 0}
   _defaultScale: {x: 3, y: 3, z: 3}

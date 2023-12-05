@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1691858935587318811}
   - component: {fileID: -5333762413377946480}
   - component: {fileID: 8733226728782720827}
+  - component: {fileID: 3758168410982970238}
   m_Layer: 0
   m_Name: Rabbit
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3770fefc904e17f44845ad871834e9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
+  team: 1
   unitTypes: 0
   stats:
     attack: 0
@@ -110,7 +111,7 @@ SpriteRenderer:
   m_Size: {x: 4.56, y: 5.72}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &-5333762413377946480
@@ -175,3 +176,24 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0048923492, y: 0.030426025}
   m_Size: {x: 2.2357445, y: 5.448532}
   m_Direction: 0
+--- !u!95 &3758168410982970238
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8256415807791622103}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0c8e56c5ae6c5d469a74f924c127f3a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -20,14 +20,6 @@ public class UnitController : MonoBehaviour
 
     void Start()
     {
-        if (preStats is not null)
-        {
-            _stats = preStats[index]._stats;
-        }
-        unit = (UnitTypes)index;
-
-        GetComponent<SpriteRenderer>().sprite = preStats[index]._image;
-        GetComponent<Transform>().localScale = preStats[index]._defaultScale;
         GetComponent<Animator>().runtimeAnimatorController = preStats[index]._anicontroller;
 
         Debug.Log(unit);

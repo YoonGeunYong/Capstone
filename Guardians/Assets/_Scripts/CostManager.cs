@@ -10,10 +10,12 @@ public class CostManager : MonoBehaviour
 
     private Base baseScript;
 
-    private void Start()
+    private void Awake()
     {
         if (baseObject != null)
         {
+            baseObject = Instantiate(baseObject);
+            GameController.instance.playerBaseObject = baseObject;
             baseScript = baseObject.GetComponent<Base>();
         }
     }
