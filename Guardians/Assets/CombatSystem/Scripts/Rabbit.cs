@@ -20,7 +20,7 @@ public class Rabbit : Unit
         // If no enemies, start moving
         while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, stats.moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 20 * Time.deltaTime);
             Debug.Log(targetPosition);
             break;
         }
