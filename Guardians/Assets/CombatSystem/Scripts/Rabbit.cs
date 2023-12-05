@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class Rabbit : Unit
 {
+    private void Start()
+    {
+        stats = statsSO._stats;
+        unitTypes = statsSO.unitType;
+        gameObject.GetComponent<SpriteRenderer>().sprite = statsSO._image;
+    }
     public override void MoveTo(Vector2Int newBoardPos)
     {
         Vector3 targetPosition = new Vector3(newBoardPos.x * 20, newBoardPos.y * 20, transform.position.z);

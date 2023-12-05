@@ -18,6 +18,10 @@ public class GameController : MonoBehaviour
     public Board                        board;
     public MiniMap                      miniMap;
     public Button                       rabbitButton;
+    public Button                       turtleButton;
+    public Button                       foxButton;
+    public Button                       woodCutterButton;
+    public Button                       fairyButton;
     public List<GameObject>             unitUIs;
     public MinimapCameraController      minimapCameraController;
     public MainCameraController         mainCameraController;
@@ -28,6 +32,8 @@ public class GameController : MonoBehaviour
 
     private Base                        playerBase;
     private Base                        enemyBase;
+
+    public  UnitStatsSO[]               preStats;
 
 
     private void Awake()
@@ -56,6 +62,10 @@ public class GameController : MonoBehaviour
 
         // Assuming buttonPrefab is already assigned in the inspector
         rabbitButton.onClick.            AddListener(OnSpawnRabbit);
+        turtleButton.onClick.            AddListener(OnSpawnTurtle);
+        foxButton.onClick.               AddListener(OnSpawnFox);
+        woodCutterButton.onClick.        AddListener(OnSpawnWoodCutter);
+        fairyButton.onClick.             AddListener(OnSpawnFairy);
 
 
         // Initialize the game board and the player base...
@@ -88,7 +98,32 @@ public class GameController : MonoBehaviour
     public void OnSpawnRabbit()
     {
 
-        playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position);
+        playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Rabbit);
+
+    }
+
+    public void OnSpawnTurtle()
+    {
+
+        playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Turtle);
+
+    }
+    public void OnSpawnFox()
+    {
+
+        playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Fox);
+
+    }
+    public void OnSpawnWoodCutter()
+    {
+
+        playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.WoodCutter);
+
+    }
+    public void OnSpawnFairy()
+    {
+
+        playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Fairy);
 
     }
 

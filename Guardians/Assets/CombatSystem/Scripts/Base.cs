@@ -29,7 +29,7 @@ public class Base : MonoBehaviour
     }
 
 
-    public void SpawnUnit(GameObject unitUIPrefab, Unit.Team team, Vector2Int position)
+    public void SpawnUnit(GameObject unitUIPrefab, Unit.Team team, Vector2Int position, UnitTypes type)
     {
 
         GameObject newUnitUI = Instantiate(unitUIPrefab);
@@ -70,6 +70,7 @@ public class Base : MonoBehaviour
         }
 
         unitUIComponent.unit = newUnitComponent;
+        unitUIComponent.unit.statsSO = GameController.instance.preStats[(int)type];
 
         if(team == Unit.Team.Player)
         {

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1356088980370096794}
-  - component: {fileID: 8176355436592236116}
+  - component: {fileID: 3880426411906961606}
   - component: {fileID: 1691858935587318811}
   - component: {fileID: -5333762413377946480}
   - component: {fileID: 8733226728782720827}
@@ -30,12 +30,12 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 31.632366, y: 42.67997, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8176355436592236116
+--- !u!114 &3880426411906961606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3770fefc904e17f44845ad871834e9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 1
+  team: 0
   unitTypes: 0
   stats:
     attack: 0
@@ -58,7 +58,8 @@ MonoBehaviour:
     delay: 0
     attackType: 0
     length: 0
-    coast: 5
+    coast: 0
+  statsSO: {fileID: 0}
   boardPosition: {x: 0, y: 0}
 --- !u!212 &1691858935587318811
 SpriteRenderer:

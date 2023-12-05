@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+#if Unity_Editor
 using UnityEditor.Experimental.GraphView;
+#endif
 using UnityEngine;
 
 

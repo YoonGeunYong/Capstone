@@ -20,6 +20,7 @@ public abstract class Unit : MonoBehaviour
     public Team             team;
     public UnitTypes        unitTypes;
     public UnitStats        stats;
+    public UnitStatsSO      statsSO;
     public Vector2Int       boardPosition;
 
     public abstract void    MoveTo(Vector2Int newBoardPos);

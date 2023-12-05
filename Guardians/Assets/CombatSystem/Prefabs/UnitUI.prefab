@@ -282,5 +282,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b1153dcab6d4bd4a67f30ad2b44001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 8176355436592236116, guid: c0540b8f1f0505b4a8fcf064bde1e21d, type: 3}
+  unit: {fileID: 3880426411906961606, guid: c0540b8f1f0505b4a8fcf064bde1e21d, type: 3}
   boardPosition: {x: 1, y: 1}

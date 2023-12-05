@@ -9,6 +9,7 @@ using System;
 [CreateAssetMenu(fileName = "Entitiy(name)", menuName = "Scriptable Object Asset/Entity (name)")]
 public class UnitStatsSO : ScriptableObject
 {
+    public UnitTypes unitType;
     public UnitStats _stats;
     public RuntimeAnimatorController _anicontroller;
     public Sprite _image;
