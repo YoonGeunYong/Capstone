@@ -18,12 +18,10 @@ MonoBehaviour:
     defend: 5
     healthPoint: 300
     attackSpeed: 1
-    moveSpeed: 0.7
     delay: 1
     attackType: 0
     length: 1
     coast: 15
-  _anicontroller: {fileID: 0}
+  _anicontroller: {fileID: 9100000, guid: f83105e2e5523d64789716b43c3d3ce3, type: 2}
   _image: {fileID: 21300000, guid: d335c568170a6f947872ffdacc1e913b, type: 3}
-  _defaultPosition: {x: -12, y: 0, z: 0}
   _defaultScale: {x: 3, y: 3, z: 3}

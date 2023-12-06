@@ -7,9 +7,11 @@ public class Rabbit : Unit
 {
     private void Start()
     {
+        
         stats = statsSO._stats;
         unitTypes = statsSO.unitType;
-        gameObject.GetComponent<SpriteRenderer>().sprite = statsSO._image;
+        GetComponent<SpriteRenderer>().sprite = statsSO._image;
+        GetComponent<Animator>().runtimeAnimatorController = statsSO._anicontroller;
     }
     public override void MoveTo(Vector2Int newBoardPos)
     {

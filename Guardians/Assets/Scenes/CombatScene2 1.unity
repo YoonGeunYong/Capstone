@@ -570,7 +570,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1356088980370096794, guid: c0540b8f1f0505b4a8fcf064bde1e21d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.632366
+      value: 26.22
       objectReference: {fileID: 0}
     - target: {fileID: 1356088980370096794, guid: c0540b8f1f0505b4a8fcf064bde1e21d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -619,7 +619,7 @@ PrefabInstance:
     - target: {fileID: 1691858935587318811, guid: c0540b8f1f0505b4a8fcf064bde1e21d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b00f1e20194eeb24f9bc80d66a37d006, type: 3}
+      objectReference: {fileID: 21300000, guid: 28e425e21ad3f1149a13fe2a240df287, type: 3}
     - target: {fileID: 1691858935587318811, guid: c0540b8f1f0505b4a8fcf064bde1e21d, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -627,10 +627,14 @@ PrefabInstance:
     - target: {fileID: 3758168410982970238, guid: c0540b8f1f0505b4a8fcf064bde1e21d, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 467d27e6f7c7f18469d23c247ee55cef, type: 2}
+      objectReference: {fileID: 9100000, guid: dcb8ba8f1fb03364c96f3643a8e2f16f, type: 2}
     - target: {fileID: 8256415807791622103, guid: c0540b8f1f0505b4a8fcf064bde1e21d, type: 3}
       propertyPath: m_Name
       value: Rabbit
+      objectReference: {fileID: 0}
+    - target: {fileID: 8256415807791622103, guid: c0540b8f1f0505b4a8fcf064bde1e21d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

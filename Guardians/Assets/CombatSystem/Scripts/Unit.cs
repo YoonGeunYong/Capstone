@@ -22,6 +22,7 @@ public abstract class Unit : MonoBehaviour
     public UnitStats        stats;
     public UnitStatsSO      statsSO;
     public Vector2Int       boardPosition;
+    public Animator         animator;
 
     public abstract void    MoveTo(Vector2Int newBoardPos);
     public abstract void    Attack(List<Unit> enemy);
