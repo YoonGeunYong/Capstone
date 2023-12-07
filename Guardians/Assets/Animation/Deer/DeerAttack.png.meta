@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 33fd5dffe77721648a87fa020cef6804
+guid: 850fa49c48cde2c4ebae468e80993569
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -108,40 +108,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: DeerAttack_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 50
-        width: 600
-        height: 500
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8dd094783417ffe42b50fdcbfe39dbb3
-      internalID: 1778731654
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      DeerAttack_0: 1778731654
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

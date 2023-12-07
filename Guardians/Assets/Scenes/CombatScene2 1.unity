@@ -627,7 +627,7 @@ PrefabInstance:
     - target: {fileID: 3758168410982970238, guid: c0540b8f1f0505b4a8fcf064bde1e21d, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 355b13d8087a26f46ae9fe3fa5b50210, type: 2}
+      objectReference: {fileID: 9100000, guid: 467d27e6f7c7f18469d23c247ee55cef, type: 2}
     - target: {fileID: 8256415807791622103, guid: c0540b8f1f0505b4a8fcf064bde1e21d, type: 3}
       propertyPath: m_Name
       value: Rabbit

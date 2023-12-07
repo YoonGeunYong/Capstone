@@ -21,7 +21,7 @@ MonoBehaviour:
     delay: 1
     attackType: 0
     length: 1
-    coast: 15
+    cost: 0
   _anicontroller: {fileID: 9100000, guid: f83105e2e5523d64789716b43c3d3ce3, type: 2}
-  _image: {fileID: 21300000, guid: d335c568170a6f947872ffdacc1e913b, type: 3}
+  _image: {fileID: 21300000, guid: 8a7d8019b7650b245bf03ff09acd4310, type: 3}
   _defaultScale: {x: 3, y: 3, z: 3}
