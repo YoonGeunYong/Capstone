@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
     public MainCameraController         mainCameraController;
     public bool                         isPlayerTurn;
     public bool                         isEnemyTurn;
+    public bool                         wasMoved;
     public int                          width;
     public int                          height;
 
@@ -98,23 +99,59 @@ public class GameController : MonoBehaviour
 
     // This method is called by a UI button using Unity's event system.
     public void OnSpawnRabbit()
-    { playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Rabbit); }
+    { if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Rabbit]._stats.cost)
+        {
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Rabbit);
+        }
+    }
+
     public void OnSpawnTurtle()
-    { playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Turtle); }
+    {
+        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Turtle]._stats.cost)
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Turtle
+        );
+    }
+
     public void OnSpawnFox()
-    { playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Fox);  }
+    {
+        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Fox]._stats.cost)
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Fox);
+    }
+
     public void OnSpawnWoodCutter()
-    { playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.WoodCutter);  }
+    {
+        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.WoodCutter]._stats.cost)
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.WoodCutter);
+    }
+
     public void OnSpawnFairy()
-    { playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Fairy);  }
+    {   if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Fairy]._stats.cost)
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Fairy);
+    }
+
     public void OnSpawnDeer()
-    { playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Deer); }
+    {   
+        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Deer]._stats.cost)
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Deer);
+    }
+
     public void OnSpawnHeungbu()
-    { playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Heungbu); }
+    {
+        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Heungbu]._stats.cost)
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Heungbu);
+    }
+
     public void OnSpawnNolbu()
-    { playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Nolbu);  }
+    {
+        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Nolbu]._stats.cost) 
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Nolbu);
+    }
+
     public void OnSpawnSwallow()
-    { playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Swallow);  }
+    {
+        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Swallow]._stats.cost)
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Swallow);
+    }
 
     private IEnumerator DelayedBehaviorExecution(float delayTime)
     {
@@ -141,6 +178,7 @@ public class GameController : MonoBehaviour
     {
 
         isPlayerTurn = false;
+        wasMoved = false;
 
         StartAITurn();
 

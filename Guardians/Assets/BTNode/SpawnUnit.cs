@@ -23,7 +23,7 @@ public class SpawnUnitNode : Action
         }
 
         // 자원이 충분한지 확인
-        if (baseScript.GetResource() >= unitUIPrefab.GetComponent<UnitUI>().unit.stats.coast)
+        if (baseScript.GetResource() >= unitUIPrefab.GetComponent<UnitUI>().unit.stats.cost)
         {
             // 자원이 충분하면 유닛 소환
             Debug.Log(baseScript.position / 10);

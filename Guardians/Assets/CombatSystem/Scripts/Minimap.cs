@@ -111,7 +111,7 @@ public class MiniMap : MonoBehaviour
     public void HighlightMovableTiles()
     {
 
-        if (isTileSelected) return;
+        if (isTileSelected || GameController.instance.wasMoved) return;
 
         int x = selectedMiniMapTile.originalPosition.x;
         int y = selectedMiniMapTile.originalPosition.y;
@@ -145,7 +145,7 @@ public class MiniMap : MonoBehaviour
     public void MoveUnitTo(MiniMapTile miniMapTile)
     {
         
-        if (selectedMiniMapTile == null || selectedMiniMapTile.unitsOnTile.Count == 0) return;
+        if (selectedMiniMapTile == null || selectedMiniMapTile.unitsOnTile.Count == 0 || GameController.instance.wasMoved) return;
 
         Vector2Int      newBoardPosition    = CalculateNewBoardPosition(miniMapTile);
 
@@ -181,7 +181,8 @@ public class MiniMap : MonoBehaviour
 
         isTileSelected = false;
 
-        GameController.instance.EndPlayerTurn();
+        GameController.instance.wasMoved = true;
+        //GameController.instance.EndPlayerTurn();
 
     }
 

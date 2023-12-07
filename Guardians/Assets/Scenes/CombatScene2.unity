@@ -205,9 +205,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5152520133070653242, guid: e0207936c3dd2d745aebe44fe1634575, type: 3}
+      - m_Target: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
-        m_MethodName: SpawnUnit
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -337,9 +337,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5152520133070653242, guid: e0207936c3dd2d745aebe44fe1634575, type: 3}
+      - m_Target: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
-        m_MethodName: SpawnUnit
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -759,9 +759,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5152520133070653242, guid: e0207936c3dd2d745aebe44fe1634575, type: 3}
+      - m_Target: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
-        m_MethodName: SpawnUnit
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -891,9 +891,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5152520133070653242, guid: e0207936c3dd2d745aebe44fe1634575, type: 3}
+      - m_Target: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
-        m_MethodName: SpawnUnit
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1106,9 +1106,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5152520133070653242, guid: e0207936c3dd2d745aebe44fe1634575, type: 3}
+      - m_Target: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
-        m_MethodName: SpawnUnit
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1400,6 +1400,14 @@ MonoBehaviour:
   board: {fileID: 0}
   miniMap: {fileID: 0}
   rabbitButton: {fileID: 1523200746}
+  turtleButton: {fileID: 2039030159}
+  foxButton: {fileID: 1336210158}
+  woodCutterButton: {fileID: 528196878}
+  fairyButton: {fileID: 1024549206}
+  deerButton: {fileID: 1941756143}
+  heungbuButton: {fileID: 408663852}
+  nolbuButton: {fileID: 1151090292}
+  swallowButton: {fileID: 1984369804}
   unitUIs:
   - {fileID: 7371431077836823016, guid: 285a7359fe55aea4181834c07a2e1dd7, type: 3}
   minimapCameraController: {fileID: 0}
@@ -1408,6 +1416,16 @@ MonoBehaviour:
   isEnemyTurn: 0
   width: 5
   height: 5
+  preStats:
+  - {fileID: 11400000, guid: 96c7bb5c722bee441ba24da516642a95, type: 2}
+  - {fileID: 11400000, guid: 42a9ef3df1d7d77418515b8c8b396696, type: 2}
+  - {fileID: 11400000, guid: 7329ed11075db7946b377557f80ab3f4, type: 2}
+  - {fileID: 11400000, guid: faf27ed44542c7d44b07f953d96a6737, type: 2}
+  - {fileID: 11400000, guid: 217e608a76fa1cb47b82c04d55769f25, type: 2}
+  - {fileID: 11400000, guid: 9fa6ceb68b0be954db954653597c623d, type: 2}
+  - {fileID: 11400000, guid: 58862611fd5468f4d82b0d795526a3e4, type: 2}
+  - {fileID: 11400000, guid: 3782d8a0c5b83074da0dc734731e3e32, type: 2}
+  - {fileID: 11400000, guid: 148de898d2f5e694cbaa602fa5ded061, type: 2}
 --- !u!114 &1562054550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1565,8 +1583,8 @@ MonoBehaviour:
         byteData: 
         byteDataArray: 
       Version: 
-  gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1
+  gizmoViewMode: 0
+  showBehaviorDesignerGizmo: 0
 --- !u!114 &1562054558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1663,9 +1681,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5152520133070653242, guid: e0207936c3dd2d745aebe44fe1634575, type: 3}
+      - m_Target: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
-        m_MethodName: SpawnUnit
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1795,9 +1813,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5152520133070653242, guid: e0207936c3dd2d745aebe44fe1634575, type: 3}
+      - m_Target: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
-        m_MethodName: SpawnUnit
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2006,9 +2024,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5152520133070653242, guid: e0207936c3dd2d745aebe44fe1634575, type: 3}
+      - m_Target: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
-        m_MethodName: SpawnUnit
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2088,10 +2106,10 @@ RectTransform:
   - {fileID: 1523200745}
   - {fileID: 2039030158}
   - {fileID: 1336210157}
-  - {fileID: 408663851}
+  - {fileID: 528196877}
   - {fileID: 1024549205}
   - {fileID: 1941756142}
-  - {fileID: 528196877}
+  - {fileID: 408663851}
   - {fileID: 1151090291}
   - {fileID: 1984369803}
   m_Father: {fileID: 982948033}

@@ -55,13 +55,13 @@ MonoBehaviour:
     defend: 0
     healthPoint: 0
     attackSpeed: 0
-    moveSpeed: 0
     delay: 0
     attackType: 0
     length: 0
-    coast: 0
+    cost: 0
   statsSO: {fileID: 0}
   boardPosition: {x: 0, y: 0}
+  animator: {fileID: 0}
 --- !u!212 &1691858935587318811
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -173,7 +173,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0048923492, y: 0.030426025}
+  m_Offset: {x: 0, y: 2.8}
   m_Size: {x: 2.2357445, y: 5.448532}
   m_Direction: 0
 --- !u!95 &3758168410982970238

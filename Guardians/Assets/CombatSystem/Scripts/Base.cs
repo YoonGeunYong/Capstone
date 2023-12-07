@@ -86,9 +86,9 @@ public class Base : MonoBehaviour
         }
 
 
-        if (TrySpendResources(unit.stats.coast))
+        if (TrySpendResources(unit.stats.cost))
         {
-            GameController.instance.EndPlayerTurn();
+            //GameController.instance.EndPlayerTurn();
         }
 
 
