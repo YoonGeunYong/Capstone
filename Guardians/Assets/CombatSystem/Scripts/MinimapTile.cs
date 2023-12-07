@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+#if TreeEditor
 using TreeEditor;
+#endif
 using UnityEngine;
 using UnityEngine.UIElements;
 

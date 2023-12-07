@@ -12,17 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d52331cd83d0f428c7e75fdf8316ed, type: 3}
   m_Name: Turtle
   m_EditorClassIdentifier: 
+  unitType: 0
   _stats:
     attack: 20
     defend: 5
     healthPoint: 300
     attackSpeed: 1
-    moveSpeed: 0.7
     delay: 1
     attackType: 0
     length: 1
     coast: 15
-  _animator: {fileID: 0}
-  _image: {fileID: 21300000, guid: aefc1fae3c4fea540a18587603f0a4ef, type: 3}
-  _defaultPosition: {x: -12, y: 0, z: 0}
+  _anicontroller: {fileID: 9100000, guid: f83105e2e5523d64789716b43c3d3ce3, type: 2}
+  _image: {fileID: 21300000, guid: d335c568170a6f947872ffdacc1e913b, type: 3}
   _defaultScale: {x: 3, y: 3, z: 3}

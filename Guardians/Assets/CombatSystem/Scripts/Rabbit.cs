@@ -5,16 +5,24 @@ using UnityEngine;
 
 public class Rabbit : Unit
 {
+    private void Start()
+    {
+        
+        stats = statsSO._stats;
+        unitTypes = statsSO.unitType;
+        GetComponent<SpriteRenderer>().sprite = statsSO._image;
+        GetComponent<Animator>().runtimeAnimatorController = statsSO._anicontroller;
+    }
     public override void MoveTo(Vector2Int newBoardPos)
     {
-        Vector3 targetPosition = new Vector3(newBoardPos.x * 10, newBoardPos.y * 10, transform.position.z);
+        Vector3 targetPosition = new Vector3(newBoardPos.x * 20, newBoardPos.y * 20, transform.position.z);
 
         MiniMapTile targetTile = MiniMap.instance.GetTileAt(newBoardPos);
 
         // If no enemies, start moving
         while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, stats.moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 20 * Time.deltaTime);
             Debug.Log(targetPosition);
             break;
         }

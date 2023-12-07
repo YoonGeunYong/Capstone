@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+#if Unity_Editor
 using UnityEditor.Experimental.GraphView;
+#endif
 using UnityEngine;
 
 
@@ -65,6 +68,8 @@ public class MiniMap : MonoBehaviour
 
                 tileComponent.gridPosition      = new Vector2Int(adjustedX, adjustedY);
                 tileComponent.originalPosition  = new Vector2Int(x, y); // add this
+                tileComponent.GetComponent<SpriteRenderer>().sprite = GameController.instance.board.tileSprite[(x * 5) + y];
+                tileComponent.AddComponent<BoxCollider2D>();
 
                 miniMapTiles[x, y]              = tileComponent;
             }
@@ -106,7 +111,7 @@ public class MiniMap : MonoBehaviour
     public void HighlightMovableTiles()
     {
 
-        if (isTileSelected) return;
+        if (isTileSelected || GameController.instance.wasMoved) return;
 
         int x = selectedMiniMapTile.originalPosition.x;
         int y = selectedMiniMapTile.originalPosition.y;
@@ -140,7 +145,7 @@ public class MiniMap : MonoBehaviour
     public void MoveUnitTo(MiniMapTile miniMapTile)
     {
         
-        if (selectedMiniMapTile == null || selectedMiniMapTile.unitsOnTile.Count == 0) return;
+        if (selectedMiniMapTile == null || selectedMiniMapTile.unitsOnTile.Count == 0 || GameController.instance.wasMoved) return;
 
         Vector2Int      newBoardPosition    = CalculateNewBoardPosition(miniMapTile);
 
@@ -176,7 +181,8 @@ public class MiniMap : MonoBehaviour
 
         isTileSelected = false;
 
-        GameController.instance.EndPlayerTurn();
+        GameController.instance.wasMoved = true;
+        //GameController.instance.EndPlayerTurn();
 
     }
 

@@ -205,9 +205,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5152520133070653242, guid: e0207936c3dd2d745aebe44fe1634575, type: 3}
+      - m_Target: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
-        m_MethodName: SpawnUnit
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -337,9 +337,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5152520133070653242, guid: e0207936c3dd2d745aebe44fe1634575, type: 3}
+      - m_Target: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
-        m_MethodName: SpawnUnit
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -542,7 +542,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -759,9 +759,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5152520133070653242, guid: e0207936c3dd2d745aebe44fe1634575, type: 3}
+      - m_Target: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
-        m_MethodName: SpawnUnit
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -891,9 +891,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5152520133070653242, guid: e0207936c3dd2d745aebe44fe1634575, type: 3}
+      - m_Target: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
-        m_MethodName: SpawnUnit
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -993,7 +993,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 35
+  orthographic size: 25
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1018,7 +1018,7 @@ Transform:
   m_GameObject: {fileID: 1279324068}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 130, y: 130, z: -1}
+  m_LocalPosition: {x: 120, y: 120, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1106,9 +1106,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5152520133070653242, guid: e0207936c3dd2d745aebe44fe1634575, type: 3}
+      - m_Target: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
-        m_MethodName: SpawnUnit
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1400,14 +1400,32 @@ MonoBehaviour:
   board: {fileID: 0}
   miniMap: {fileID: 0}
   rabbitButton: {fileID: 1523200746}
+  turtleButton: {fileID: 2039030159}
+  foxButton: {fileID: 1336210158}
+  woodCutterButton: {fileID: 528196878}
+  fairyButton: {fileID: 1024549206}
+  deerButton: {fileID: 1941756143}
+  heungbuButton: {fileID: 408663852}
+  nolbuButton: {fileID: 1151090292}
+  swallowButton: {fileID: 1984369804}
   unitUIs:
   - {fileID: 7371431077836823016, guid: 285a7359fe55aea4181834c07a2e1dd7, type: 3}
   minimapCameraController: {fileID: 0}
   mainCameraController: {fileID: 0}
   isPlayerTurn: 0
   isEnemyTurn: 0
-  width: 7
-  height: 7
+  width: 5
+  height: 5
+  preStats:
+  - {fileID: 11400000, guid: 96c7bb5c722bee441ba24da516642a95, type: 2}
+  - {fileID: 11400000, guid: 42a9ef3df1d7d77418515b8c8b396696, type: 2}
+  - {fileID: 11400000, guid: 7329ed11075db7946b377557f80ab3f4, type: 2}
+  - {fileID: 11400000, guid: faf27ed44542c7d44b07f953d96a6737, type: 2}
+  - {fileID: 11400000, guid: 217e608a76fa1cb47b82c04d55769f25, type: 2}
+  - {fileID: 11400000, guid: 9fa6ceb68b0be954db954653597c623d, type: 2}
+  - {fileID: 11400000, guid: 58862611fd5468f4d82b0d795526a3e4, type: 2}
+  - {fileID: 11400000, guid: 3782d8a0c5b83074da0dc734731e3e32, type: 2}
+  - {fileID: 11400000, guid: 148de898d2f5e694cbaa602fa5ded061, type: 2}
 --- !u!114 &1562054550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1423,6 +1441,32 @@ MonoBehaviour:
   tilePrefab: {fileID: 6767498925649682421, guid: aba0ee45d807e43469059c62499df78a, type: 3}
   playerBase: {fileID: 0}
   enemyBase: {fileID: 0}
+  tileSprite:
+  - {fileID: 1763047260, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -792528153, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 533308380, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 1441368614, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -1011871615, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 1620737587, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 1771056910, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -1277383715, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 479363825, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 1661484461, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 1615926592, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 2129669346, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -1023042249, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -2045318449, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 1541386337, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -642219243, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -445808450, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 1600363243, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -3651679, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -399360296, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -1143429117, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 552243857, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -1183566553, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: 557445162, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
+  - {fileID: -1250738095, guid: 5cf6c9393b5e0d94eb1b66b350f73a14, type: 3}
 --- !u!4 &1562054552
 Transform:
   m_ObjectHideFlags: 0
@@ -1487,7 +1531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ade3ab105cca04cbe81ab8dc381ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  miniMapCamera: {fileID: 1279324070}
 --- !u!114 &1562054556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1540,8 +1583,8 @@ MonoBehaviour:
         byteData: 
         byteDataArray: 
       Version: 
-  gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1
+  gizmoViewMode: 0
+  showBehaviorDesignerGizmo: 0
 --- !u!114 &1562054558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1638,9 +1681,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5152520133070653242, guid: e0207936c3dd2d745aebe44fe1634575, type: 3}
+      - m_Target: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
-        m_MethodName: SpawnUnit
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1770,9 +1813,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5152520133070653242, guid: e0207936c3dd2d745aebe44fe1634575, type: 3}
+      - m_Target: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
-        m_MethodName: SpawnUnit
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1981,9 +2024,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5152520133070653242, guid: e0207936c3dd2d745aebe44fe1634575, type: 3}
+      - m_Target: {fileID: 11500000, guid: 4dced334a63fa384984e1a1fe4af4a3a, type: 3}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
-        m_MethodName: SpawnUnit
+        m_MethodName: 
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2063,10 +2106,10 @@ RectTransform:
   - {fileID: 1523200745}
   - {fileID: 2039030158}
   - {fileID: 1336210157}
-  - {fileID: 408663851}
+  - {fileID: 528196877}
   - {fileID: 1024549205}
   - {fileID: 1941756142}
-  - {fileID: 528196877}
+  - {fileID: 408663851}
   - {fileID: 1151090291}
   - {fileID: 1984369803}
   m_Father: {fileID: 982948033}

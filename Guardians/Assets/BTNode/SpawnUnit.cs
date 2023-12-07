@@ -22,20 +22,20 @@ public class SpawnUnitNode : Action
             return TaskStatus.Failure;
         }
 
-        // ÀÚ¿øÀÌ ÃæºĞÇÑÁö È®ÀÎ
-        if (baseScript.GetResource() >= unitUIPrefab.GetComponent<UnitUI>().unit.stats.coast)
+        // ìì›ì´ ì¶©ë¶„í•œì§€ í™•ì¸
+        if (baseScript.GetResource() >= unitUIPrefab.GetComponent<UnitUI>().unit.stats.cost)
         {
-            // ÀÚ¿øÀÌ ÃæºĞÇÏ¸é À¯´Ö ¼ÒÈ¯
+            // ìì›ì´ ì¶©ë¶„í•˜ë©´ ìœ ë‹› ì†Œí™˜
             Debug.Log(baseScript.position / 10);
-            baseScript.SpawnUnit(unitUIPrefab, Unit.Team.Enemy, baseScript.position);
-
+            
+            baseScript.SpawnUnit(unitUIPrefab, Unit.Team.Enemy, baseScript.position, UnitTypes.Rabbit);
+            
             GameController.instance.EndAITurn();
-
             return TaskStatus.Success;
         }
         else
         {
-            // ÀÚ¿øÀÌ ºÎÁ·ÇÏ¸é ½ÇÆĞ
+            // ìì›ì´ ë¶€ì¡±í•˜ë©´ ì‹¤íŒ¨
             return TaskStatus.Failure;
         }
        

@@ -12,17 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d52331cd83d0f428c7e75fdf8316ed, type: 3}
   m_Name: Fairy
   m_EditorClassIdentifier: 
+  unitType: 0
   _stats:
-    attack: 0
-    defend: 0
-    healthPoint: 0
-    attackSpeed: 0
-    moveSpeed: 0
-    delay: 0
-    attackType: 0
-    length: 0
-    coast: 0
-  _animator: {fileID: 0}
-  _image: {fileID: 21300000, guid: 560bf91a3c43af746a5c40287d318b4d, type: 3}
-  _defaultPosition: {x: 4, y: 0, z: 0}
+    attack: 15
+    defend: 1
+    healthPoint: 150
+    attackSpeed: 1
+    delay: 12
+    attackType: 3
+    length: 6
+    coast: 100
+  _anicontroller: {fileID: 9100000, guid: dcb8ba8f1fb03364c96f3643a8e2f16f, type: 2}
+  _image: {fileID: 21300000, guid: 28e425e21ad3f1149a13fe2a240df287, type: 3}
   _defaultScale: {x: 3, y: 3, z: 3}

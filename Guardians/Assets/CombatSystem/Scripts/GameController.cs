@@ -17,17 +17,21 @@ public class GameController : MonoBehaviour
     public GameObject                   enemyBaseObject;
     public Board                        board;
     public MiniMap                      miniMap;
-    public Button                       rabbitButton;
+    public Button                       rabbitButton, turtleButton, foxButton, woodCutterButton,
+                                        fairyButton, deerButton, heungbuButton, nolbuButton, swallowButton;
     public List<GameObject>             unitUIs;
     public MinimapCameraController      minimapCameraController;
     public MainCameraController         mainCameraController;
     public bool                         isPlayerTurn;
     public bool                         isEnemyTurn;
+    public bool                         wasMoved;
     public int                          width;
     public int                          height;
 
     private Base                        playerBase;
     private Base                        enemyBase;
+
+    public  UnitStatsSO[]               preStats;
 
 
     private void Awake()
@@ -50,32 +54,41 @@ public class GameController : MonoBehaviour
         miniMap                   =      GetComponent<MiniMap>();
         minimapCameraController   =      GetComponent<MinimapCameraController>();
         mainCameraController      =      GetComponent<MainCameraController>();
-        playerBase = playerBaseObject.   GetComponent<Base>();
-        enemyBase  = enemyBaseObject.    GetComponent<Base>();
+        enemyBaseObject           =      Instantiate(enemyBaseObject);
 
 
         // Assuming buttonPrefab is already assigned in the inspector
         rabbitButton.onClick.            AddListener(OnSpawnRabbit);
-
+        turtleButton.onClick.            AddListener(OnSpawnTurtle);
+        foxButton.onClick.               AddListener(OnSpawnFox);
+        woodCutterButton.onClick.        AddListener(OnSpawnWoodCutter);
+        fairyButton.onClick.             AddListener(OnSpawnFairy);
+        deerButton.onClick.              AddListener(OnSpawnDeer);
+        heungbuButton.onClick.           AddListener(OnSpawnHeungbu);
+        nolbuButton.onClick.             AddListener(OnSpawnNolbu);
+        swallowButton.onClick.           AddListener(OnSpawnSwallow);
 
         // Initialize the game board and the player base...
         board.                          InitBoard(width, height);
         miniMap.                        InitMiniMap(width, height);
-        playerBase.                     InitPosition(miniMap.miniMapTiles[0,0].gridPosition);
-        enemyBase.                      InitPosition(miniMap.miniMapTiles[width -1, height -1].gridPosition);
-        minimapCameraController.        UpdateCameraSize(miniMap);
+        //minimapCameraController.        UpdateCameraSize(miniMap);
         mainCameraController.           MoveMainCamera(new Vector3(0, 0f, mainCameraController.mainCamera.transform.position.z));
 
     }
 
     private void Start()
     {
+        playerBase = playerBaseObject.GetComponent<Base>();
+        enemyBase = enemyBaseObject.GetComponent<Base>();
+
+        playerBase.InitPosition(miniMap.miniMapTiles[0, 0].gridPosition);
+        enemyBase.InitPosition(miniMap.miniMapTiles[width - 1, height - 1].gridPosition);
+
         GameObject PlayerBaseTower  =  Instantiate(playerBaseTower, new Vector3(playerBase.position.x, 0, playerBase.position.y), Quaternion.identity);
         GameObject EnemyBaseTower   =  Instantiate(enemyBaseTower, new Vector3(enemyBase.position.x, 0, enemyBase.position.y), Quaternion.identity);
 
         PlayerBaseTower.               GetComponent<BaseTower>().team = BaseTower.Team.Player;
         EnemyBaseTower.                GetComponent<BaseTower>().team = BaseTower.Team.AI;
-
 
         if (instance != null)
         {
@@ -86,10 +99,58 @@ public class GameController : MonoBehaviour
 
     // This method is called by a UI button using Unity's event system.
     public void OnSpawnRabbit()
+    { if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Rabbit]._stats.cost)
+        {
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Rabbit);
+        }
+    }
+
+    public void OnSpawnTurtle()
     {
+        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Turtle]._stats.cost)
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Turtle
+        );
+    }
 
-        playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position);
+    public void OnSpawnFox()
+    {
+        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Fox]._stats.cost)
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Fox);
+    }
 
+    public void OnSpawnWoodCutter()
+    {
+        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.WoodCutter]._stats.cost)
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.WoodCutter);
+    }
+
+    public void OnSpawnFairy()
+    {   if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Fairy]._stats.cost)
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Fairy);
+    }
+
+    public void OnSpawnDeer()
+    {   
+        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Deer]._stats.cost)
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Deer);
+    }
+
+    public void OnSpawnHeungbu()
+    {
+        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Heungbu]._stats.cost)
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Heungbu);
+    }
+
+    public void OnSpawnNolbu()
+    {
+        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Nolbu]._stats.cost) 
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Nolbu);
+    }
+
+    public void OnSpawnSwallow()
+    {
+        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Swallow]._stats.cost)
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Swallow);
     }
 
     private IEnumerator DelayedBehaviorExecution(float delayTime)
@@ -99,7 +160,6 @@ public class GameController : MonoBehaviour
 
         
         yield return null;
-
 
 
     }
@@ -118,6 +178,7 @@ public class GameController : MonoBehaviour
     {
 
         isPlayerTurn = false;
+        wasMoved = false;
 
         StartAITurn();
 
