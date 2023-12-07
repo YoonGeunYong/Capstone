@@ -12,17 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d52331cd83d0f428c7e75fdf8316ed, type: 3}
   m_Name: Woodcutter
   m_EditorClassIdentifier: 
+  unitType: 0
   _stats:
     attack: 0
     defend: 0
     healthPoint: 0
     attackSpeed: 0
-    moveSpeed: 0
     delay: 0
     attackType: 0
     length: 0
     coast: 0
-  _animator: {fileID: 0}
-  _image: {fileID: 21300000, guid: 242ca5cc09d5b914591020c5d183ad5a, type: 3}
-  _defaultPosition: {x: 0, y: 0, z: 0}
+  _anicontroller: {fileID: 9100000, guid: 355b13d8087a26f46ae9fe3fa5b50210, type: 2}
+  _image: {fileID: 21300000, guid: 27855ff1fdaf6cb4f91afe63a4f9843e, type: 3}
   _defaultScale: {x: 3, y: 3, z: 3}

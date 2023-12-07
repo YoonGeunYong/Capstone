@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1893
     height: 973
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 321}
   m_MaxSize: {x: 10000, y: 10000}
@@ -674,9 +674,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 10.11462, y: 20.338299, z: 0.38884926}
+    m_Target: {x: 0, y: 0, z: 0}
     speed: 2
-    m_Value: {x: 10.11462, y: 20.338299, z: 0.38884926}
+    m_Value: {x: 0, y: 0, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -722,13 +722,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.34378225, y: -0.17602296, z: 0.06577169, w: 0.9200372}
+    m_Target: {x: -0.105700046, y: 0.008913253, z: 0.00094460335, w: 0.99434507}
     speed: 2
-    m_Value: {x: 0.34378833, y: -0.17602606, z: 0.065772854, w: 0.9200534}
+    m_Value: {x: 0.10570004, y: -0.008913253, z: -0.00094460335, w: -0.99434507}
   m_Size:
-    m_Target: 22.928556
+    m_Target: 14.13227
     speed: 2
-    m_Value: 22.928556
+    m_Value: 14.13227
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1140,9 +1140,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 3e960000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 048cfeff6e8dfeff
+      m_ExpandedIDs: c4f6ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1211,7 +1211,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/CombatSystem
+    - Assets/CombatSystem/Prefabs
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1227,7 +1227,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 7e630000
     m_LastClickedID: 25470
-    m_ExpandedIDs: 
+    m_ExpandedIDs: 000000009c720000fa720000fc720000fe72000000730000027300000473000006730000087300000a730000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1252,10 +1252,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 60}
+    scrollPos: {x: 0, y: 240}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000f20500004e060000720600009a060000
+    m_ExpandedIDs: ffffffff000000009c720000fa720000fc720000fe72000000730000027300000473000006730000087300000a730000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: DelayCondition

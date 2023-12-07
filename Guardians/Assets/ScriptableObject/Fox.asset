@@ -12,17 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d52331cd83d0f428c7e75fdf8316ed, type: 3}
   m_Name: Fox
   m_EditorClassIdentifier: 
+  unitType: 0
   _stats:
-    attack: 0
-    defend: 0
-    healthPoint: 0
-    attackSpeed: 0
-    moveSpeed: 0
-    delay: 0
-    attackType: 0
-    length: 0
-    coast: 0
-  _animator: {fileID: 0}
-  _image: {fileID: 21300000, guid: afe0ec6b03f9653478de6052e8eb3dd2, type: 3}
-  _defaultPosition: {x: -8, y: 0, z: 0}
+    attack: 20
+    defend: 1
+    healthPoint: 150
+    attackSpeed: 1.2
+    delay: 2
+    attackType: 1
+    length: 4
+    coast: 30
+  _anicontroller: {fileID: 9100000, guid: d9edf8ede2b5f6343a0e0b9d1d34ca2b, type: 2}
+  _image: {fileID: 21300000, guid: 97c42d5e7f2c061448e01ec588952ff7, type: 3}
   _defaultScale: {x: 3, y: 3, z: 3}

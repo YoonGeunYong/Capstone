@@ -12,17 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d52331cd83d0f428c7e75fdf8316ed, type: 3}
   m_Name: Swallow
   m_EditorClassIdentifier: 
+  unitType: 0
   _stats:
     attack: 0
     defend: 0
     healthPoint: 0
     attackSpeed: 0
-    moveSpeed: 0
     delay: 0
     attackType: 0
     length: 0
     coast: 0
-  _animator: {fileID: 0}
-  _image: {fileID: 21300000, guid: 0d63a7fc468bac847b54aad5f6286edc, type: 3}
-  _defaultPosition: {x: 16, y: 0, z: 0}
+  _anicontroller: {fileID: 9100000, guid: 510959e49a2e68e419438604ddf4d45b, type: 2}
+  _image: {fileID: 21300000, guid: 3981ba6f6748d7c4791964d077d26428, type: 3}
   _defaultScale: {x: 3, y: 3, z: 3}

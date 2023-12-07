@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1356088980370096794}
-  - component: {fileID: 8176355436592236116}
+  - component: {fileID: 3880426411906961606}
   - component: {fileID: 1691858935587318811}
   - component: {fileID: -5333762413377946480}
   - component: {fileID: 8733226728782720827}
+  - component: {fileID: 3758168410982970238}
   m_Layer: 0
   m_Name: Rabbit
   m_TagString: Untagged
@@ -30,12 +31,12 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 31.632366, y: 42.67997, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8176355436592236116
+--- !u!114 &3880426411906961606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,7 +59,8 @@ MonoBehaviour:
     delay: 0
     attackType: 0
     length: 0
-    coast: 5
+    coast: 0
+  statsSO: {fileID: 0}
   boardPosition: {x: 0, y: 0}
 --- !u!212 &1691858935587318811
 SpriteRenderer:
@@ -109,7 +111,7 @@ SpriteRenderer:
   m_Size: {x: 4.56, y: 5.72}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &-5333762413377946480
@@ -174,3 +176,24 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0048923492, y: 0.030426025}
   m_Size: {x: 2.2357445, y: 5.448532}
   m_Direction: 0
+--- !u!95 &3758168410982970238
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8256415807791622103}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0c8e56c5ae6c5d469a74f924c127f3a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

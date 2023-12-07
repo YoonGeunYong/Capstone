@@ -12,17 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d52331cd83d0f428c7e75fdf8316ed, type: 3}
   m_Name: Nolbu
   m_EditorClassIdentifier: 
+  unitType: 0
   _stats:
     attack: 0
     defend: 0
     healthPoint: 0
     attackSpeed: 0
-    moveSpeed: 0
     delay: 0
     attackType: 0
     length: 0
     coast: 0
-  _anicontroller: {fileID: 0}
+  _anicontroller: {fileID: 9100000, guid: 47baf102aed5f2d4bbd625c379478875, type: 2}
   _image: {fileID: 21300000, guid: 4b142d26d3e698842b887c776b64bfea, type: 3}
-  _defaultPosition: {x: 12, y: 0, z: 0}
   _defaultScale: {x: 3, y: 3, z: 3}
