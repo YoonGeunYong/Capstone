@@ -97,20 +97,35 @@ public class MiniMapTile : MonoBehaviour
 
     public List<Unit> GetEnemies(Unit.Team myTeam)
     {
-
-        List<Unit> enemies = new List<Unit>();
-
-        foreach (UnitUI unitUI in unitsOnTile)
+        if(myTeam == Unit.Team.Player)
         {
-            if (unitUI.unit.team != myTeam) 
+            return GetEnemiesFromList(enemyUnitsOnTile);
+        }
+
+        else if(myTeam == Unit.Team.Enemy)
+        {
+            return GetEnemiesFromList(unitsOnTile);
+        }
+
+        else
+        {
+            return null;
+        }
+    }
+
+    public List<Unit> GetEnemiesFromList(List<UnitUI> unitUIs)
+    {
+        List<Unit> enemies = new List<Unit>();
+        
+        foreach (UnitUI unitUI in unitUIs)
+        {
+            if(unitUI.unit.team == Unit.Team.Enemy)
             {
-                Debug.Log("Enemy detected");
                 enemies.Add(unitUI.unit);
             }
         }
 
         return enemies;
-
     }
 
 

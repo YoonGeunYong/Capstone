@@ -186,6 +186,40 @@ public class MiniMap : MonoBehaviour
 
     }
 
+    public void EnemyMoveUnitTo(MiniMapTile miniMapTile)
+    {
+        
+        if (selectedMiniMapTile == null || selectedMiniMapTile.enemyUnitsOnTile.Count == 0 || GameController.instance.wasMoved) return;
+
+        Vector2Int      newBoardPosition    = CalculateNewBoardPosition(miniMapTile);
+
+        List<UnitUI>    unitsToMove         = new List<UnitUI>(selectedMiniMapTile.enemyUnitsOnTile);
+
+        foreach (UnitUI unitUI in unitsToMove)
+        {
+
+            unitUI.CurrentTile.RemoveUnit(unitUI);
+
+            miniMapTile.AddUnit(unitUI);
+
+            MoveUnitUI(unitUI, miniMapTile);
+
+            List<Unit> enemies = miniMapTile.GetEnemies(unitUI.unit.team);
+
+            if (enemies.Count != 0)
+            {
+                Debug.Log("enemies detected");
+
+                unitUI.unit.Attack(enemies);
+            }
+            else
+            {
+                Debug.Log("no enemies detected");
+
+                unitUI.unit.MoveTo(newBoardPosition);
+            }
+        }
+    }
 
 
 
