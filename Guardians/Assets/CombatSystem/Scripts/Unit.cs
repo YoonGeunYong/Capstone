@@ -18,11 +18,15 @@ public abstract class Unit : MonoBehaviour
     }
 
     public Team             team;
+    public Unit             enemy;  //12.08 'pursuit to enemy' add
     public UnitTypes        unitTypes;
     public UnitStats        stats;
     public UnitStatsSO      statsSO;
     public Vector2Int       boardPosition;
     public Animator         animator;
+    public GameObject       childItem;
+    public float            attackDelay; //12.08 The time between attacks
+    public bool             enemyCheck;  //12.08 near enemy check
 
     public abstract void    MoveTo(Vector2Int newBoardPos);
     public abstract void    Attack(List<Unit> enemy);

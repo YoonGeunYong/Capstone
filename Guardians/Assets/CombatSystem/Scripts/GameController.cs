@@ -24,7 +24,8 @@ public class GameController : MonoBehaviour
     public MainCameraController         mainCameraController;
     public bool                         isPlayerTurn;
     public bool                         isEnemyTurn;
-    public bool                         wasMoved;
+    public bool                         isFight;  //12.08 fight check
+    public bool                         wasMoved; //12.07 moved check
     public int                          width;
     public int                          height;
 
@@ -99,7 +100,8 @@ public class GameController : MonoBehaviour
 
     // This method is called by a UI button using Unity's event system.
     public void OnSpawnRabbit()
-    { if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Rabbit]._stats.cost)
+    { 
+        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Rabbit]._stats.cost)
         {
             playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Rabbit);
         }

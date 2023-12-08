@@ -634,7 +634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8256415807791622103, guid: c0540b8f1f0505b4a8fcf064bde1e21d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1708,6 +1708,7 @@ MonoBehaviour:
   mainCameraController: {fileID: 0}
   isPlayerTurn: 0
   isEnemyTurn: 0
+  isFight: 0
   wasMoved: 0
   width: 5
   height: 5
@@ -1878,8 +1879,8 @@ MonoBehaviour:
         byteData: 
         byteDataArray: 
       Version: 
-  gizmoViewMode: 0
-  showBehaviorDesignerGizmo: 0
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
 --- !u!114 &1562054558
 MonoBehaviour:
   m_ObjectHideFlags: 0

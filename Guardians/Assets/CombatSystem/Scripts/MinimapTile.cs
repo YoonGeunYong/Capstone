@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 #if TreeEditor
 using TreeEditor;
@@ -27,10 +28,8 @@ public class MiniMapTile : MonoBehaviour
 
     }
 
-
     public void AddUnit(UnitUI unitUI)
     {
-
         if(unitUI.unit.team == Unit.Team.Player)
         {
             unitsOnTile.Add(unitUI);
@@ -46,6 +45,17 @@ public class MiniMapTile : MonoBehaviour
 
             UpdateUnitPositions();
         }
+        //12.08 'on tile with enemy' check
+        if (enemyUnitsOnTile.Count != 0 && unitsOnTile.Count != 0)
+        {
+            GameController.instance.isFight = true;
+            unitUI.unit.animator.SetBool("Attack", true);
+            
+            foreach (UnitUI ui in enemyUnitsOnTile)
+            {
+                ui.unit.enemyCheck = true;
+            }
+        } // 수정 예정
 
     }
 

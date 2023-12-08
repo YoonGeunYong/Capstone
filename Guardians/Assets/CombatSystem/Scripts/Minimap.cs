@@ -245,4 +245,17 @@ public class MiniMap : MonoBehaviour
         return null;
     }
 
+    // 12.08 Fighting on Tile check
+    public MiniMapTile GetMiniMapTile()
+    {
+        foreach (var tile in miniMapTiles)
+        {
+            if (tile.unitsOnTile[0].unit.enemyCheck)
+            {
+                return tile;
+            }
+        }
+        return null;
+    }
+
 }
