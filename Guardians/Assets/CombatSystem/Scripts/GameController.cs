@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
     public MiniMap                      miniMap;
     public Button                       rabbitButton, turtleButton, foxButton, woodCutterButton,
                                         fairyButton, deerButton, heungbuButton, nolbuButton, swallowButton;
+    public Button                       turnEndButton;
     public List<GameObject>             unitUIs;
     public MinimapCameraController      minimapCameraController;
     public MainCameraController         mainCameraController;
@@ -155,15 +156,14 @@ public class GameController : MonoBehaviour
             playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Swallow);
     }
 
-    private IEnumerator DelayedBehaviorExecution(float delayTime)
+    private void EnableturnButton()
     {
+        turnEndButton.interactable = true;
+    }
 
-        yield return new WaitForSeconds(delayTime);
-
-        
-        yield return null;
-
-
+    private void DisableturnButton()
+    {
+        turnEndButton.interactable = false;
     }
 
     public void StartPlayerTurn()
@@ -173,17 +173,21 @@ public class GameController : MonoBehaviour
 
         playerBase.EndTurnAndGetResource();
 
+        EnableturnButton();
     }
 
 
     public void EndPlayerTurn()
     {
+        if(isPlayerTurn)
+        {
+            isPlayerTurn = false;
+            wasMoved = false;
 
-        isPlayerTurn = false;
-        wasMoved = false;
+            DisableturnButton();
+            StartAITurn();
 
-        StartAITurn();
-
+        }
     }
 
 

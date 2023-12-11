@@ -30,7 +30,8 @@ public class SpawnUnitNode : Action
             
             baseScript.SpawnUnit(unitUIPrefab, Unit.Team.Enemy, baseScript.position, UnitTypes.Rabbit);
             
-            GameController.instance.EndAITurn();
+            //GameController.instance.EndAITurn();
+
             return TaskStatus.Success;
         }
         else
