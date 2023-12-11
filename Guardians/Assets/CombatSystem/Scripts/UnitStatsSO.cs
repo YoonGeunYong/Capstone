@@ -14,7 +14,9 @@ public class UnitStatsSO : ScriptableObject
     public RuntimeAnimatorController _anicontroller;
     public Sprite _image;
     public Vector3 _defaultScale;
-    
+    public GameObject _childItem;
+    public Sprite _childItemImage;
+
 }
 
 [Serializable]
