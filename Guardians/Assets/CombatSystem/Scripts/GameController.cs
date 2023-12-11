@@ -32,6 +32,7 @@ public class GameController : MonoBehaviour
 
     private Base                        playerBase;
     private Base                        enemyBase;
+    private CostManager                 costScript;
 
     public  UnitStatsSO[]               preStats;
 
@@ -82,6 +83,7 @@ public class GameController : MonoBehaviour
     {
         playerBase = playerBaseObject.GetComponent<Base>();
         enemyBase = enemyBaseObject.GetComponent<Base>();
+        costScript = GetComponent<CostManager>();
 
         playerBase.InitPosition(miniMap.miniMapTiles[0, 0].gridPosition);
         enemyBase.InitPosition(miniMap.miniMapTiles[width - 1, height - 1].gridPosition);
@@ -105,55 +107,89 @@ public class GameController : MonoBehaviour
         if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Rabbit]._stats.cost)
         {
             playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Rabbit);
+            playerBase.resources -= preStats[(int)UnitTypes.Rabbit]._stats.cost;
+            costScript.resourceText.text = "Resources: " + playerBase.GetResource().ToString();
         }
     }
 
     public void OnSpawnTurtle()
     {
-        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Turtle]._stats.cost)
-            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Turtle
-        );
+        if (isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Turtle]._stats.cost)
+        {
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Turtle);
+            playerBase.resources -= preStats[(int)UnitTypes.Turtle]._stats.cost;
+            costScript.resourceText.text = "Resources: " + playerBase.GetResource().ToString();
+        }
     }
 
     public void OnSpawnFox()
     {
-        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Fox]._stats.cost)
+        if (isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Fox]._stats.cost)
+        {
             playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Fox);
+            playerBase.resources -= preStats[(int)UnitTypes.Fox]._stats.cost;
+            costScript.resourceText.text = "Resources: " + playerBase.GetResource().ToString();
+        }
     }
 
     public void OnSpawnWoodCutter()
     {
-        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.WoodCutter]._stats.cost)
+        if (isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.WoodCutter]._stats.cost)
+        {
             playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.WoodCutter);
+            playerBase.resources -= preStats[(int)UnitTypes.WoodCutter]._stats.cost;
+            costScript.resourceText.text = "Resources: " + playerBase.GetResource().ToString();
+        }
     }
 
     public void OnSpawnFairy()
-    {   if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Fairy]._stats.cost)
+    {
+        if (isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Fairy]._stats.cost)
+        {
             playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Fairy);
+            playerBase.resources -= preStats[(int)UnitTypes.Fairy]._stats.cost;
+            costScript.resourceText.text = "Resources: " + playerBase.GetResource().ToString();
+        }
     }
 
     public void OnSpawnDeer()
-    {   
-        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Deer]._stats.cost)
+    {
+        if (isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Deer]._stats.cost)
+        {
             playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Deer);
+            playerBase.resources -= preStats[(int)UnitTypes.Deer]._stats.cost;
+            costScript.resourceText.text = "Resources: " + playerBase.GetResource().ToString();
+        }
     }
 
     public void OnSpawnHeungbu()
     {
-        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Heungbu]._stats.cost)
+        if (isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Heungbu]._stats.cost)
+        {
             playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Heungbu);
+            playerBase.resources -= preStats[(int)UnitTypes.Heungbu]._stats.cost;
+            costScript.resourceText.text = "Resources: " + playerBase.GetResource().ToString();
+        }
     }
 
     public void OnSpawnNolbu()
     {
-        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Nolbu]._stats.cost) 
+        if (isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Nolbu]._stats.cost)
+        {
             playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Nolbu);
+            playerBase.resources -= preStats[(int)UnitTypes.Nolbu]._stats.cost;
+            costScript.resourceText.text = "Resources: " + playerBase.GetResource().ToString();
+        }
     }
 
     public void OnSpawnSwallow()
     {
-        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Swallow]._stats.cost)
+        if (isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Swallow]._stats.cost)
+        {
             playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Swallow);
+            playerBase.resources -= preStats[(int)UnitTypes.Swallow]._stats.cost;
+            costScript.resourceText.text = "Resources: " + playerBase.GetResource().ToString();
+        }
     }
 
     private void EnableturnButton()
@@ -186,7 +222,6 @@ public class GameController : MonoBehaviour
 
             DisableturnButton();
             StartAITurn();
-
         }
     }
 

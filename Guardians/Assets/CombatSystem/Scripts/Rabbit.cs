@@ -115,6 +115,9 @@ public class Rabbit : Unit
             case UnitTypes.Swallow: //solo long range
                 Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
                 break;
+            case UnitTypes.Nolbu: //solo long range
+                Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
+                break;
             case UnitTypes.Heungbu: //multi long range
                 Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
                 break;

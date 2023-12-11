@@ -1549,6 +1549,7 @@ MonoBehaviour:
   mainCameraController: {fileID: 0}
   isPlayerTurn: 0
   isEnemyTurn: 0
+  isFight: 0
   wasMoved: 0
   width: 5
   height: 5
@@ -1633,9 +1634,6 @@ MonoBehaviour:
   gridPosition: {x: 0, y: 0}
   board: {fileID: 0}
   noiseScale: 1
-  grass1: {fileID: 2100000, guid: f24038a9631baa2429be0a7c2db8f8e7, type: 2}
-  grass2: {fileID: 2100000, guid: 36f3995c53790374a952c70109473b82, type: 2}
-  grass3: {fileID: 2100000, guid: 537ba92f45174f44cbeb84fe244222e8, type: 2}
 --- !u!114 &1562054554
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1702,6 +1702,7 @@ MonoBehaviour:
   heungbuButton: {fileID: 408663852}
   nolbuButton: {fileID: 1151090292}
   swallowButton: {fileID: 1984369804}
+  turnEndButton: {fileID: 1029958751}
   unitUIs:
   - {fileID: 7371431077836823016, guid: 285a7359fe55aea4181834c07a2e1dd7, type: 3}
   minimapCameraController: {fileID: 0}
@@ -1793,9 +1794,6 @@ MonoBehaviour:
   gridPosition: {x: 0, y: 0}
   board: {fileID: 0}
   noiseScale: 1
-  grass1: {fileID: 2100000, guid: f24038a9631baa2429be0a7c2db8f8e7, type: 2}
-  grass2: {fileID: 2100000, guid: 36f3995c53790374a952c70109473b82, type: 2}
-  grass3: {fileID: 2100000, guid: 537ba92f45174f44cbeb84fe244222e8, type: 2}
 --- !u!114 &1562054554
 MonoBehaviour:
   m_ObjectHideFlags: 0
