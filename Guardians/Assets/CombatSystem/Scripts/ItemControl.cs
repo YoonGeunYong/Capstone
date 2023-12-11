@@ -31,8 +31,9 @@ public class ItemControl : MonoBehaviour
         dir = parent.enemy.gameObject.transform.position - transform.position;
         transform.Translate(dir.normalized * (speed * Time.deltaTime));
         
-        if (Vector3.Distance(parent.enemy.gameObject.transform.position, transform.position) < 1f) 
+        if (Vector3.Distance(parent.enemy.gameObject.transform.position, transform.position) < 1f)
         {
+            parent.enemy.stats.healthPoint -= parent.stats.attack;
             Destroy(gameObject);
         }
     }

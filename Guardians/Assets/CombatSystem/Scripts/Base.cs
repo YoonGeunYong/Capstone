@@ -13,8 +13,8 @@ public class Base : MonoBehaviour
 
     private void Start()
     {
-
-        resources = 10;
+        if (gameObject.name == "PlayerBase(Clone)")
+            resources = 10;
 
         resourcePerTurn = 10;
 
@@ -55,6 +55,9 @@ public class Base : MonoBehaviour
         GameObject newUnit = Instantiate(unit.gameObject, 
             (team == Unit.Team.Player) ? new Vector3(position.x -100, position.y -100, 0f) :
                 new Vector3(position.x -60, position.y -60, 0f) + RandomOffset(), unit.transform.rotation);
+        
+        if(newUnit.GetComponent<Rabbit>().team == Unit.Team.Enemy) // 12.12 enemy spawn scale fix
+            newUnit.transform.localScale = new Vector3(0.3f, 0.3f, -0.3f);
 
         Unit newUnitComponent = newUnit.GetComponent<Unit>();
 
@@ -103,7 +106,7 @@ public class Base : MonoBehaviour
     }
 
 
-    private bool TrySpendResources(int amount)
+    public bool TrySpendResources(int amount)
     {
 
         if (resources >= amount)

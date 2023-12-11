@@ -172,7 +172,7 @@ public class MiniMap : MonoBehaviour
             {
                 Debug.Log("no enemies detected");
                 
-                unitUI.unit.MoveTo(newBoardPosition);
+                unitUI.unit.MoveTo(newBoardPosition); // 12.12 I Want to Fix!!
             }
 
         }

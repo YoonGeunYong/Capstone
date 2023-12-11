@@ -121,7 +121,8 @@ public class Rabbit : Unit
             case UnitTypes.Heungbu: //multi long range
                 Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
                 break;
-            default:
+            default: // Only Attack 12.12
+                enemy.stats.healthPoint -= stats.attack;
                 break; 
         }
     }
