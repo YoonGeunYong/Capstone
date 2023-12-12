@@ -29,7 +29,7 @@ public class SpawnUnitNode : Action
             Debug.Log(baseScript.position / 10);
             
             baseScript.SpawnUnit(unitUIPrefab, Unit.Team.Enemy, baseScript.position, UnitTypes.Rabbit);
-            
+
             GameController.instance.EndAITurn();
 
             return TaskStatus.Success;

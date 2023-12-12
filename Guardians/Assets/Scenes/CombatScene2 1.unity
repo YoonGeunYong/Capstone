@@ -1312,7 +1312,7 @@ Transform:
   m_GameObject: {fileID: 1279324068}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 120, y: 120, z: -1}
+  m_LocalPosition: {x: 120, y: 120, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1703,6 +1703,7 @@ MonoBehaviour:
   nolbuButton: {fileID: 1151090292}
   swallowButton: {fileID: 1984369804}
   turnEndButton: {fileID: 1029958751}
+  turnText: {fileID: 0}
   unitUIs:
   - {fileID: 7371431077836823016, guid: 285a7359fe55aea4181834c07a2e1dd7, type: 3}
   minimapCameraController: {fileID: 0}
@@ -1877,8 +1878,8 @@ MonoBehaviour:
         byteData: 
         byteDataArray: 
       Version: 
-  gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1
+  gizmoViewMode: 0
+  showBehaviorDesignerGizmo: 0
 --- !u!114 &1562054558
 MonoBehaviour:
   m_ObjectHideFlags: 0
