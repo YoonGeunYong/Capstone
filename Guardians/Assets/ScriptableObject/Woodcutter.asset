@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d52331cd83d0f428c7e75fdf8316ed, type: 3}
   m_Name: Woodcutter
   m_EditorClassIdentifier: 
-  unitType: 0
+  unitType: 3
   _stats:
-    attack: 0
-    defend: 0
-    healthPoint: 0
-    attackSpeed: 0
-    delay: 0
-    attackType: 0
-    length: 0
-    cost: 0
+    attack: 30
+    defend: 2
+    healthPoint: 200
+    attackSpeed: 1
+    delay: 10
+    attackType: 2
+    length: 1
+    cost: 80
   _anicontroller: {fileID: 9100000, guid: 355b13d8087a26f46ae9fe3fa5b50210, type: 2}
   _image: {fileID: 21300000, guid: 04bb3fcd8b7edbb499631c3bb5b07ca9, type: 3}
   _defaultScale: {x: 3, y: 3, z: 3}
+  _childItem: {fileID: 0}
+  _childItemImage: {fileID: 0}

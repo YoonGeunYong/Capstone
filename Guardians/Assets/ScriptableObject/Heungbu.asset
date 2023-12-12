@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d52331cd83d0f428c7e75fdf8316ed, type: 3}
   m_Name: Heungbu
   m_EditorClassIdentifier: 
-  unitType: 0
+  unitType: 6
   _stats:
-    attack: 0
-    defend: 0
-    healthPoint: 0
-    attackSpeed: 0
-    delay: 0
-    attackType: 0
-    length: 0
-    coast: 0
+    attack: 40
+    defend: 1
+    healthPoint: 150
+    attackSpeed: 0.5
+    delay: 20
+    attackType: 2
+    length: 5
+    cost: 120
   _anicontroller: {fileID: 9100000, guid: a68ad095be055c549a7a5053a9908e46, type: 2}
-  _image: {fileID: 21300000, guid: 564bf86309fbb4642807ed4f2aca9530, type: 3}
+  _image: {fileID: 21300000, guid: d122cd9da3d5042459e383b245a704c5, type: 3}
   _defaultScale: {x: 3, y: 3, z: 3}
+  _childItem: {fileID: 4244734214591158271, guid: ae2027301db0f5a43aa5a2bffe231319, type: 3}
+  _childItemImage: {fileID: 21300000, guid: 17a5bc1896a9d7c429773b367f0a1275, type: 3}

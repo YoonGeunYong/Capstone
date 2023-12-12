@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
@@ -7,12 +8,25 @@ public class Rabbit : Unit
 {
     private void Start()
     {
-        
         stats = statsSO._stats;
         unitTypes = statsSO.unitType;
         GetComponent<SpriteRenderer>().sprite = statsSO._image;
-        GetComponent<Animator>().runtimeAnimatorController = statsSO._anicontroller;
+        animator = GetComponent<Animator>();
+        animator.runtimeAnimatorController = statsSO._anicontroller;
+        if(statsSO._childItem is not null)
+            childItem = statsSO._childItem;     //12.08 'pursuit to enemy' add
     }
+
+    private void Update()
+    {
+        if (!GameController.instance.isFight && !enemyCheck)
+            return;
+        
+        attackDelay += Time.deltaTime;
+        if (!(attackDelay > stats.attackSpeed)) return;
+        //Attack();
+    }
+
     public override void MoveTo(Vector2Int newBoardPos)
     {
         Vector3 targetPosition = new Vector3(newBoardPos.x * 20, newBoardPos.y * 20, transform.position.z);
@@ -38,10 +52,13 @@ public class Rabbit : Unit
         // Attack all enemies on the tile
         for (int i = 0; i < enemies.Count; i++)
         {
-            Unit enemy = enemies[i];
+            enemy = enemies[i];
 
             // Attack the enemy
             //enemy.stats.healthPoint -= stats.attack;
+            
+            //12.08 'Attack enemy' add
+            StartCoroutine("AttacktoEnemy");
 
             // Check if the enemy is still alive
             if (enemy.stats.healthPoint <= 0)
@@ -52,6 +69,7 @@ public class Rabbit : Unit
                 DestroyUnit(enemy); // Destroy the enemy unit
             }
         }
+        attackDelay = 0; //12.08
 
         // If no more enemies, continue moving
         if (enemies.Count == 0)
@@ -77,6 +95,36 @@ public class Rabbit : Unit
 
         // Perform any necessary cleanup or additional logic here
         // ...
+    }
+    
+    //12.08 'Attack enemy' add
+    IEnumerator AttacktoEnemy()
+    {
+        animator.SetTrigger("AttackDelay");
+        
+        yield return new WaitForSeconds(1f);
+        Vector3 position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+        switch (unitTypes)
+        {
+            case UnitTypes.Fox: //solo long range
+                Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
+                break;
+            case UnitTypes.Fairy: //solo long range
+                Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
+                break;
+            case UnitTypes.Swallow: //solo long range
+                Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
+                break;
+            case UnitTypes.Nolbu: //solo long range
+                Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
+                break;
+            case UnitTypes.Heungbu: //multi long range
+                Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
+                break;
+            default: // Only Attack 12.12
+                enemy.stats.healthPoint -= stats.attack;
+                break; 
+        }
     }
 
 }

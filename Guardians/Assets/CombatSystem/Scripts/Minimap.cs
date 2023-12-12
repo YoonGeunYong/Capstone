@@ -172,7 +172,7 @@ public class MiniMap : MonoBehaviour
             {
                 Debug.Log("no enemies detected");
                 
-                unitUI.unit.MoveTo(newBoardPosition);
+                unitUI.unit.MoveTo(newBoardPosition); // 12.12 I Want to Fix!!
             }
 
         }
@@ -276,6 +276,19 @@ public class MiniMap : MonoBehaviour
         }
 
         // If the position is out of bounds, return null
+        return null;
+    }
+
+    // 12.08 Fighting on Tile check
+    public MiniMapTile GetMiniMapTile()
+    {
+        foreach (var tile in miniMapTiles)
+        {
+            if (tile.unitsOnTile[0].unit.enemyCheck)
+            {
+                return tile;
+            }
+        }
         return null;
     }
 

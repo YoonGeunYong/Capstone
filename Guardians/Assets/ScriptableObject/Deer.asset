@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d52331cd83d0f428c7e75fdf8316ed, type: 3}
   m_Name: Deer
   m_EditorClassIdentifier: 
-  unitType: 0
+  unitType: 5
   _stats:
     attack: 20
     defend: 3
@@ -21,7 +21,9 @@ MonoBehaviour:
     delay: 5
     attackType: 0
     length: 1
-    cost: 0
+    cost: 70
   _anicontroller: {fileID: 9100000, guid: 467d27e6f7c7f18469d23c247ee55cef, type: 2}
   _image: {fileID: 21300000, guid: 8cf8c45ea47c0d44ca95162951fba4da, type: 3}
   _defaultScale: {x: 3, y: 3, z: 3}
+  _childItem: {fileID: 0}
+  _childItemImage: {fileID: 0}
