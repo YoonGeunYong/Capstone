@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     public Button                       rabbitButton, turtleButton, foxButton, woodCutterButton,
                                         fairyButton, deerButton, heungbuButton, nolbuButton, swallowButton;
     public Button                       turnEndButton;
+    public GameObject                   turnText;
     public List<GameObject>             unitUIs;
     public MinimapCameraController      minimapCameraController;
     public MainCameraController         mainCameraController;
@@ -245,6 +246,8 @@ public class GameController : MonoBehaviour
         behaviorTree.OnBehaviorEnded();
 
         isEnemyTurn = false;
+        
+        turnText.SetActive(true);
 
         StartPlayerTurn();
 
