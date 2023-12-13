@@ -17,11 +17,11 @@ MonoBehaviour:
     attack: 10
     defend: 0
     healthPoint: 100
-    attackSpeed: 0.8
+    attackSpeed: 1
     delay: 20
     attackType: 0
     length: 1
-    cost: 150
+    cost: 60
   _anicontroller: {fileID: 9100000, guid: 47baf102aed5f2d4bbd625c379478875, type: 2}
   _image: {fileID: 21300000, guid: 0a560d50cdb320a4d8562bcc6e2fe7d0, type: 3}
   _defaultScale: {x: 3, y: 3, z: 3}

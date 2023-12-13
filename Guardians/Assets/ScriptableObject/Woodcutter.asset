@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitType: 3
   _stats:
-    attack: 30
+    attack: 45
     defend: 2
     healthPoint: 200
-    attackSpeed: 1
+    attackSpeed: 4
     delay: 10
     attackType: 2
     length: 1
-    cost: 80
+    cost: 60
   _anicontroller: {fileID: 9100000, guid: 355b13d8087a26f46ae9fe3fa5b50210, type: 2}
   _image: {fileID: 21300000, guid: 04bb3fcd8b7edbb499631c3bb5b07ca9, type: 3}
   _defaultScale: {x: 3, y: 3, z: 3}
