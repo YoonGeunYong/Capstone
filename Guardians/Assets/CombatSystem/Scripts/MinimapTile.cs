@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 #if TreeEditor
 using TreeEditor;
 #endif
@@ -9,12 +10,15 @@ using UnityEngine.UIElements;
 public class MiniMapTile : MonoBehaviour
 {
     public Vector2Int       gridPosition;
-    public Vector2Int       boardPosition;
     public Vector2Int       originalPosition;
     public List<UnitUI>     unitsOnTile;
     public List<UnitUI>     enemyUnitsOnTile;
+    public Color            originalColor;
     public bool IsMovable   { get; set; }
 
+    private bool isCameraHighlighted = false;
+
+    
 
     private void Start()
     {
@@ -24,6 +28,8 @@ public class MiniMapTile : MonoBehaviour
         unitsOnTile         = new List<UnitUI>();
 
         enemyUnitsOnTile    = new List<UnitUI>();
+
+        originalColor       = GetComponent<Renderer>().material.color;
 
     }
 
@@ -46,6 +52,17 @@ public class MiniMapTile : MonoBehaviour
 
             UpdateUnitPositions();
         }
+        //12.08 'on tile with enemy' check
+        if (enemyUnitsOnTile.Count != 0 && unitsOnTile.Count != 0)
+        {
+            GameController.instance.isFight = true;
+            unitUI.unit.animator.SetBool("Attack", true);
+
+            foreach (UnitUI ui in enemyUnitsOnTile)
+            {
+                ui.unit.enemyCheck = true;
+            }
+        } // 'not here enemy' shoud be make it
 
     }
 
@@ -128,6 +145,23 @@ public class MiniMapTile : MonoBehaviour
         return enemies;
     }
 
+    public void HighlightTile()
+    {
+        if (!isCameraHighlighted)
+        {
+            GetComponent<Renderer>().material.color = Color.red;
+            isCameraHighlighted = true;
+        }
+    }
+
+    public void UnhighlightTile()
+    {
+        if (isCameraHighlighted)
+        {
+            GetComponent<Renderer>().material.color = originalColor;
+            isCameraHighlighted = false;
+        }
+    }
 
     void OnMouseDown()
     {

@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d52331cd83d0f428c7e75fdf8316ed, type: 3}
   m_Name: Nolbu
   m_EditorClassIdentifier: 
-  unitType: 0
+  unitType: 7
   _stats:
-    attack: 0
+    attack: 10
     defend: 0
-    healthPoint: 0
-    attackSpeed: 0
-    delay: 0
+    healthPoint: 100
+    attackSpeed: 1
+    delay: 20
     attackType: 0
-    length: 0
-    coast: 0
+    length: 1
+    cost: 60
   _anicontroller: {fileID: 9100000, guid: 47baf102aed5f2d4bbd625c379478875, type: 2}
-  _image: {fileID: 21300000, guid: 4b142d26d3e698842b887c776b64bfea, type: 3}
+  _image: {fileID: 21300000, guid: 0a560d50cdb320a4d8562bcc6e2fe7d0, type: 3}
   _defaultScale: {x: 3, y: 3, z: 3}
+  _childItem: {fileID: 4244734214591158271, guid: ae2027301db0f5a43aa5a2bffe231319, type: 3}
+  _childItemImage: {fileID: 21300000, guid: ce84d237d45333741aae27069b643cce, type: 3}

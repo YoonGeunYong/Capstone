@@ -9,6 +9,7 @@ public class Base : MonoBehaviour
 
     public int        resources;
     public int        resourcePerTurn;
+    public int        maxResources;
 
 
     private void Start()
@@ -17,6 +18,8 @@ public class Base : MonoBehaviour
         resources = 10;
 
         resourcePerTurn = 10;
+
+        maxResources = 500;
 
     }
 
@@ -56,6 +59,9 @@ public class Base : MonoBehaviour
             (team == Unit.Team.Player) ? new Vector3(position.x -100, position.y -100, 0f) :
                 new Vector3(position.x -60, position.y -60, 0f) + RandomOffset(), unit.transform.rotation);
 
+        if (newUnit.GetComponent<Rabbit>().team == Unit.Team.Enemy) // 12.12 enemy spawn scale fix
+            newUnit.transform.localScale = new Vector3(0.3f, 0.3f, -0.3f);
+
         Unit newUnitComponent = newUnit.GetComponent<Unit>();
 
         if (newUnitComponent == null)
@@ -88,7 +94,7 @@ public class Base : MonoBehaviour
 
         if (TrySpendResources(unit.stats.cost))
         {
-            //GameController.instance.EndPlayerTurn();
+            resources -= unit.stats.cost;
         }
 
 

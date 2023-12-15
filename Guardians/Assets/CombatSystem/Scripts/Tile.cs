@@ -7,5 +7,4 @@ public class Tile : MonoBehaviour
     public Vector2Int       gridPosition;
     public Board            board;
     public float            noiseScale;
-
 }

@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 {
     public static GameController        instance;
 
-    public BehaviorTree                 behaviorTree;
+    public EnemyAgent                   enemyAgent;
     public GameObject                   playerBaseTower;
     public GameObject                   enemyBaseTower;
     public GameObject                   playerBaseObject;
@@ -20,17 +20,21 @@ public class GameController : MonoBehaviour
     public Button                       rabbitButton, turtleButton, foxButton, woodCutterButton,
                                         fairyButton, deerButton, heungbuButton, nolbuButton, swallowButton;
     public Button                       turnEndButton;
+    public GameObject                   turnText;
     public List<GameObject>             unitUIs;
     public MinimapCameraController      minimapCameraController;
     public MainCameraController         mainCameraController;
+    public CreateButtonControl          createButtonControl;
     public bool                         isPlayerTurn;
     public bool                         isEnemyTurn;
+    public bool                         isFight;
     public bool                         wasMoved;
     public int                          width;
     public int                          height;
 
     private Base                        playerBase;
     private Base                        enemyBase;
+    private CostManager                 costScript;
 
     public  UnitStatsSO[]               preStats;
 
@@ -50,7 +54,7 @@ public class GameController : MonoBehaviour
         isPlayerTurn              =      true;
         isEnemyTurn               =      false;
 
-        behaviorTree              =      GetComponent<BehaviorTree>();
+        
         board                     =      GetComponent<Board>();
         miniMap                   =      GetComponent<MiniMap>();
         minimapCameraController   =      GetComponent<MinimapCameraController>();
@@ -59,28 +63,29 @@ public class GameController : MonoBehaviour
 
 
         // Assuming buttonPrefab is already assigned in the inspector
-        rabbitButton.onClick.            AddListener(OnSpawnRabbit);
-        turtleButton.onClick.            AddListener(OnSpawnTurtle);
-        foxButton.onClick.               AddListener(OnSpawnFox);
-        woodCutterButton.onClick.        AddListener(OnSpawnWoodCutter);
-        fairyButton.onClick.             AddListener(OnSpawnFairy);
-        deerButton.onClick.              AddListener(OnSpawnDeer);
-        heungbuButton.onClick.           AddListener(OnSpawnHeungbu);
-        nolbuButton.onClick.             AddListener(OnSpawnNolbu);
-        swallowButton.onClick.           AddListener(OnSpawnSwallow);
+        rabbitButton.onClick.       AddListener(()     => OnSpawnUnit(UnitTypes.Rabbit));
+        turtleButton.onClick.       AddListener(()     => OnSpawnUnit(UnitTypes.Turtle));
+        foxButton.onClick.          AddListener(()     => OnSpawnUnit(UnitTypes.Fox));
+        woodCutterButton.onClick.   AddListener(()     => OnSpawnUnit(UnitTypes.WoodCutter));
+        fairyButton.onClick.        AddListener(()     => OnSpawnUnit(UnitTypes.Fairy));
+        deerButton.onClick.         AddListener(()     => OnSpawnUnit(UnitTypes.Deer));
+        heungbuButton.onClick.      AddListener(()     => OnSpawnUnit(UnitTypes.Heungbu));
+        nolbuButton.onClick.        AddListener(()     => OnSpawnUnit(UnitTypes.Nolbu));
+        swallowButton.onClick.      AddListener(()     => OnSpawnUnit(UnitTypes.Swallow));
+
 
         // Initialize the game board and the player base...
         board.                          InitBoard(width, height);
         miniMap.                        InitMiniMap(width, height);
         //minimapCameraController.        UpdateCameraSize(miniMap);
-        mainCameraController.           MoveMainCamera(new Vector3(0, 0f, mainCameraController.mainCamera.transform.position.z));
-
     }
 
     private void Start()
     {
         playerBase = playerBaseObject.GetComponent<Base>();
         enemyBase = enemyBaseObject.GetComponent<Base>();
+        enemyAgent = GetComponent<EnemyAgent>();
+        costScript = GetComponent<CostManager>();
 
         playerBase.InitPosition(miniMap.miniMapTiles[0, 0].gridPosition);
         enemyBase.InitPosition(miniMap.miniMapTiles[width - 1, height - 1].gridPosition);
@@ -99,59 +104,15 @@ public class GameController : MonoBehaviour
 
 
     // This method is called by a UI button using Unity's event system.
-    public void OnSpawnRabbit()
-    { if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Rabbit]._stats.cost)
+    private void OnSpawnUnit(UnitTypes unitType)
+    {
+        if (isPlayerTurn && playerBase.resources >= preStats[(int)unitType]._stats.cost)
         {
-            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Rabbit);
+            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, unitType);
+            playerBase.resources -= preStats[(int)unitType]._stats.cost;
+            costScript.resourceText.text = "Resources: " + playerBase.GetResource().ToString();
+            createButtonControl.ButtonActive();
         }
-    }
-
-    public void OnSpawnTurtle()
-    {
-        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Turtle]._stats.cost)
-            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Turtle
-        );
-    }
-
-    public void OnSpawnFox()
-    {
-        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Fox]._stats.cost)
-            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Fox);
-    }
-
-    public void OnSpawnWoodCutter()
-    {
-        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.WoodCutter]._stats.cost)
-            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.WoodCutter);
-    }
-
-    public void OnSpawnFairy()
-    {   if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Fairy]._stats.cost)
-            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Fairy);
-    }
-
-    public void OnSpawnDeer()
-    {   
-        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Deer]._stats.cost)
-            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Deer);
-    }
-
-    public void OnSpawnHeungbu()
-    {
-        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Heungbu]._stats.cost)
-            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Heungbu);
-    }
-
-    public void OnSpawnNolbu()
-    {
-        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Nolbu]._stats.cost) 
-            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Nolbu);
-    }
-
-    public void OnSpawnSwallow()
-    {
-        if(isPlayerTurn && playerBase.resources >= preStats[(int)UnitTypes.Swallow]._stats.cost)
-            playerBase.SpawnUnit(unitUIs[0], Unit.Team.Player, playerBase.position, UnitTypes.Swallow);
     }
 
     private void EnableturnButton()
@@ -170,6 +131,8 @@ public class GameController : MonoBehaviour
         isPlayerTurn = true;
 
         playerBase.EndTurnAndGetResource();
+
+        createButtonControl.ButtonActive();
 
         EnableturnButton();
     }
@@ -191,23 +154,31 @@ public class GameController : MonoBehaviour
 
     private void StartAITurn()
     {
-        
         isEnemyTurn = true;
 
         enemyBase.EndTurnAndGetResource();
 
-        behaviorTree.EnableBehavior();
-
-        Debug.Log("Enemy Resource: " + enemyBase.resources);
-
+        if (enemyAgent.behaviorTree != null)
+        {
+            enemyAgent.behaviorTree.EnableBehavior();
+            Debug.Log("Enemy Resource: " + enemyBase.resources);
+        }
+        else
+        {
+            Debug.LogError("EnemyAgent's behaviorTree is null.");
+        }
     }
+
 
 
     public void EndAITurn()
     {
-        behaviorTree.OnBehaviorEnded();
+        //behaviorTree.OnBehaviorEnded();
 
+        enemyAgent.behaviorTree.DisableBehavior();
         isEnemyTurn = false;
+
+        //turnText.SetActive(true);
 
         StartPlayerTurn();
 

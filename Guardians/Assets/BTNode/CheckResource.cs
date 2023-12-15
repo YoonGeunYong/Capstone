@@ -11,6 +11,8 @@ public class CheckResource : Conditional
     {
         if (baseGameObject == null || baseGameObject.Value == null)
         {
+            Debug.LogError("baseGameObject is null");
+
             return TaskStatus.Failure;
         }
 
@@ -18,6 +20,8 @@ public class CheckResource : Conditional
 
         if (baseScript == null)
         {
+            Debug.LogError("baseScript is null");
+
             return TaskStatus.Failure;
         }
 
@@ -28,6 +32,9 @@ public class CheckResource : Conditional
         }
         else
         {
+            Debug.Log("Not enough resources");
+
+            GameController.instance.EndAITurn();
             return TaskStatus.Failure; // 부족한 경우
         }
     }

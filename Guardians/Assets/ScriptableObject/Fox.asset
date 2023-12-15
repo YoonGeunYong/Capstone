@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d52331cd83d0f428c7e75fdf8316ed, type: 3}
   m_Name: Fox
   m_EditorClassIdentifier: 
-  unitType: 0
+  unitType: 2
   _stats:
     attack: 20
     defend: 1
@@ -21,7 +21,9 @@ MonoBehaviour:
     delay: 2
     attackType: 1
     length: 4
-    cost: 0
+    cost: 15
   _anicontroller: {fileID: 9100000, guid: d9edf8ede2b5f6343a0e0b9d1d34ca2b, type: 2}
   _image: {fileID: 21300000, guid: 6bf3dc80cd36d7e438b1986e2fe96403, type: 3}
   _defaultScale: {x: 3, y: 3, z: 3}
+  _childItem: {fileID: 4244734214591158271, guid: ae2027301db0f5a43aa5a2bffe231319, type: 3}
+  _childItemImage: {fileID: 21300000, guid: 51e74e562cc45c741b9e7d5b0994e050, type: 3}

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23f08d2ae4cba14087c1ed36193d82b, type: 3}
+  m_Name: EnemyBT
+  m_EditorClassIdentifier: 
+  mBehaviorSource:
+    behaviorName: Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(317,3)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-130,130)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"DelayCondition","NodeData":{"Offset":"(-324,175)"},"ID":2,"Name":"Delay
+        Condition","Instant":true,"SingledelayTime":1},{"Type":"CheckTurn","NodeData":{"Offset":"(-176.416687,179.083359)"},"ID":3,"Name":"Check
+        Turn","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(102.051376,166.666626)"},"ID":4,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CheckResource","NodeData":{"Offset":"(-194.102554,170)"},"ID":5,"Name":"Check
+        Resource","Instant":true,"SharedGameObjectbaseGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":0},"Int32requiredResources":5},{"Type":"SpawnUnitNode","NodeData":{"Offset":"(4.358982,174.358978)"},"ID":6,"Name":"Spawn
+        Unit Node","Instant":true,"SharedGameObjectbaseGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":1},"List`1unitUIPrefab":[],"SharedIntselectedUnitIndex":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0}},{"Type":"CheckUnit","NodeData":{"Offset":"(165.641022,175.641022)"},"ID":7,"Name":"Check
+        Unit","Instant":true},{"Type":"MoveToAnotherTile","NodeData":{"Offset":"(325.641,178.461533)"},"ID":8,"Name":"Move
+        To Another Tile","Instant":true,"SharedIntselectedMoveTileIndex":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0}}]}]}}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects:
+        - {fileID: 3669459100057259795, guid: a57650ac5ea9b454b853320c16d311a5, type: 3}
+        - {fileID: 3669459100057259795, guid: a57650ac5ea9b454b853320c16d311a5, type: 3}
+        byteData: 
+        byteDataArray: 
+      Version: 1.7.2

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CutToonController : MonoBehaviour
 {
-    public GameObject[] image = new GameObject[8];
+    public GameObject[] image;
     public GameObject nextSceneObj;
     public int index = -1;
     private float time = 1.5f;
@@ -15,7 +15,7 @@ public class CutToonController : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        if (index == 7 && time > 1.5f)
+        if (index == 6 && time > 1.5f)
         {
             nextSceneObj.SetActive(true);
             transform.Find("Next").gameObject.SetActive(false);
@@ -25,7 +25,7 @@ public class CutToonController : MonoBehaviour
 
     public void ClickDisplay()
     {
-        if (time > 1.5f && index != 7)
+        if (time > 1.5f && index != 6)
         {
             index++;
             image[index].SetActive(true);

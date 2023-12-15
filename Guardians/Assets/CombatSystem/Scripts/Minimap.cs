@@ -279,4 +279,16 @@ public class MiniMap : MonoBehaviour
         return null;
     }
 
+    public MiniMapTile GetMiniMapTile()
+    {
+        foreach (var tile in miniMapTiles)
+        {
+            if (tile.unitsOnTile[0].unit.enemyCheck)
+            {
+                return tile;
+            }
+        }
+        return null;
+    }
+
 }

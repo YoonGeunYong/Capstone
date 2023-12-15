@@ -17,12 +17,16 @@ public abstract class Unit : MonoBehaviour
         Enemy
     }
 
-    public Team             team;
-    public UnitTypes        unitTypes;
-    public UnitStats        stats;
-    public UnitStatsSO      statsSO;
-    public Vector2Int       boardPosition;
-    public Animator         animator;
+    public Team team;
+    public Unit enemy;
+    public UnitTypes unitTypes;
+    public UnitStats stats;
+    public UnitStatsSO statsSO;
+    public Vector2Int boardPosition;
+    public Animator animator;
+    public GameObject childItem;
+    public float attackDelay;
+    public bool enemyCheck;
 
     public abstract void    MoveTo(Vector2Int newBoardPos);
     public abstract void    Attack(List<Unit> enemy);
