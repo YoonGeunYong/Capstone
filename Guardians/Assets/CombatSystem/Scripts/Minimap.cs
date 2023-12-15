@@ -68,7 +68,7 @@ public class MiniMap : MonoBehaviour
 
                 tileComponent.gridPosition      = new Vector2Int(adjustedX, adjustedY);
                 tileComponent.originalPosition  = new Vector2Int(x, y); // add this
-                tileComponent.GetComponent<SpriteRenderer>().sprite = GameController.instance.board.tileSprite[(x * 5) + y];
+                tileComponent.GetComponent<SpriteRenderer>().sprite = GameController.instance.board.miniMapTileSprite[(x * 5) + y];
                 tileComponent.AddComponent<BoxCollider2D>();
 
                 miniMapTiles[x, y]              = tileComponent;
