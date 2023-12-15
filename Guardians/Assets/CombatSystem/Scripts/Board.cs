@@ -12,7 +12,8 @@ public class Board : MonoBehaviour
     public GameObject tilePrefab;  // Assign this in the inspector.
     public Base playerBase;
     public Base enemyBase;
-    public Sprite[] tileSprite = new Sprite[25];
+    public Sprite[] tileSprite;
+    public Sprite[] miniMapTileSprite;
 
 
     private void Awake()

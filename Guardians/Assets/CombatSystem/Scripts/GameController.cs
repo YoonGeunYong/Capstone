@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
     public List<GameObject>             unitUIs;
     public MinimapCameraController      minimapCameraController;
     public MainCameraController         mainCameraController;
+    public CreateButtonControl          createButtonControl;    //12.13
     public bool                         isPlayerTurn;
     public bool                         isEnemyTurn;
     public bool                         isFight;  //12.08 fight check
@@ -209,6 +210,8 @@ public class GameController : MonoBehaviour
         isPlayerTurn = true;
 
         playerBase.EndTurnAndGetResource();
+        
+        createButtonControl.ButtonActive(); //12.13
 
         EnableturnButton();
     }

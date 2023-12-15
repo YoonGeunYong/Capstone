@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitType: 1
   _stats:
-    attack: 20
+    attack: 15
     defend: 5
     healthPoint: 300
-    attackSpeed: 1
+    attackSpeed: 2
     delay: 1
     attackType: 0
     length: 1
