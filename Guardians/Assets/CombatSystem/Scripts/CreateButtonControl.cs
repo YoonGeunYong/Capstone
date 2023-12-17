@@ -14,6 +14,7 @@ public class CreateButtonControl : MonoBehaviour
         {
             button[i] = transform.GetChild(i).gameObject.GetComponent<Button>();
         }
+        ButtonActive();
     }
     
     public void ButtonActive()

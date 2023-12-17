@@ -4,43 +4,58 @@ public class MainCameraController : MonoBehaviour
 {
     public Camera mainCamera;
     public Camera minimapCamera;
-    private float lastClickTime = 0f;
-    private float doubleClickThreshold = 0.25f;
+    
+    private int tileX;
+    private int tileY;
 
+    private void Start()
+    {
+        tileX = 0;
+        tileY = 0;
 
+        MoveMainCamera(Board.boardInstance.tiles[tileX, tileY].gridPosition);
+    }
+
+    // Input arrow keys to move the camera for Tile position
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && tileY < Board.boardInstance.tiles.GetLength(1) - 1)
         {
-            if (Time.time - lastClickTime < doubleClickThreshold)
-            {
-
-                RaycastHit2D hit;
-                Vector2 ray = minimapCamera.ScreenToWorldPoint(Input.mousePosition);
-                hit = Physics2D.Raycast(ray, Vector2.zero);
-
-                if (hit.collider != null)
-                {
-                    MiniMapTile miniMapTile = hit.transform.GetComponent<MiniMapTile>();
-
-                    if (miniMapTile != null)
-                    {
-
-                        Vector3 mapPosition = new Vector3(miniMapTile.gridPosition.x - 100 + (miniMapTile.originalPosition.x * 10), 
-                            miniMapTile.gridPosition.y - 100 + (miniMapTile.originalPosition.y * 10), mainCamera.transform.position.z);
-                        MoveMainCamera(mapPosition);
-
-                    }
-
-                }
-            }
-            lastClickTime = Time.time;
+            MiniMap.instance.miniMapTiles[tileX, tileY].GetComponent<MiniMapTile>().UnhighlightTile();
+            MoveMainCamera(Board.boardInstance.tiles[tileX, tileY + 1].gridPosition);
+            tileY++;
+            MiniMap.instance.miniMapTiles[tileX, tileY].GetComponent<MiniMapTile>().HighlightTile();
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && tileY > 0)
+        {
+            MiniMap.instance.miniMapTiles[tileX, tileY].GetComponent<MiniMapTile>().UnhighlightTile();
+            MoveMainCamera(Board.boardInstance.tiles[tileX, tileY - 1].gridPosition);
+            tileY--;
+            MiniMap.instance.miniMapTiles[tileX, tileY].GetComponent<MiniMapTile>().HighlightTile();
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && tileX > 0)
+        {
+            MiniMap.instance.miniMapTiles[tileX, tileY].GetComponent<MiniMapTile>().UnhighlightTile();
+            MoveMainCamera(Board.boardInstance.tiles[tileX - 1, tileY].gridPosition);
+            tileX--;
+            MiniMap.instance.miniMapTiles[tileX, tileY].GetComponent<MiniMapTile>().HighlightTile();
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && tileX < Board.boardInstance.tiles.GetLength(0) - 1)
+        {
+            MiniMap.instance.miniMapTiles[tileX, tileY].GetComponent<MiniMapTile>().UnhighlightTile();
+            MoveMainCamera(Board.boardInstance.tiles[tileX + 1, tileY].gridPosition);
+            tileX++;
+            MiniMap.instance.miniMapTiles[tileX, tileY].GetComponent<MiniMapTile>().HighlightTile();
         }
     }
 
-    public void MoveMainCamera(Vector3 targetPosition)
+
+    public void MoveMainCamera(Vector2Int targetPosition)
     {
-        // Change only the position of the camera.
-        mainCamera.transform.position = targetPosition;
+      
+
+        mainCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, -1);
+
+       
     }
 }

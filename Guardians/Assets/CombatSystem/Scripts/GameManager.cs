@@ -13,24 +13,9 @@ public class GameManager : MonoBehaviour
         else Destroy(this);
         DontDestroyOnLoad(gameObject);
     }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
-    }
 
     public void OnApplicationQuit()
     {
         Application.Quit();
-    }
-    public void ChangeScene(int value)
-    {
-        SceneManager.LoadScene(value);
     }
 }

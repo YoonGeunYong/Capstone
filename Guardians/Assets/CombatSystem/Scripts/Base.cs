@@ -9,6 +9,7 @@ public class Base : MonoBehaviour
 
     public int        resources;
     public int        resourcePerTurn;
+    public int        maxResources;
 
 
     private void Start()
@@ -17,6 +18,8 @@ public class Base : MonoBehaviour
             resources = 10;
 
         resourcePerTurn = 10;
+
+        maxResources = 500;
 
     }
 
@@ -91,7 +94,7 @@ public class Base : MonoBehaviour
 
         if (TrySpendResources(unit.stats.cost))
         {
-            //GameController.instance.EndPlayerTurn();
+            resources -= unit.stats.cost;
         }
 
 
