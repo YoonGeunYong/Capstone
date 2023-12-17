@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mVariableData:
     variableStartIndex: 
-    JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"turn","IsShared":true,"IsGlobal":true,"BooleanmValue":false}]}'
+    JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"turn","IsShared":true,"IsGlobal":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedAnimationCurve","Name":"selectedMoveTileIndex","IsShared":true,"IsGlobal":true,"AnimationCurvemValue":{"Keys":[[0,0,0,0],[1,1,0,0]],"PreWrapMode":"ClampForever","PostWrapMode":"ClampForever"}}]}'
     fieldSerializationData:
       typeName: []
       fieldNameHash: 

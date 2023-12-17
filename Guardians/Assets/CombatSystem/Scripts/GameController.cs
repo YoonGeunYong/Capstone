@@ -158,7 +158,7 @@ public class GameController : MonoBehaviour
 
         enemyBase.EndTurnAndGetResource();
 
-        if (enemyAgent.behaviorTree != null)
+        if (enemyAgent.behaviorTree is not null)
         {
             enemyAgent.behaviorTree.EnableBehavior();
             Debug.Log("Enemy Resource: " + enemyBase.resources);

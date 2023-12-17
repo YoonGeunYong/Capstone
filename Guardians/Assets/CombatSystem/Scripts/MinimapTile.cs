@@ -19,7 +19,6 @@ public class MiniMapTile : MonoBehaviour
     private bool isCameraHighlighted = false;
 
     
-
     private void Start()
     {
 
@@ -32,11 +31,9 @@ public class MiniMapTile : MonoBehaviour
         originalColor       = GetComponent<Renderer>().material.color;
 
     }
-
-
+    
     public void AddUnit(UnitUI unitUI)
     {
-
         if(unitUI.unit.team == Unit.Team.Player)
         {
             unitsOnTile.Add(unitUI);
@@ -62,7 +59,7 @@ public class MiniMapTile : MonoBehaviour
             {
                 ui.unit.enemyCheck = true;
             }
-        } // 'not here enemy' shoud be make it
+        } // 'not here enemy' should be make it
 
     }
 
