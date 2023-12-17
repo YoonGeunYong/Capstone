@@ -283,7 +283,7 @@ public class MiniMap : MonoBehaviour
     {
         foreach (var tile in miniMapTiles)
         {
-            if (tile.unitsOnTile[0].unit.enemyCheck)
+            if (tile.unitsOnTile.Count != 0 && tile.enemyUnitsOnTile.Count != 0)
             {
                 return tile;
             }

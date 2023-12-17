@@ -19,8 +19,8 @@ public abstract class Unit : MonoBehaviour
 
     public Team team;
     public Unit enemy;
-    public UnitTypes unitTypes;
     public UnitStats stats;
+    public UnitTypes unitTypes;
     public UnitStatsSO statsSO;
     public Vector2Int boardPosition;
     public Animator animator;
@@ -28,7 +28,9 @@ public abstract class Unit : MonoBehaviour
     public float attackDelay;
     public bool enemyCheck;
 
-    public abstract void    MoveTo(Vector2Int newBoardPos);
-    public abstract void    Attack(List<Unit> enemy);
-    public abstract void    DestroyUnit(Unit unit);
+    public abstract void MoveTo(Vector2Int newBoardPos);
+
+    public abstract void Attack(List<Unit> enemies);
+
+    public abstract void DestroyUnit(Unit unit);
 }

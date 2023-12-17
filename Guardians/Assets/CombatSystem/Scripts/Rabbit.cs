@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
@@ -7,17 +8,24 @@ public class Rabbit : Unit
 {
     private void Start()
     {
-
-        stats = statsSO._stats;
         unitTypes = statsSO.unitType;
-        GetComponent<SpriteRenderer>().sprite = statsSO._image;
+        stats = UnitStats.Clone(unitTypes);
         animator = GetComponent<Animator>();
-        animator.runtimeAnimatorController = statsSO._anicontroller;
+        if (team == Team.Enemy)
+        {
+            GetComponent<SpriteRenderer>().sprite = statsSO._enemyImage;
+            animator.runtimeAnimatorController = statsSO._enemyAnicontroller;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = statsSO._image;
+            animator.runtimeAnimatorController = statsSO._anicontroller;
+        }
         if (statsSO._childItem is not null)
             childItem = statsSO._childItem;
     }
     private void Update()
-    {
+    {                                                                                                                                                                                                                                                    
         if (!GameController.instance.isFight && !enemyCheck)
             return;
 
@@ -46,17 +54,27 @@ public class Rabbit : Unit
     {
         Debug.Log("Rabbit Attack");
 
+        if (!GameController.instance.isFight)
+            return;
+        
+        StartCoroutine(AttacktoEnemy(enemies));
+        
+        
         // Attack all enemies on the tile
-        for (int i = 0; i < enemies.Count; i++)
+        /*for (int i = 0; i < enemies.Count; i++)
         {
-            enemy = enemies[i];
+            if (!enemyCheck)
+            {
+                enemy = enemies[i];
+                enemyCheck = true;
+            }
 
             // Attack the enemy
             //enemy.stats.healthPoint -= stats.attack;
 
             // Attack enemy Animation And Health Loss
             // but this method can't work
-            StartCoroutine("AttacktoEnemy");
+            StartCoroutine(AttacktoEnemy(enemies));
 
             // Check if the enemy is still alive
             if (enemy.stats.healthPoint <= 0)
@@ -72,7 +90,7 @@ public class Rabbit : Unit
         if (enemies.Count == 0)
         {
             MoveTo(boardPosition);
-        }
+        }*/
     }
 
     public override void DestroyUnit(Unit unit)
@@ -94,34 +112,63 @@ public class Rabbit : Unit
         // ...
     }
 
-    IEnumerator AttacktoEnemy()
+    IEnumerator AttacktoEnemy(List<Unit> enemies)
     {
-        animator.SetTrigger("AttackDelay");
-
-        yield return new WaitForSeconds(1f);
-        Vector3 position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-        switch (unitTypes)
+        while (enemies.Count != 0)
         {
-            case UnitTypes.Fox: //solo long range
-                Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
-                break;
-            case UnitTypes.Fairy: //solo long range
-                Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
-                break;
-            case UnitTypes.Swallow: //solo long range
-                Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
-                break;
-            case UnitTypes.Nolbu: //solo long range
-                Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
-                break;
-            case UnitTypes.Heungbu: //multi long range
-                Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
-                break;
-            default: // Only Attack 12.12
-                enemy.stats.healthPoint -= stats.attack;
-                break;
+            animator.SetTrigger("AttackDelay");
+            EnemyCheck(enemies);
+
+            yield return new WaitForSeconds(1f);
+            Vector3 position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+            switch (unitTypes)
+            {
+                case UnitTypes.Fox: //solo long range
+                    Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
+                    break;
+                case UnitTypes.Fairy: //solo long range
+                    Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
+                    break;
+                case UnitTypes.Swallow: //solo long range
+                    Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
+                    break;
+                case UnitTypes.Nolbu: //solo long range
+                    Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
+                    break;
+                case UnitTypes.Heungbu: //multi long range
+                    Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
+                    break;
+                default: // Only Attack 12.12
+                    enemy.stats.healthPoint -= stats.attack;
+                    break;
+            }
+            yield return new WaitForSeconds(GameController.instance.preStats[(int)unitTypes]._stats.attackSpeed);
+        } 
+        
+        GameController.instance.isFight = false;
+        MoveTo(boardPosition);
+        //MiniMap.instance.miniMapTiles[boardPosition.x, boardPosition.y].enemyUnitsOnTile.Clear();
+    }
+
+    private void EnemyCheck(List<Unit> enemies)
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            if (!enemyCheck)
+            {
+                enemy = enemies[i];
+                enemyCheck = true;
+            }
+
+            // Check if the enemy is still alive
+            if (!(enemy.stats.healthPoint <= 0)) continue;
+            
+            // Remove the enemy from the list
+            enemyCheck = false;
+            enemies.RemoveAt(i);
+            i--;
+            DestroyUnit(enemy); // Destroy the enemy unit
         }
-        yield return new WaitForSeconds(GameController.instance.preStats[(int)unitTypes]._stats.attackSpeed);
     }
 
 }

@@ -27,3 +27,6 @@ MonoBehaviour:
   _defaultScale: {x: 3, y: 3, z: 3}
   _childItem: {fileID: 0}
   _childItemImage: {fileID: 0}
+  _enemyImage: {fileID: 21300000, guid: 6d2526e8f58e6c4458ca131309d920bc, type: 3}
+  _enemyAnicontroller: {fileID: 9100000, guid: c9c6370e7a03e9d468f3bac9c5cfc18c, type: 2}
+  _enemyChildItemImage: {fileID: 0}

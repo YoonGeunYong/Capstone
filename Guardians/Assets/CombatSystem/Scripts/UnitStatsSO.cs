@@ -16,11 +16,14 @@ public class UnitStatsSO : ScriptableObject
     public Vector3 _defaultScale;
     public GameObject _childItem;
     public Sprite _childItemImage;
+    public Sprite _enemyImage;
+    public RuntimeAnimatorController _enemyAnicontroller;
+    public Sprite _enemyChildItemImage;
 
 }
 
 [Serializable]
-public  class UnitStats
+public class UnitStats
 {
     public float attack;      // 공격력
     public float defend;      // 방어력
@@ -31,5 +34,20 @@ public  class UnitStats
     public float length;      // 사거리
     public int cost;         // 코스트
 
-    public void InitStats() { }
+    public static UnitStats Clone(UnitTypes unitTypes)
+    {
+        var stats = GameController.instance.preStats[(int)unitTypes]._stats;
+        return new UnitStats
+        {
+            attack = stats.attack,
+            defend = stats.defend,
+            healthPoint = stats.healthPoint,
+            attackSpeed = stats.attackSpeed,
+            delay = stats.delay,
+            attackType = stats.attackType,
+            length = stats.length,
+            cost = stats.cost
+        };
+    }
+    
 }

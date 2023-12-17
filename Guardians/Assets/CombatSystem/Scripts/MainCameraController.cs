@@ -54,7 +54,7 @@ public class MainCameraController : MonoBehaviour
     {
       
 
-        mainCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, -1);
+        mainCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, -10);
 
        
     }
