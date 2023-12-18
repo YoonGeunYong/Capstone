@@ -81,8 +81,8 @@ public class MiniMap : MonoBehaviour
     private Vector3 RandomPos(float offsetRange)
     {
 
-        return new Vector3(UnityEngine.Random.Range(-offsetRange, offsetRange), 0,
-            UnityEngine.Random.Range(-offsetRange, offsetRange));
+        return new Vector3(UnityEngine.Random.Range(-offsetRange, offsetRange),
+            UnityEngine.Random.Range(-offsetRange, offsetRange), 0);
 
     }
 
@@ -90,7 +90,7 @@ public class MiniMap : MonoBehaviour
     public void AddUnitToMinimap(UnitUI unitUI, GameObject actualUnitObject, MiniMapTile tile)
     {
 
-        Vector3 offset = RandomPos(2);
+        Vector3 offset = RandomPos(2.0f);
         unitUI.transform.position = GetMinimapPos(miniMapTiles, tile.originalPosition.x, tile.originalPosition.y) + offset;
         //unitUI.unit                     = actualUnitObject;
 
@@ -168,8 +168,21 @@ public class MiniMap : MonoBehaviour
 
         if (isPlayer)
         {
+            if(miniMapTile == MiniMap.instance.miniMapTiles[MiniMap.instance.width - 1, MiniMap.instance.height - 1])
+            {
+                GameController.instance.GameOver(Unit.Team.Enemy);
+            }
+
+
             GameController.instance.wasMoved = true;
             InitMovable();
+        }
+        else if(!isPlayer)
+        {
+            if (miniMapTile == MiniMap.instance.miniMapTiles[0, 0])
+            {
+                GameController.instance.GameOver(Unit.Team.Player);
+            }
         }
 
         isTileSelected = false;
@@ -191,7 +204,7 @@ public class MiniMap : MonoBehaviour
     private void MoveUnitUI(UnitUI unitUI, MiniMapTile miniMapTile)
     {
 
-        Vector3 offset              = RandomPos(2);
+        Vector3 offset              = RandomPos(3.0f);
         unitUI.transform.position   = miniMapTile.transform.position + offset;
         unitUI.boardPosition        = CalculateNewBoardPosition(miniMapTile);
 

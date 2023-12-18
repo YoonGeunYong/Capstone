@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3880426411906961606}
   - component: {fileID: 1691858935587318811}
   - component: {fileID: -5333762413377946480}
-  - component: {fileID: 8733226728782720827}
   - component: {fileID: 3758168410982970238}
   m_Layer: 0
   m_Name: Rabbit
@@ -49,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 1
-  unitTypes: 0
+  enemy: {fileID: 0}
   stats:
     attack: 0
     defend: 0
@@ -59,9 +58,16 @@ MonoBehaviour:
     attackType: 0
     length: 0
     cost: 0
+  unitTypes: 0
   statsSO: {fileID: 0}
-  boardPosition: {x: 0, y: 0}
+  gridPosition: {x: 0, y: 0}
   animator: {fileID: 0}
+  childItem: {fileID: 0}
+  enemies: []
+  currentTile: {fileID: 0}
+  attackDelay: 0
+  enemyCheck: 0
+  isAttacking: 0
 --- !u!212 &1691858935587318811
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -141,41 +147,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &8733226728782720827
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8256415807791622103}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2.8}
-  m_Size: {x: 2.2357445, y: 5.448532}
-  m_Direction: 0
 --- !u!95 &3758168410982970238
 Animator:
   serializedVersion: 5

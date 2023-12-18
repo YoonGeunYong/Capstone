@@ -86,6 +86,7 @@ public class Base : MonoBehaviour
         {
             MiniMap.instance.AddUnitToMinimap(unitUIComponent, newUnit, MiniMap.instance.miniMapTiles[0, 0]);
             unitUIComponent.unit.currentTile = MiniMap.instance.miniMapTiles[0, 0];
+
         }
             
 

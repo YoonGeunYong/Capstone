@@ -119,13 +119,14 @@ public class Rabbit : Unit
         StartCoroutine(Move(newBoardPos, targetTile));
     }
 
+
     private IEnumerator Move(Vector2Int newBoardPos, MiniMapTile targetTile)
     {
         GameController.instance.isMoving = true;
 
-        this.animator.SetBool("Move", true);
+        animator.SetBool("Move", true);
 
-        Vector3 targetPosition = new Vector3(newBoardPos.x, newBoardPos.y, transform.position.z);
+        Vector3 targetPosition = new Vector3(newBoardPos.x, newBoardPos.y, transform.position.z) + RandomPos(2.5f);
 
         while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
         {
@@ -133,15 +134,17 @@ public class Rabbit : Unit
             yield return null; // Wait for the next frame
         }
 
-        this.animator.SetBool("Move", false);
+        animator.SetBool("Move", false);
        
         gridPosition = newBoardPos;
         currentTile = targetTile;
+
 
         GameController.instance.isMoving = false;
 
         yield return null;
     }
+
 
     private IEnumerator AttackToEnemy(UnitUI enemy)
     {
@@ -196,6 +199,13 @@ public class Rabbit : Unit
         enemy.ChangeBattleImage();
     }
 
+    private Vector3 RandomPos(float offsetRange)
+    {
+
+        return new Vector3(UnityEngine.Random.Range(-offsetRange, offsetRange),
+            UnityEngine.Random.Range(-offsetRange, offsetRange), 0);
+
+    }
 
     public override void DestroyUnit(UnitUI unit)
     {

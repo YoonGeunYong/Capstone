@@ -30,7 +30,7 @@ public class EnemyAgent : Agent
         }
     }
 
-
+    
     public override void OnEpisodeBegin()
     {
         if (behaviorTree.GetVariable("selectedUnitIndex") == null)
@@ -58,38 +58,6 @@ public class EnemyAgent : Agent
         Debug.Log("selectedMoveTileIndexValue : " + selectedMoveTileIndexValue);
         behaviorTree.SetVariableValue("selectedMoveTileIndex", selectedMoveTileIndexValue);
 
-        
-
-        /*if (unitTiles.Count > 0)
-        {
-            int discreteAction = actions.DiscreteActions[2];
-            int selectedTileIndex = discreteAction % unitTiles.Count;
-
-            int selectedX = unitTiles[selectedTileIndex].x;
-            int selectedY = unitTiles[selectedTileIndex].y;
-
-            Debug.Log("selectedTileX : " + selectedX);
-            Debug.Log("selectedTileY : " + selectedY);
-
-            Vector2Int selectedTile = new Vector2Int(selectedX, selectedY);
-
-            if (unitTiles.Contains(selectedTile))
-            {
-                behaviorTree.SetVariableValue("selectedTileX", unitTiles[0].x);
-                behaviorTree.SetVariableValue("selectedTileY", unitTiles[0].y);
-                EndEpisode();
-            }
-            else
-            {
-                behaviorTree.SetVariableValue("selectedTileX", 0);
-                behaviorTree.SetVariableValue("selectedTileY", 0);
-            }
-        }
-        else
-        {
-            behaviorTree.SetVariableValue("selectedTileX", 0);
-            behaviorTree.SetVariableValue("selectedTileY", 0);
-        }*/
 
         Debug.Log("OnActionReceived");
         AddReward(-0.01f);
