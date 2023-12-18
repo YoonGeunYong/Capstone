@@ -22,11 +22,15 @@ public class UnitUI : MonoBehaviour
 
     public void ChangeBattleImage()
     {
+        // null check
+        if (unit == null)
+            return;
+
         if(GameController.instance.isFight)
             GetComponent<SpriteRenderer>().sprite = battleIcon;
         else if (unit.team == Unit.Team.Enemy)
             GetComponent<SpriteRenderer>().sprite = enemyIcon;
-        else
+        else if (unit.team == Unit.Team.Player)
             GetComponent<SpriteRenderer>().sprite = playerIcon;
     }
 }

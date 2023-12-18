@@ -56,8 +56,12 @@ public class Base : MonoBehaviour
         unit.team = team;
 
         GameObject newUnit = Instantiate(unit.gameObject, 
-            (team == Unit.Team.Player) ? new Vector3(position.x -100, position.y -100, 0f) :
-                new Vector3(position.x -60, position.y -60, 0f) + RandomOffset(), unit.transform.rotation);
+            (team == Unit.Team.Player) ? new Vector3(Board.boardInstance.tiles[0,0].gridPosition.x, Board.boardInstance.tiles[0, 0].gridPosition.y, 0f) :
+                new Vector3(Board.boardInstance.tiles[GameController.instance.width - 1, 
+                GameController.instance.height - 1].gridPosition.x, 
+                Board.boardInstance.tiles[GameController.instance.width - 1, 
+                GameController.instance.height - 1].gridPosition.y, 0f) 
+                + RandomOffset(), unit.transform.rotation);
 
         Unit newUnitComponent = newUnit.GetComponent<Unit>();
 
@@ -76,10 +80,12 @@ public class Base : MonoBehaviour
         unitUIComponent.unit = newUnitComponent;
         unitUIComponent.unit.statsSO = GameController.instance.preStats[(int)type];
         unitUIComponent.unit.team = team;
-
+        unitUIComponent.unit.gridPosition = position;
+        
         if(team == Unit.Team.Player)
         {
             MiniMap.instance.AddUnitToMinimap(unitUIComponent, newUnit, MiniMap.instance.miniMapTiles[0, 0]);
+            unitUIComponent.unit.currentTile = MiniMap.instance.miniMapTiles[0, 0];
         }
             
 
@@ -87,7 +93,7 @@ public class Base : MonoBehaviour
         {
             MiniMap.instance.AddUnitToMinimap(unitUIComponent, newUnit, MiniMap.instance.
                 miniMapTiles[GameController.instance.width - 1, GameController.instance.height - 1]);
-
+            unitUIComponent.unit.currentTile = MiniMap.instance.miniMapTiles[GameController.instance.width - 1, GameController.instance.height - 1];
         }
 
 

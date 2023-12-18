@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using static UnityEngine.UI.CanvasScaler;
 
 public class Rabbit : Unit
 {
+
     private void Start()
     {
+        enemies.Clear();
+
         unitTypes = statsSO.unitType;
         stats = UnitStats.Clone(unitTypes);
         animator = GetComponent<Animator>();
@@ -23,168 +29,176 @@ public class Rabbit : Unit
         }
         if (statsSO._childItem is not null)
             childItem = statsSO._childItem;
+
+        StartCoroutine(CheckForEnemiesRoutine());
     }
+
     private void Update()
-    {                                                                                                                                                                                                                                                    
-        if (!GameController.instance.isFight && !enemyCheck)
-            return;
+    {
 
-        attackDelay += Time.deltaTime;
     }
 
-    public override void MoveTo(Vector2Int newBoardPos)
+    private IEnumerator CheckForEnemiesRoutine()
     {
-        Vector3 targetPosition = new Vector3(newBoardPos.x * 20, newBoardPos.y * 20, transform.position.z);
-
-        MiniMapTile targetTile = MiniMap.instance.GetTileAt(newBoardPos);
-
-        // If no enemies, start moving
-        while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
+        while (true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 20 * Time.deltaTime);
-            Debug.Log(targetPosition);
-            break;
+            yield return new WaitForSeconds(1.0f);
+            CheckForEnemies();
+        }
+    }
+
+    private void CheckForEnemies()
+    {
+        List<UnitUI> enemiesInRange = GetEnemiesInRange();
+        if (enemiesInRange.Count > 0)
+        {
+            UnitUI selectedEnemy = ChooseEnemy(enemiesInRange);
+            StartCoroutine(AttackToEnemy(selectedEnemy, currentTile));
+        }
+    }
+
+    private List<UnitUI> GetEnemiesInRange()
+    {
+        enemies.Clear();
+
+        List<UnitUI> enemiesInRange = new List<UnitUI>();
+
+        if (team == Team.Player && currentTile.enemyUnitsOnTile.Count != 0)
+        {
+            enemiesInRange = currentTile.enemyUnitsOnTile.ConvertAll(enemyUI => enemyUI)
+                .Where(IsWithinAttackRange)
+                .ToList();
+        }
+        else if (team == Team.Enemy && currentTile.unitsOnTile.Count != 0)
+        {
+            enemiesInRange = currentTile.unitsOnTile.ConvertAll(playerUnitUI => playerUnitUI)
+                .Where(IsWithinAttackRange)
+                .ToList();
         }
 
-        transform.position = targetPosition; // Ensure the unit reaches the exact target position
-        boardPosition = newBoardPos; // Update the board position
+        return enemiesInRange;
     }
 
-    public override void Attack(List<Unit> enemies)
-    {
-        Debug.Log("Rabbit Attack");
 
-        if (!GameController.instance.isFight)
-            return;
-        
-        StartCoroutine(AttacktoEnemy(enemies));
-        
-        
-        
-        // Attack all enemies on the tile
-        /*for (int i = 0; i < enemies.Count; i++)
+
+    private bool IsWithinAttackRange(UnitUI enemy)
+    {
+        float distance = Vector2Int.Distance(gridPosition, enemy.unit.gridPosition);
+
+        if (distance <= stats.length)
         {
-            if (!enemyCheck)
+            Debug.Log("LENFENFELFNENFEL");
+            return true;
+        }
+
+        return false;
+    }
+
+    private UnitUI ChooseEnemy(List<UnitUI> enemiesInRange)
+    {
+        UnitUI selectedEnemy = null;
+        float closset = float.MaxValue;
+
+        foreach (UnitUI enemy in enemiesInRange)
+        {
+            float distance = Vector2Int.Distance(gridPosition, enemy.unit.gridPosition);
+
+            if (distance < closset)
             {
-                enemy = enemies[i];
-                enemyCheck = true;
-            }
-
-            // Attack the enemy
-            //enemy.stats.healthPoint -= stats.attack;
-
-            // Attack enemy Animation And Health Loss
-            // but this method can't work
-            StartCoroutine(AttacktoEnemy(enemies));
-
-            // Check if the enemy is still alive
-            if (enemy.stats.healthPoint <= 0)
-            {
-                // Remove the enemy from the list
-                enemies.RemoveAt(i);
-                i--;
-                DestroyUnit(enemy); // Destroy the enemy unit
+                closset = distance;
+                selectedEnemy = enemy;
             }
         }
 
-        // If no more enemies, continue moving
-        if (enemies.Count == 0)
-        {
-            MoveTo(boardPosition);
-        }*/
+        return selectedEnemy;
     }
 
-    public override void DestroyUnit(Unit unit)
+
+    public override void MoveTo(Vector2Int newBoardPos, MiniMapTile targetTile)
     {
-        // Check if the unit has a UnitUI component attached
-        UnitUI unitUI = unit.GetComponent<UnitUI>();
-
-        // Remove the unit from the game
-        Destroy(unit.gameObject);
-
+        Vector3 targetPosition = new(newBoardPos.x, newBoardPos.y, transform.position.z);
         
-        if (unitUI != null)
+        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
         {
-            // Remove the associated UnitUI from the game
-            Destroy(unitUI.gameObject);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 0.01f * Time.deltaTime);
         }
 
-        // Perform any necessary cleanup or additional logic here
-        // ...
+        gridPosition = newBoardPos;
+        currentTile = targetTile;
     }
 
-    IEnumerator AttacktoEnemy(List<Unit> enemies)
-    {
-        var nowTile = MiniMap.instance.GetMiniMapTile();
-        while (enemies.Count != 0)
-        {
-            animator.SetTrigger("AttackDelay");
-            EnemyCheck(enemies);
 
-            yield return new WaitForSeconds(1f);
-            Vector3 position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-            switch (unitTypes)
-            {
-                case UnitTypes.Fox: //solo long range
-                    Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
-                    break;
-                case UnitTypes.Fairy: //solo long range
-                    Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
-                    break;
-                case UnitTypes.Swallow: //solo long range
-                    Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
-                    break;
-                case UnitTypes.Nolbu: //solo long range
-                    Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
-                    break;
-                case UnitTypes.Heungbu: //multi long range
-                    Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
-                    break;
-                default: // Only Attack 12.12
-                    enemy.stats.healthPoint -= stats.attack;
-                    break;
-            }
-            yield return new WaitForSeconds(GameController.instance.preStats[(int)unitTypes]._stats.attackSpeed);
+    private IEnumerator AttackToEnemy(UnitUI enemy, MiniMapTile targetTile)
+    {
+        if(enemy == null)
+        {
+            yield break;
         }
-        
+
+        GameController.instance.isFight = true;
+
+        enemy.ChangeBattleImage();
+
+        animator.SetTrigger("AttackDelay");
+        animator.SetBool("Attack", true);
+
+        Vector3 position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+
+        switch (unitTypes)
+        {
+            case UnitTypes.Fox: //solo long range
+                Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
+                break;
+            case UnitTypes.Fairy: //solo long range
+                Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
+                break;
+            case UnitTypes.Swallow: //solo long range
+                Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
+                break;
+            case UnitTypes.Nolbu: //solo long range
+                Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
+                break;
+            case UnitTypes.Heungbu: //multi long range
+                Instantiate(childItem, position, Quaternion.identity).transform.parent = transform;
+                break;
+            default: // Only Attack 12.12
+                enemy.unit.stats.healthPoint -= stats.attack;
+                break;
+        }
+
+        if (enemy.unit.stats.healthPoint <= 0)
+        {
+            DestroyUnit(enemy);
+        }
+
+        yield return new WaitForSeconds(GameController.instance.preStats[(int)unitTypes]._stats.attackSpeed);
+
         GameController.instance.isFight = false;
-        int count = (nowTile.unitsOnTile.Count != 0) ? nowTile.unitsOnTile.Count : nowTile.enemyUnitsOnTile.Count;
-        for (int i = 0; i < count; i++)
-        {
-            if (nowTile.unitsOnTile.Count != 0)
-            {
-                nowTile.unitsOnTile[i].ChangeBattleImage();
-            }
-            else
-            {
-                nowTile.enemyUnitsOnTile[i].ChangeBattleImage();
-            }
-        }
-        
-        MoveTo(boardPosition);
-        //MiniMap.instance.miniMapTiles[boardPosition.x, boardPosition.y].enemyUnitsOnTile.Clear();
+
+
+
+        enemy.ChangeBattleImage();
     }
 
-    private void EnemyCheck(List<Unit> enemies)
+
+    public override void DestroyUnit(UnitUI unit)
     {
-        for (int i = 0; i < enemies.Count; i++)
+        if(unit == null)
         {
-            if (!enemyCheck)
-            {
-                enemy = enemies[i];
-                enemyCheck = true;
-            }
+            return;
+        }
 
-            // Check if the enemy is still alive
-            if (!(enemy.stats.healthPoint <= 0)) continue;
-            
-            // Remove the enemy from the list
-            enemyCheck = false;
-            enemies.RemoveAt(i);
-            i--;
-            DestroyUnit(enemy); // Destroy the enemy unit
+        Destroy(unit.gameObject);
+        Destroy(unit.unit.gameObject);
+
+        if (unit.unit.team == Team.Player)
+        {
+            currentTile.unitsOnTile.Remove(unit.GetComponent<UnitUI>());
+        }
+        else if (unit.unit.team == Team.Enemy)
+        {
+            currentTile.enemyUnitsOnTile.Remove(unit.GetComponent<UnitUI>());
         }
     }
-
 }
 

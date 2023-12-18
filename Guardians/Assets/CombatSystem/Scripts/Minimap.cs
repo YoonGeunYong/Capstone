@@ -1,3 +1,4 @@
+using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -122,7 +123,7 @@ public class MiniMap : MonoBehaviour
         HighlightTile(x, y + 1);
 
         isTileSelected = true;
-
+        
     }
 
 
@@ -142,100 +143,48 @@ public class MiniMap : MonoBehaviour
     }
 
 
-    public void MoveUnitTo(MiniMapTile miniMapTile)
+    public void MoveUnitTo(MiniMapTile miniMapTile, bool isPlayer)
     {
-        
-        if (selectedMiniMapTile == null || selectedMiniMapTile.unitsOnTile.Count == 0 || GameController.instance.wasMoved) return;
+        if ((isPlayer && selectedMiniMapTile?.unitsOnTile.Count == 0) ||
+            (!isPlayer && selectedMiniMapTile?.enemyUnitsOnTile.Count == 0) ||
+            GameController.instance.wasMoved)
+        {
+            return;
+        }
 
-        Vector2Int      newBoardPosition    = CalculateNewBoardPosition(miniMapTile);
+        List<UnitUI> unitsToMove = isPlayer ? new List<UnitUI>(selectedMiniMapTile.unitsOnTile)
+                                            : new List<UnitUI>(selectedMiniMapTile.enemyUnitsOnTile);
 
-        List<UnitUI>    unitsToMove         = new List<UnitUI>(selectedMiniMapTile.unitsOnTile);
+        Vector2Int newBoardPosition = CalculateNewBoardPosition(miniMapTile);
 
         foreach (UnitUI unitUI in unitsToMove)
         {
-       
             unitUI.CurrentTile.RemoveUnit(unitUI);
-
             miniMapTile.AddUnit(unitUI);
-
             MoveUnitUI(unitUI, miniMapTile);
 
-            List<Unit> enemies = miniMapTile.GetEnemies(unitUI.unit.team);
-
-            if (enemies.Count != 0)
-            {
-                Debug.Log("enemies detected");
-                
-                unitUI.unit.Attack(enemies);
-            }
-            else
-            {
-                Debug.Log("no enemies detected");
-                
-                unitUI.unit.MoveTo(newBoardPosition);
-            }
-
+            unitUI.unit.MoveTo(newBoardPosition, miniMapTile); 
         }
 
-        InitMovable();
+        if (isPlayer)
+        {
+            GameController.instance.wasMoved = true;
+            InitMovable();
+        }
 
         isTileSelected = false;
-
-        GameController.instance.wasMoved = true;
-        //GameController.instance.EndPlayerTurn();
-
-    }
-
-    public void EnemyMoveUnitTo(MiniMapTile miniMapTile)
-    {
         
-        if (selectedMiniMapTile == null || selectedMiniMapTile.enemyUnitsOnTile.Count == 0 || GameController.instance.wasMoved) return;
-
-        Vector2Int      newBoardPosition    = CalculateNewBoardPosition(miniMapTile);
-
-        List<UnitUI>    unitsToMove         = new List<UnitUI>(selectedMiniMapTile.enemyUnitsOnTile);
-
-        foreach (UnitUI unitUI in unitsToMove)
-        {
-
-            unitUI.CurrentTile.RemoveUnit(unitUI);
-
-            miniMapTile.AddUnit(unitUI);
-
-            MoveUnitUI(unitUI, miniMapTile);
-
-            List<Unit> enemies = miniMapTile.GetEnemies(unitUI.unit.team);
-
-            if (enemies.Count != 0)
-            {
-                Debug.Log("enemies detected");
-
-                unitUI.unit.Attack(enemies);
-            }
-            else
-            {
-                Debug.Log("no enemies detected");
-
-                unitUI.unit.MoveTo(newBoardPosition);
-            }
-        }
     }
-
-
 
 
     private Vector2Int CalculateNewBoardPosition(MiniMapTile miniMapTile)
     {
+        int indexX              = miniMapTile.originalPosition.x;
+        int indexY              = miniMapTile.originalPosition.y;
 
-        int adjustmentFactor    = 100;
-        int scaleDownFactor     = 10;
+        Vector2Int newBoardPos = Board.boardInstance.tiles[indexX, indexY].gridPosition;
 
-        Vector2Int newRawPos    = new Vector2Int(miniMapTile.gridPosition.x - adjustmentFactor,
-                                              miniMapTile.gridPosition.y - adjustmentFactor);
-
-
-        return newRawPos / scaleDownFactor;
-
+        return newBoardPos;
     }
 
 
@@ -249,9 +198,6 @@ public class MiniMap : MonoBehaviour
     }
 
 
-
-
-
     private void InitMovable()
     {
         foreach (var tile in miniMapTiles)
@@ -261,7 +207,6 @@ public class MiniMap : MonoBehaviour
                 tile.GetComponent<Renderer>().material.color = Color.white;
                 tile.IsMovable = false;
             }
-
         }
     }
 

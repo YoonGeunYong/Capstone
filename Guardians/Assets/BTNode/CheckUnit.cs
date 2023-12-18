@@ -11,7 +11,6 @@ public class CheckUnit : Conditional
         {
             if(tile.enemyUnitsOnTile.Count > 0)
             {
-                Debug.Log("CheckUnit");
 
                 return TaskStatus.Success;
             }

@@ -20,7 +20,7 @@ MonoBehaviour:
     attackSpeed: 1.2
     delay: 1
     attackType: 0
-    length: 1
+    length: 3
     cost: 10
   _anicontroller: {fileID: 9100000, guid: f8149b094fc46a94ba114dcc4301003d, type: 2}
   _image: {fileID: 21300000, guid: bff1111c299af9e418942f8fe2dcc91f, type: 3}

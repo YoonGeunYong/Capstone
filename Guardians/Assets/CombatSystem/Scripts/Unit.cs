@@ -22,15 +22,18 @@ public abstract class Unit : MonoBehaviour
     public UnitStats stats;
     public UnitTypes unitTypes;
     public UnitStatsSO statsSO;
-    public Vector2Int boardPosition;
+    public Vector2Int gridPosition;
     public Animator animator;
     public GameObject childItem;
+    public List<Unit> enemies;
+    public MiniMapTile currentTile;
     public float attackDelay;
     public bool enemyCheck;
+    public bool isAttacking = false;
 
-    public abstract void MoveTo(Vector2Int newBoardPos);
+    public abstract void MoveTo(Vector2Int newBoardPos, MiniMapTile newMiniMapTile);
 
-    public abstract void Attack(List<Unit> enemies);
+    //public abstract void Attack(List<UnitUI> enemies);
 
-    public abstract void DestroyUnit(Unit unit);
+    public abstract void DestroyUnit(UnitUI unit);
 }

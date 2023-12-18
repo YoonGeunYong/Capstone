@@ -14,7 +14,7 @@ public class MoveToAnotherTile : Action
 
         if (MiniMap.instance.selectedMiniMapTile != null)
         {
-            MiniMap.instance.EnemyMoveUnitTo(GetSelectedMoveTile());
+            MiniMap.instance.MoveUnitTo(GetSelectedMoveTile(), false);
 
             IsNodeRunning = false;
 

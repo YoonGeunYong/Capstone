@@ -41,16 +41,6 @@ public class SpawnUnitNode : Action
         // Get the selected unit index from ml-agent
         int selectedUnitIndexValue = selectedUnitIndexVariable.Value;
 
-        // Check if the selected unit index is valid
-        if (selectedUnitIndexValue < 0 || selectedUnitIndexValue >= unitUIPrefab.Count)
-        {
-            Debug.LogError("Invalid selectedUnitIndexValue: " + selectedUnitIndexValue);
-
-            IsNodeRunning = false;
-
-            return TaskStatus.Failure;
-        }
-
 
         // Check if there are enough resources to spawn the selected unit
         if (baseScript.GetResource() >= unitUIPrefab[0].GetComponent<UnitUI>().unit.stats.cost)

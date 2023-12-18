@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.Tracing;
 #if TreeEditor
 using TreeEditor;
@@ -9,12 +10,14 @@ using UnityEngine.UIElements;
 
 public class MiniMapTile : MonoBehaviour
 {
+
     public Vector2Int       gridPosition;
     public Vector2Int       originalPosition;
     public List<UnitUI>     unitsOnTile;
     public List<UnitUI>     enemyUnitsOnTile;
     public Color            originalColor;
     public bool IsMovable   { get; set; }
+
 
     private bool isCameraHighlighted = false;
 
@@ -52,14 +55,14 @@ public class MiniMapTile : MonoBehaviour
         //12.08 'on tile with enemy' check
         if (enemyUnitsOnTile.Count != 0 && unitsOnTile.Count != 0)
         {
-            GameController.instance.isFight = true;
+            /*GameController.instance.isFight = true;
             unitUI.unit.animator.SetBool("Attack", true);
             unitUI.ChangeBattleImage();
             foreach (UnitUI ui in enemyUnitsOnTile)
             {
                 ui.unit.enemyCheck = true;
                 ui.ChangeBattleImage();
-            }
+            }*/
         } // 'not here enemy' should be make it
 
     }
@@ -166,15 +169,18 @@ public class MiniMapTile : MonoBehaviour
         
         if (GameController.instance.isPlayerTurn)
         {
+
             if (MiniMap.instance.isTileSelected)
             {
+                
                 if (IsMovable)
                 {
-                    MiniMap.instance.MoveUnitTo(this);
+                    MiniMap.instance.MoveUnitTo(this, true);
                 }
             }
             else
             {
+                
                 if (unitsOnTile.Count > 0)
                 {
                     MiniMap.instance.selectedMiniMapTile = this;
