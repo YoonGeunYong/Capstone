@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -115,16 +116,14 @@ public class Rabbit : Unit
 
     public override void MoveTo(Vector2Int newBoardPos, MiniMapTile targetTile)
     {
-        //animator.SetBool("Move", true);
         StartCoroutine(Move(newBoardPos, targetTile));
-        //animator.SetBool("Move", false);
     }
 
-    public IEnumerator Move(Vector2Int newBoardPos, MiniMapTile targetTile)
+    private IEnumerator Move(Vector2Int newBoardPos, MiniMapTile targetTile)
     {
         GameController.instance.isMoving = true;
 
-       
+        this.animator.SetBool("Move", true);
 
         Vector3 targetPosition = new Vector3(newBoardPos.x, newBoardPos.y, transform.position.z);
 
@@ -134,7 +133,7 @@ public class Rabbit : Unit
             yield return null; // Wait for the next frame
         }
 
-        
+        this.animator.SetBool("Move", false);
        
         gridPosition = newBoardPos;
         currentTile = targetTile;
