@@ -60,6 +60,7 @@ public class Rabbit : Unit
         StartCoroutine(AttacktoEnemy(enemies));
         
         
+        
         // Attack all enemies on the tile
         /*for (int i = 0; i < enemies.Count; i++)
         {
@@ -114,6 +115,7 @@ public class Rabbit : Unit
 
     IEnumerator AttacktoEnemy(List<Unit> enemies)
     {
+        var nowTile = MiniMap.instance.GetMiniMapTile();
         while (enemies.Count != 0)
         {
             animator.SetTrigger("AttackDelay");
@@ -143,9 +145,22 @@ public class Rabbit : Unit
                     break;
             }
             yield return new WaitForSeconds(GameController.instance.preStats[(int)unitTypes]._stats.attackSpeed);
-        } 
+        }
         
         GameController.instance.isFight = false;
+        int count = (nowTile.unitsOnTile.Count != 0) ? nowTile.unitsOnTile.Count : nowTile.enemyUnitsOnTile.Count;
+        for (int i = 0; i < count; i++)
+        {
+            if (nowTile.unitsOnTile.Count != 0)
+            {
+                nowTile.unitsOnTile[i].ChangeBattleImage();
+            }
+            else
+            {
+                nowTile.enemyUnitsOnTile[i].ChangeBattleImage();
+            }
+        }
+        
         MoveTo(boardPosition);
         //MiniMap.instance.miniMapTiles[boardPosition.x, boardPosition.y].enemyUnitsOnTile.Clear();
     }

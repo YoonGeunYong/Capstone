@@ -54,10 +54,11 @@ public class MiniMapTile : MonoBehaviour
         {
             GameController.instance.isFight = true;
             unitUI.unit.animator.SetBool("Attack", true);
-
+            unitUI.ChangeBattleImage();
             foreach (UnitUI ui in enemyUnitsOnTile)
             {
                 ui.unit.enemyCheck = true;
+                ui.ChangeBattleImage();
             }
         } // 'not here enemy' should be make it
 

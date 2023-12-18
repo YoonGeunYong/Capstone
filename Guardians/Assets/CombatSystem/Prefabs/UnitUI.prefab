@@ -112,4 +112,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unit: {fileID: 3880426411906961606, guid: c0540b8f1f0505b4a8fcf064bde1e21d, type: 3}
   boardPosition: {x: 1, y: 1}
-  enemyIcon: {fileID: 21300000, guid: 74f0a349a074221468d3161f78526785, type: 3}
+  playerIcon: {fileID: 21300000, guid: 67725303c13c7b94a8181fe2408a5c33, type: 3}
+  enemyIcon: {fileID: 21300000, guid: d5abe095996e2d745a577c9442c33070, type: 3}
+  battleIcon: {fileID: 21300000, guid: 0e99f20d7b629e84c9e3fa6e2c4fe831, type: 3}

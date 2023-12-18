@@ -31,7 +31,7 @@ public class ItemControl : MonoBehaviour
             {
                 foreach (var unitUI in MiniMap.instance.GetMiniMapTile().enemyUnitsOnTile)
                 {
-                    unitUI.unit.stats.healthPoint -=
+                    unitUI.unit.stats.healthPoint +=
                         GameController.instance.preStats[(int)UnitTypes.Fairy]._stats.attack;
                 }
             }
