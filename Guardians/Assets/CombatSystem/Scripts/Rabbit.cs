@@ -22,7 +22,7 @@ public class Rabbit : Unit
             GetComponent<SpriteRenderer>().sprite = statsSO._enemyImage;
             animator.runtimeAnimatorController = statsSO._enemyAnicontroller;
         }
-        else
+        else if(team == Team.Player)
         {
             GetComponent<SpriteRenderer>().sprite = statsSO._image;
             animator.runtimeAnimatorController = statsSO._anicontroller;
@@ -53,7 +53,7 @@ public class Rabbit : Unit
         if (enemiesInRange.Count > 0)
         {
             UnitUI selectedEnemy = ChooseEnemy(enemiesInRange);
-            StartCoroutine(AttackToEnemy(selectedEnemy, currentTile));
+            StartCoroutine(AttackToEnemy(selectedEnemy));
         }
     }
 
@@ -87,7 +87,6 @@ public class Rabbit : Unit
 
         if (distance <= stats.length)
         {
-            Debug.Log("LENFENFELFNENFEL");
             return true;
         }
 
@@ -116,19 +115,36 @@ public class Rabbit : Unit
 
     public override void MoveTo(Vector2Int newBoardPos, MiniMapTile targetTile)
     {
-        Vector3 targetPosition = new(newBoardPos.x, newBoardPos.y, transform.position.z);
-        
-        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 0.01f * Time.deltaTime);
-        }
-
-        gridPosition = newBoardPos;
-        currentTile = targetTile;
+        //animator.SetBool("Move", true);
+        StartCoroutine(Move(newBoardPos, targetTile));
+        //animator.SetBool("Move", false);
     }
 
+    public IEnumerator Move(Vector2Int newBoardPos, MiniMapTile targetTile)
+    {
+        GameController.instance.isMoving = true;
 
-    private IEnumerator AttackToEnemy(UnitUI enemy, MiniMapTile targetTile)
+       
+
+        Vector3 targetPosition = new Vector3(newBoardPos.x, newBoardPos.y, transform.position.z);
+
+        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 10.0f * Time.deltaTime);
+            yield return null; // Wait for the next frame
+        }
+
+        
+       
+        gridPosition = newBoardPos;
+        currentTile = targetTile;
+
+        GameController.instance.isMoving = false;
+
+        yield return null;
+    }
+
+    private IEnumerator AttackToEnemy(UnitUI enemy)
     {
         if(enemy == null)
         {
@@ -139,6 +155,7 @@ public class Rabbit : Unit
 
         enemy.ChangeBattleImage();
 
+        animator.SetBool("Move", false);
         animator.SetTrigger("AttackDelay");
         animator.SetBool("Attack", true);
 

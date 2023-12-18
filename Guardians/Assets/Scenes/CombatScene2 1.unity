@@ -3262,6 +3262,7 @@ MonoBehaviour:
   isEnemyTurn: 0
   isFight: 0
   wasMoved: 0
+  isMoving: 0
   width: 5
   height: 5
   preStats:

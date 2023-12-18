@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour
     public bool                         isEnemyTurn;
     public bool                         isFight;
     public bool                         wasMoved;
+    public bool                         isMoving;
     public int                          width;
     public int                          height;
 
@@ -127,7 +128,6 @@ public class GameController : MonoBehaviour
 
     public void StartPlayerTurn()
     {
-
         isPlayerTurn = true;
 
         playerBase.EndTurnAndGetResource();

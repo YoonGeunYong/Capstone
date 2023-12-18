@@ -16,7 +16,7 @@ public class DelayCondition : Conditional
     public override TaskStatus OnUpdate()
     {
         // 현재 시간과 시작 시간의 차이가 지연 시간보다 크거나 같으면
-        if (Time.time - startTime >= delayTime)
+        if (Time.time - startTime >= delayTime && !GameController.instance.isMoving)
         {
             return TaskStatus.Success; // 성공 상태 반환
         }

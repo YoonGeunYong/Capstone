@@ -163,7 +163,7 @@ public class MiniMap : MonoBehaviour
             miniMapTile.AddUnit(unitUI);
             MoveUnitUI(unitUI, miniMapTile);
 
-            unitUI.unit.MoveTo(newBoardPosition, miniMapTile); 
+            unitUI.unit.MoveTo(newBoardPosition, miniMapTile);
         }
 
         if (isPlayer)
