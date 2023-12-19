@@ -1,4 +1,6 @@
+#if Palmmedia
 using Palmmedia.ReportGenerator.Core.Reporting.Builders;
+#endif
 using System;
 using System.Collections;
 using System.Collections.Generic;
